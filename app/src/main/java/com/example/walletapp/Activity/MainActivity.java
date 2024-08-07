@@ -17,10 +17,10 @@ import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
     private int[] navIcons = {
-            R.drawable.homenonactive,
-            R.drawable.servernonactive,
-            R.drawable.piechartnonactive,
-            R.drawable.usernonactive
+            R.drawable.home1,
+            R.drawable.server1,
+            R.drawable.piechart1,
+            R.drawable.user1
     };
     private String[] navLabels = {
             "Trang chủ",
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 label.setTextSize(15);
                 icon.setImageResource(navIconsActive[i]);
             } else {
-                label.setTextColor(0xFFFF8D8D);
+                label.setTextColor(0xff59ECFF);
                 label.setTextSize(15);
                 icon.setImageResource(navIcons[i]);
             }
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 View tabView = tab.getCustomView();
                 TextView label = tabView.findViewById(R.id.nav_label);
                 ImageView icon = tabView.findViewById(R.id.nav_icon);
-                label.setTextColor(0xFFFF8D8D);
+                label.setTextColor(0xff59ECFF);
                 label.setTextSize(15);
                 icon.setImageResource(navIcons[tab.getPosition()]);
             }
