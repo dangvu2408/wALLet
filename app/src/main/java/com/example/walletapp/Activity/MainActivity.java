@@ -55,9 +55,11 @@ public class MainActivity extends AppCompatActivity {
 
             if (i == 0) {
                 label.setTextColor(0xFFFFFFFF);
+                label.setTextSize(15);
                 icon.setImageResource(navIconsActive[i]);
             } else {
                 label.setTextColor(0xFFFF8D8D);
+                label.setTextSize(15);
                 icon.setImageResource(navIcons[i]);
             }
             tabLayout.getTabAt(i).setCustomView(tab);
@@ -71,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 TextView label = tabView.findViewById(R.id.nav_label);
                 ImageView icon = tabView.findViewById(R.id.nav_icon);
                 label.setTextColor(0XFFFFFFFF);
+                label.setTextSize(15);
                 icon.setImageResource(navIconsActive[tab.getPosition()]);
             }
 
@@ -81,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 TextView label = tabView.findViewById(R.id.nav_label);
                 ImageView icon = tabView.findViewById(R.id.nav_icon);
                 label.setTextColor(0xFFFF8D8D);
+                label.setTextSize(15);
                 icon.setImageResource(navIcons[tab.getPosition()]);
             }
 

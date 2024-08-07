@@ -10,6 +10,7 @@
         android:layout_height="24dp"
         android:scaleType="centerInside"
         android:id="@+id/nav_icon"
+        android:src="@drawable/usernonactive"
         android:layout_marginTop="5dp"/>
     <TextView
         android:id="@+id/nav_label"
@@ -17,5 +18,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/sfpro_semibold"
         android:textSize="16sp"
+        android:text="Trang chủ"
+        android:gravity="center"
+        android:lineBreakWordStyle="none"
         android:layout_marginBottom="5dp"/>
 </LinearLayout>

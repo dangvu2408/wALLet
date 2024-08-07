@@ -8,8 +8,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"
-        android:text="TRA CỨU ĐIỂM THI"
-        android:textColor="@color/white"
+        android:text="QUẢN LÍ TÀI CHÍNH"
+        android:textColor="@color/black"
         android:fontFamily="@font/sfpro_bold"
         android:textSize="20sp"/>
     <RelativeLayout
