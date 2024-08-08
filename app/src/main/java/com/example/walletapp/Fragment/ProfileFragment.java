@@ -29,14 +29,22 @@ public class ProfileFragment extends Fragment {
         ShapeableImageView avatar = view.findViewById(R.id.profile_avatar);
         TextView user_fullname = view.findViewById(R.id.user_full_name);
         GridView grid_setting = view.findViewById(R.id.gridview_setting);
+        GridView grid_others = view.findViewById(R.id.gridview_others);
         List<GridItem> listSetting = new ArrayList<>();
+        List<GridItem> listOthers = new ArrayList<>();
         listSetting.add(new GridItem(R.drawable.shield, "Đăng nhập và bảo mật"));
         listSetting.add(new GridItem(R.drawable.bell, "Cài đặt thông báo"));
         listSetting.add(new GridItem(R.drawable.usercheck, "Chỉnh sửa thông tin"));
+        listOthers.add(new GridItem(R.drawable.dollarsign, "Tỉ giá ngoại tệ"));
+        listOthers.add(new GridItem(R.drawable.airplay, "Thông tin chung"));
+
 
         GridItemsSettingAdapter adapter01 = new GridItemsSettingAdapter(this.getContext(), listSetting);
+        GridItemsSettingAdapter adapter02 = new GridItemsSettingAdapter(this.getContext(), listOthers);
         grid_setting.setAdapter(adapter01);
+        grid_others.setAdapter(adapter02);
         HeightUtils.setGridViewHeight(grid_setting, 1);
+        HeightUtils.setGridViewHeight(grid_others, 1);
         return view;
     }
 }
