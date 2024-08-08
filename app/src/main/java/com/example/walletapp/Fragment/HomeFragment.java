@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,6 +22,7 @@ import androidx.fragment.app.Fragment;
 import com.example.walletapp.R;
 
 public class HomeFragment extends Fragment {
+    private boolean isOverlayVisible = false;
     public HomeFragment() {}
 
     @Nullable
@@ -36,6 +40,26 @@ public class HomeFragment extends Fragment {
 //        paint.setMaskFilter(new BlurMaskFilter(25, BlurMaskFilter.Blur.NORMAL));
 //        canvas.drawBitmap(bitmap, 0, 0, paint);
 //        cardView.setBackground(new BitmapDrawable(getResources(), output));
+        ScrollView fullLayout = view.findViewById(R.id.scroll_full_view);
+        LinearLayout hidden = view.findViewById(R.id.layout_hidden);
+        fullLayout.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                if (scrollY > 0 && !isOverlayVisible) {
+                    AlphaAnimation fade = new AlphaAnimation(0.0f, 1.0f);
+                    fade.setDuration(200);
+                    hidden.setAnimation(fade);
+                    hidden.setVisibility(View.VISIBLE);
+                    isOverlayVisible = true;
+                } else if (scrollY == 0 && isOverlayVisible) {
+                    AlphaAnimation fade = new AlphaAnimation(1.0f, 0.0f);
+                    fade.setDuration(200);
+                    hidden.setAnimation(fade);
+                    hidden.setVisibility(View.GONE);
+                    isOverlayVisible = false;
+                }
+            }
+        });
         return view;
     }
 }
