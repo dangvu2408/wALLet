@@ -12,6 +12,7 @@
             android:layout_height="match_parent"
             android:id="@+id/viewPager"/>
         <com.google.android.material.tabs.TabLayout
+            app:tabMode="fixed"
             app:tabRippleColor="@android:color/transparent"
             android:id="@+id/tablayout"
             android:focusable="false"

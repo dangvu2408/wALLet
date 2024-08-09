@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -44,6 +46,11 @@ public class MainActivity extends AppCompatActivity {
         TabLayoutAdapter adapter = new TabLayoutAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+
+        DisplayMetrics display = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(display);
+        float width = display.widthPixels / display.density;
+        Log.d("SYSTEM OUTPUT", "Device's width = " + String.valueOf(width));
 
         for (int i = 0; i < tabLayout.getTabCount(); i++) {
             LinearLayout tab = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.nav_bar_item, null);
