@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background001" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+        <pl.droidsonroids.gif.GifImageView
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:src="@drawable/animatedapplogo"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="wALLet"
+            android:textAlignment="center"
+            android:fontFamily="@font/sfpro_bold"
+            android:textColor="@color/black"
+            android:textSize="22sp"/>
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="100dp"
+        android:textAlignment="center"
+        android:id="@+id/version_app_splash"
+        android:text="Bản Beta"
+        android:textColor="#1F39E1"
+        android:fontFamily="@font/sfpro_bold"
+        android:textSize="20sp"/>
+</RelativeLayout>

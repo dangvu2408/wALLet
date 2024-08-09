@@ -215,6 +215,15 @@
                     android:textSize="20sp"
                     android:paddingBottom="100dp"
                     android:paddingTop="100dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ABC"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/sfpro_bold"
+                    android:textSize="20sp"
+                    android:paddingBottom="100dp"
+                    android:paddingTop="100dp"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
