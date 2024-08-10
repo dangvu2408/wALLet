@@ -57,12 +57,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="none"
-        android:id="@+id/scroll_full_view"
-        android:paddingBottom="80dp">
+        android:id="@+id/scroll_full_view">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="80dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
@@ -186,44 +186,16 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:background="@drawable/bordered_background"
-                android:padding="10dp"
+                android:padding="15dp"
                 android:translationZ="5dp">
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="ABC"
-                    android:textAlignment="center"
-                    android:fontFamily="@font/sfpro_bold"
-                    android:textSize="20sp"
-                    android:paddingBottom="100dp"
-                    android:paddingTop="100dp"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="ABC"
-                    android:textAlignment="center"
-                    android:fontFamily="@font/sfpro_bold"
-                    android:textSize="20sp"
-                    android:paddingBottom="100dp"
-                    android:paddingTop="100dp"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="ABC"
-                    android:textAlignment="center"
-                    android:fontFamily="@font/sfpro_bold"
-                    android:textSize="20sp"
-                    android:paddingBottom="100dp"
-                    android:paddingTop="100dp"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="ABC"
-                    android:textAlignment="center"
-                    android:fontFamily="@font/sfpro_bold"
-                    android:textSize="20sp"
-                    android:paddingBottom="100dp"
-                    android:paddingTop="100dp"/>
+                    android:orientation="vertical"
+                    android:background="@drawable/itemsbackground">
+
+                </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
