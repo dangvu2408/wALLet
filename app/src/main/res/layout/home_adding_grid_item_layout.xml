@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        android:layout_margin="5dp"
+        android:layout_gravity="center"
+        android:elevation="5dp"
+        android:translationZ="5dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:id="@+id/cardviewClick"
+        android:foreground="?attr/selectableItemBackground">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/re_icon"
+            android:src="@drawable/expense01"
+            android:padding="5dp" />
+    </androidx.cardview.widget.CardView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Khoản chi"
+        android:id="@+id/re_text"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:fontFamily="@font/sfpro_semibold"
+        android:clickable="false"/>
+</LinearLayout>

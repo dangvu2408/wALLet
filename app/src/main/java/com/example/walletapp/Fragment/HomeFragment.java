@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
@@ -19,7 +20,13 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.example.walletapp.Adapter.GridItemAddingAdapter;
+import com.example.walletapp.Model.GridItem;
 import com.example.walletapp.R;
+import com.example.walletapp.Utils.HeightUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
     private boolean isOverlayVisible = false;
@@ -60,6 +67,16 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
+
+        GridView addingGrid = view.findViewById(R.id.gridview_adding);
+        List<GridItem> listAdding = new ArrayList<>();
+        listAdding.add(new GridItem(R.drawable.expense01, "Khoản chi"));
+        listAdding.add(new GridItem(R.drawable.income01, "Khoản thu"));
+        listAdding.add(new GridItem(R.drawable.percentage01, "Lãi suất"));
+        listAdding.add(new GridItem(R.drawable.target01, "Khoản vay"));
+        GridItemAddingAdapter adapter = new GridItemAddingAdapter(this.getContext(), listAdding);
+        addingGrid.setAdapter(adapter);
+        HeightUtils.setGridViewHeight(addingGrid, 4);
         return view;
     }
 }
