@@ -10,7 +10,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardCornerRadius="10dp"
-        android:layout_margin="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
         android:layout_gravity="center"
         android:elevation="5dp"
         android:translationZ="5dp"
@@ -19,8 +22,8 @@
         android:id="@+id/cardviewClick"
         android:foreground="?attr/selectableItemBackground">
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:id="@+id/re_icon"
             android:src="@drawable/expense01"
             android:padding="5dp" />
