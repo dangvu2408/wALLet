@@ -73,7 +73,6 @@
                     android:orientation="horizontal"
                     android:padding="10dp"
                     android:gravity="start">
-
                 </LinearLayout>
                 <HorizontalScrollView
                     android:layout_width="match_parent"
@@ -165,7 +164,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="*** *** VND"
+                                        android:text="3.000.000.000 VND"
                                         android:fontFamily="@font/sfpro_semibold"
                                         android:textSize="16sp"
                                         android:textColor="@color/black"/>
@@ -238,13 +237,27 @@
                     android:numColumns="4"
                     android:scrollbars="none"
                     android:listSelector="@android:color/transparent"/>
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Tổng quan thu - chi"
-                    android:fontFamily="@font/sfpro_bold"
-                    android:textSize="20sp"
-                    android:textColor="@color/black"/>
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Tổng quan thu - chi"
+                        android:fontFamily="@font/sfpro_bold"
+                        android:textSize="20sp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Xem chi tiết"
+                        android:id="@+id/more_detail"
+                        android:fontFamily="@font/sfpro_bold"
+                        android:textSize="16sp"
+                        android:textColor="#141ed4"/>
+                </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -285,14 +298,28 @@
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"/>
                 </LinearLayout>
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Chi tiêu nhiều nhất"
-                    android:fontFamily="@font/sfpro_bold"
-                    android:textSize="20sp"
-                    android:paddingTop="10dp"
-                    android:textColor="@color/black"/>
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Chi tiêu nhiều nhất"
+                        android:fontFamily="@font/sfpro_bold"
+                        android:textSize="20sp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Xem tất cả"
+                        android:id="@+id/view_all_1"
+                        android:fontFamily="@font/sfpro_bold"
+                        android:textSize="16sp"
+                        android:textColor="#141ed4"/>
+                </LinearLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -315,8 +342,50 @@
                         android:layout_centerInParent="true"
                         android:visibility="visible"/>
                 </RelativeLayout>
-
-
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Giao dịch gần đây"
+                        android:fontFamily="@font/sfpro_bold"
+                        android:textSize="20sp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Xem tất cả"
+                        android:id="@+id/view_all_2"
+                        android:fontFamily="@font/sfpro_bold"
+                        android:textSize="16sp"
+                        android:textColor="#141ed4"/>
+                </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/itemsbackground"
+                    android:padding="10dp">
+                    <ListView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scrollbars="none"
+                        android:id="@+id/currently"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:id="@+id/no_data_current"
+                        android:text="Chưa đủ dữ liệu thống kê"
+                        android:fontFamily="@font/sfpro_semibold"
+                        android:textSize="18sp"
+                        android:layout_centerInParent="true"
+                        android:visibility="visible"/>
+                </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
