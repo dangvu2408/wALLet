@@ -28,4 +28,54 @@
             android:fontFamily="@font/sfpro_bold"
             android:textSize="22sp"/>
     </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="70dp"
+            android:paddingBottom="80dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Nhập số tiền"
+                    android:id="@+id/input_expense_money"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:fontFamily="@font/sfpro_semibold"
+                    android:textSize="27sp"
+                    android:textColor="#141ed4"
+                    android:textColorHint="#6971FF"
+                    android:inputType="number"
+                    android:background="@drawable/inputbackground"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="VND"
+                    android:padding="10dp"
+                    android:fontFamily="@font/sfpro_bold"
+                    android:textSize="27sp"
+                    android:textColor="#141ed4"/>
+            </LinearLayout>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Thêm ghi chú cho khoản chi"
+                android:fontFamily="@font/sfpro_semibold"
+                android:textSize="20sp"
+                android:id="@+id/description_expense" />
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>
