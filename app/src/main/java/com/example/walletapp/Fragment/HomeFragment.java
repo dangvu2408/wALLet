@@ -1,12 +1,6 @@
 package com.example.walletapp.Fragment;
 
-import android.graphics.Bitmap;
-import android.graphics.BlurMaskFilter;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.MaskFilter;
-import android.graphics.Paint;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +11,7 @@ import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
@@ -54,7 +49,8 @@ public class HomeFragment extends Fragment {
 
         Button btn_total_revenue = view.findViewById(R.id.total_revenue);
         Button btn_total_expense = view.findViewById(R.id.total_expense);
-
+        btn_total_expense.setBackgroundColor(0xffE5EDF4);
+        btn_total_revenue.setBackgroundColor(0xffE5EDF4);
         BarChart balance_bar = view.findViewById(R.id.balance_bar_chart);
 
         ArrayList<BarEntry> revenue = new ArrayList<>();
@@ -122,7 +118,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 btn_total_revenue.setBackgroundResource(R.drawable.outline_green);
-                btn_total_expense.setBackgroundColor(Color.WHITE);
+                btn_total_expense.setBackgroundColor(0xffE5EDF4);
 
                 ArrayList<BarEntry> revenue = new ArrayList<>();
                 revenue.add(new BarEntry(0f, 4200000f));
@@ -167,7 +163,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 btn_total_expense.setBackgroundResource(R.drawable.outline_red);
-                btn_total_revenue.setBackgroundColor(Color.WHITE);
+                btn_total_revenue.setBackgroundColor(0xffE5EDF4);
 
                 ArrayList<BarEntry> expense = new ArrayList<>();
                 expense.add(new BarEntry(0f, 3500000f));
@@ -201,6 +197,10 @@ public class HomeFragment extends Fragment {
                 balance_bar.getAxisRight().enableGridDashedLine(8f, 8f, 0f);
                 balance_bar.animateY(1000, Easing.EaseInOutCubic);
 
+                CustomBarChartRender barChartRender = new CustomBarChartRender(balance_bar, balance_bar.getAnimator(), balance_bar.getViewPortHandler());
+                barChartRender.setRadius(15);
+                barChartRender.initBuffers();
+                balance_bar.setRenderer(barChartRender);
             }
         });
 

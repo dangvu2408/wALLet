@@ -1,20 +1,14 @@
 package com.example.walletapp.Render;
 
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
-import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
 
-import com.example.walletapp.R;
 import com.github.mikephil.charting.animation.ChartAnimator;
 import com.github.mikephil.charting.buffer.BarBuffer;
-import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.interfaces.dataprovider.BarDataProvider;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
@@ -144,28 +138,28 @@ public class CustomBarChartRender extends BarChartRenderer {
         float heightMinusCorners = (height - (2 * ry));
         path.moveTo(right, top + ry);
         if (tr)
-            path.rQuadTo(0, -ry, -rx, -ry);//top-right corner
+            path.rQuadTo(0, -ry, -rx, -ry);
         else {
             path.rLineTo(0, -ry);
             path.rLineTo(-rx, 0);
         }
         path.rLineTo(-widthMinusCorners, 0);
         if (tl)
-            path.rQuadTo(-rx, 0, -rx, ry); //top-left corner
+            path.rQuadTo(-rx, 0, -rx, ry);
         else {
             path.rLineTo(-rx, 0);
             path.rLineTo(0, ry);
         }
         path.rLineTo(0, heightMinusCorners);
         if (bl)
-            path.rQuadTo(0, ry, rx, ry);//bottom-left corner
+            path.rQuadTo(0, ry, rx, ry);
         else {
             path.rLineTo(0, ry);
             path.rLineTo(rx, 0);
         }
         path.rLineTo(widthMinusCorners, 0);
         if (br)
-            path.rQuadTo(rx, 0, rx, -ry); //bottom-right corner
+            path.rQuadTo(rx, 0, rx, -ry);
         else {
             path.rLineTo(rx, 0);
             path.rLineTo(0, -ry);
