@@ -37,19 +37,19 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@drawable/search"
-                android:id="@+id/search_top"
+                android:id="@+id/search_top1"
                 android:layout_margin="10dp"/>
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@drawable/whitebell"
-                android:id="@+id/notification_bell"
+                android:id="@+id/notification_bell1"
                 android:layout_margin="10dp"/>
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@drawable/menu"
-                android:id="@+id/menu_top"
+                android:id="@+id/menu_top1"
                 android:layout_margin="10dp"/>
         </LinearLayout>
     </LinearLayout>
@@ -278,6 +278,7 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/total_revenue"
                             android:text="Tổng tiền vào"
+                            android:textColor="@color/black"
                             android:textSize="16sp"
                             android:background="@color/white"
                             android:fontFamily="@font/sfpro_bold"/>
@@ -287,6 +288,7 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/total_expense"
                             android:text="Tổng tiền ra"
+                            android:textColor="@color/black"
                             android:textSize="16sp"
                             android:background="@color/white"
                             android:fontFamily="@font/sfpro_bold"/>

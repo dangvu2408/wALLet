@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:background="#367ADF"
+        android:translationZ="5dp"
+        android:id="@+id/layout_hidden"
+        android:gravity="center_vertical">
+        <ImageView
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:scaleType="fitStart"
+            android:src="@drawable/back"
+            android:id="@+id/back_btn"
+            android:layout_centerVertical="true"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="Thêm khoản thu"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:fontFamily="@font/sfpro_bold"
+            android:textSize="22sp"/>
+    </RelativeLayout>
+</RelativeLayout>

@@ -185,7 +185,7 @@
                             android:textColor="#141ed4"/>
                     </LinearLayout>
                 </LinearLayout>
-                <com.github.mikephil.charting.charts.BarChart
+                <com.github.mikephil.charting.charts.PieChart
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:id="@+id/revenue_income_bar_chart"
@@ -263,7 +263,7 @@
                             android:textColor="#141ed4"/>
                     </LinearLayout>
                 </LinearLayout>
-                <com.github.mikephil.charting.charts.BarChart
+                <com.github.mikephil.charting.charts.PieChart
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:id="@+id/expense_income_bar_chart"

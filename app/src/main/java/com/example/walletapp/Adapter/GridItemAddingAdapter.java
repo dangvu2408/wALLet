@@ -1,6 +1,7 @@
 package com.example.walletapp.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 
+import com.example.walletapp.Activity.AddExpenseActivity;
+import com.example.walletapp.Activity.AddLoanActivity;
+import com.example.walletapp.Activity.AddPercentageActivity;
+import com.example.walletapp.Activity.AddRevenueActivity;
 import com.example.walletapp.Model.GridItem;
 import com.example.walletapp.R;
 
@@ -40,6 +45,27 @@ public class GridItemAddingAdapter extends ArrayAdapter<GridItem> {
         img.setImageResource(current.getResouceIcon());
         txt.setText(current.getReText());
         CardView cardView = listItem.findViewById(R.id.cardviewClick);
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (context != null) {
+                    switch (position) {
+                        case 0:
+                            context.startActivity(new Intent(context, AddExpenseActivity.class));
+                            break;
+                        case 1:
+                            context.startActivity(new Intent(context, AddRevenueActivity.class));
+                            break;
+                        case 2:
+                            context.startActivity(new Intent(context, AddPercentageActivity.class));
+                            break;
+                        case 3:
+                            context.startActivity(new Intent(context, AddLoanActivity.class));
+                            break;
+                    }
+                }
+            }
+        });
         return listItem;
     }
 }

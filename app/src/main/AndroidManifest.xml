@@ -18,6 +18,27 @@
             android:screenOrientation="portrait">
         </activity>
 
+        <activity
+            android:name=".Activity.AddExpenseActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".Activity.AddRevenueActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".Activity.AddPercentageActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".Activity.AddLoanActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+        </activity>
+
         <activity android:name=".Activity.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait">

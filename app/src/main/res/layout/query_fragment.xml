@@ -167,8 +167,8 @@
                 android:gravity="center_horizontal"
                 android:padding="10dp">
                 <ImageView
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
                     android:src="@drawable/emptybox"
                     android:layout_margin="10dp"/>
                 <TextView
@@ -176,7 +176,7 @@
                     android:layout_height="wrap_content"
                     android:text="Không có phát sinh giao dịch trong \nkhoảng thời gian này"
                     android:fontFamily="@font/sfpro_semibold"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textAlignment="center"/>
             </LinearLayout>
             <ListView

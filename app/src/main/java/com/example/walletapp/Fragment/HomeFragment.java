@@ -121,8 +121,8 @@ public class HomeFragment extends Fragment {
                 btn_total_expense.setBackgroundColor(0xffE5EDF4);
 
                 ArrayList<BarEntry> revenue = new ArrayList<>();
-                revenue.add(new BarEntry(0f, 4200000f));
-                revenue.add(new BarEntry(1f, 4500000f));
+                revenue.add(new BarEntry(0f, 32000000f));
+                revenue.add(new BarEntry(1f, 30000000f));
                 ArrayList<String> months = new ArrayList<>();
                 months.add("Tháng trước");
                 months.add("Tháng này");
@@ -166,8 +166,8 @@ public class HomeFragment extends Fragment {
                 btn_total_revenue.setBackgroundColor(0xffE5EDF4);
 
                 ArrayList<BarEntry> expense = new ArrayList<>();
-                expense.add(new BarEntry(0f, 3500000f));
-                expense.add(new BarEntry(1f, 3000000f));
+                expense.add(new BarEntry(0f, 7000000f));
+                expense.add(new BarEntry(1f, 7500000f));
                 ArrayList<String> months = new ArrayList<>();
                 months.add("Tháng trước");
                 months.add("Tháng này");
