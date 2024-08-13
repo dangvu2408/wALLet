@@ -28,8 +28,6 @@ import com.example.walletapp.NumberTextWatcher;
 import com.example.walletapp.Utils.HeightUtils;
 
 import java.text.DateFormat;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
