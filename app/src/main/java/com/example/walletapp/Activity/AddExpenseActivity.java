@@ -49,7 +49,6 @@ public class AddExpenseActivity extends AppCompatActivity {
             }
         });
 
-
         database = SQLiteDatabase.openOrCreateDatabase("app_database.db", null);
         try {
             String sql = "CREATE TABLE userdata(mainType VARCHAR(255), type VARCHAR(255), money INTERGER, date VARCHAR(255), description VARCHAR(255))";
