@@ -149,6 +149,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/outline_blue"
                     android:layout_marginTop="10dp"
+                    android:id="@+id/today_or_not"
                     android:layout_marginBottom="10dp"
                     android:paddingRight="10dp"
                     android:paddingTop="5dp"
@@ -176,6 +177,7 @@
                     android:scrollbars="none"
                     android:background="@drawable/outline_blue"/>
             </LinearLayout>
+
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -190,6 +192,13 @@
                 android:paddingRight="50dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"/>
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/list_database_test"
+                android:scrollbars="none"
+                android:background="@drawable/outline_blue"/>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
