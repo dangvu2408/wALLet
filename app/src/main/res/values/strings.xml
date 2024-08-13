@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">wALLet</string>
+
     <string-array name="list_expense">
         <item>Gia đình</item>
         <item>Ăn uống</item>
@@ -12,5 +13,23 @@
         <item>Mua sắm</item>
         <item>Đầu tư</item>
         <item>Tiền chuyển đi</item>
+    </string-array>
+
+    <string-array name="list_revenue">
+        <item>Lương</item>
+        <item>Thu nhập khác</item>
+        <item>Tiền chuyển vào</item>
+    </string-array>
+
+    <string-array name="list_percentage">
+        <item>Trả lãi</item>
+        <item>Thu lãi</item>
+    </string-array>
+
+    <string-array name="list_loan">
+        <item>Cho vay</item>
+        <item>Đi vay</item>
+        <item>Thu nợ</item>
+        <item>Trả nợ</item>
     </string-array>
 </resources>
