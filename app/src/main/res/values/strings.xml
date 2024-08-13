@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">wALLet</string>
+    <string-array name="list_expense">
+        <item>Gia đình</item>
+        <item>Ăn uống</item>
+        <item>Sức khỏe</item>
+        <item>Bảo hiểm</item>
+        <item>Di chuyển</item>
+        <item>Giáo dục</item>
+        <item>Giải trí</item>
+        <item>Hóa đơn</item>
+        <item>Mua sắm</item>
+        <item>Đầu tư</item>
+        <item>Tiền chuyển đi</item>
+    </string-array>
 </resources>
