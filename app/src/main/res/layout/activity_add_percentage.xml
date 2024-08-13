@@ -153,6 +153,7 @@
                     android:paddingRight="10dp"
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
+                    android:id="@+id/today_or_not"
                     android:text="Hôm nay"
                     android:fontFamily="@font/sfpro_semibold"
                     android:textColor="@color/black"
@@ -190,6 +191,13 @@
                 android:paddingRight="50dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"/>
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/list_database_test"
+                android:scrollbars="none"
+                android:background="@drawable/outline_blue"/>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
