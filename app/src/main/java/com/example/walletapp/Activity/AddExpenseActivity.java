@@ -1,11 +1,9 @@
 package com.example.walletapp.Activity;
 
 import android.database.sqlite.SQLiteDatabase;
-import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -16,9 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.walletapp.Adapter.DropdownItemAdapter;
 import com.example.walletapp.R;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class AddExpenseActivity extends AppCompatActivity {
     SQLiteDatabase database;
