@@ -38,7 +38,7 @@ public class AddExpenseActivity extends AppCompatActivity implements DatePickerD
     EditText des, money_input;
     AutoCompleteTextView autoComplete;
     ImageView back;
-    Button btn_save;
+    Button btn_save, btn_delete_all;
     TextView dateView;
     LinearLayout dateWidget;
     String datepicker;
@@ -52,6 +52,7 @@ public class AddExpenseActivity extends AppCompatActivity implements DatePickerD
         back = findViewById(R.id.back_btn);
         autoComplete = findViewById(R.id.auto_complete);
         btn_save = findViewById(R.id.save_btn);
+        btn_delete_all = findViewById(R.id.delete_all_data);
         des = findViewById(R.id.description_expense);
         money_input = findViewById(R.id.input_expense_money);
         dateView = findViewById(R.id.today_or_not);
@@ -89,6 +90,7 @@ public class AddExpenseActivity extends AppCompatActivity implements DatePickerD
                 dialog.show();
             }
         });
+
         String src = AddExpenseActivity.this.getDatabasePath(SRC_DATABASE_NAME).getAbsolutePath();
         database = SQLiteDatabase.openOrCreateDatabase(src, null);
         try {
@@ -135,6 +137,20 @@ public class AddExpenseActivity extends AppCompatActivity implements DatePickerD
                 adapter01.notifyDataSetChanged();
 
 //                finish();
+            }
+        });
+
+        btn_delete_all.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int n = database.delete("userdata", "mainType = ?", new String[]{"expense_money"});
+                String msg = "";
+                if (n == 0) {
+                    msg = "no delete";
+                } else {
+                    msg = n + " deleted";
+                }
+                Toast.makeText(AddExpenseActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
     }
