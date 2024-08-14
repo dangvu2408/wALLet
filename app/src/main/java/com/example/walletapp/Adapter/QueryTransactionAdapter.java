@@ -10,7 +10,10 @@ import android.widget.TextView;
 import com.example.walletapp.Model.TransactionItem;
 import com.example.walletapp.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class QueryTransactionAdapter extends BaseAdapter {
     private Context context;
@@ -48,9 +51,32 @@ public class QueryTransactionAdapter extends BaseAdapter {
         TextView time_of_transaction = listItem.findViewById(R.id.time_of_transaction);
         TextView description_of_transaction = listItem.findViewById(R.id.description_of_transaction);
 
-        date_query.setText(current.getDateTrans());
-        money_query.setText(current.getMoneyTrans());
-        type_of_transaction.setText("Loại giao dịch: " + current.getTypeTrans() + " - " + current.getDetailTypeTrans());
+        String outputString = "";
+        String plusOrDevideMoney = "";
+        String typeStr = "";
+        SimpleDateFormat input = new SimpleDateFormat("EEEE, d 'tháng' M, yyyy", new Locale("vi", "VN"));
+        SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Date date = input.parse(current.getDateTrans());
+            outputString = output.format(date);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (current.getTypeTrans().equals("revenue_money")) {
+            plusOrDevideMoney = "+" + current.getMoneyTrans();
+            typeStr = "Khoản thu";
+            money_query.setTextColor(0xFF279CC5);
+            money_query.setText(plusOrDevideMoney);
+        } else if (current.getTypeTrans().equals("expense_money")) {
+            plusOrDevideMoney = "-" + current.getMoneyTrans();
+            typeStr = "Khoản chi";
+            money_query.setTextColor(0xFFE45B65);
+            money_query.setText(plusOrDevideMoney);
+        }
+
+        date_query.setText(outputString);
+        type_of_transaction.setText("Loại giao dịch: " + typeStr + " - " + current.getDetailTypeTrans());
         time_of_transaction.setText("Thời gian: " + current.getDateTrans());
         description_of_transaction.setText("Ghi chú: " + current.getDescriptionTrans());
         return listItem;

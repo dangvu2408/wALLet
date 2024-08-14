@@ -1,5 +1,6 @@
 package com.example.walletapp.Utils;
 
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
@@ -32,21 +33,22 @@ public class HeightUtils {
         if (listAdapter == null) {
             return;
         }
-
-        int total = listView.getPaddingTop() + listView.getPaddingBottom();
+        int totalHeight = 0;
+        totalHeight = listView.getPaddingTop() + listView.getPaddingBottom();
         int count = listAdapter.getCount();
         for (int i = 0; i < count; i++) {
             View listItem = listAdapter.getView(i, null, listView);
             listItem.measure(
-                    View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED),
-                    View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
+                    View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.AT_MOST),
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
             );
-            total += listItem.getMeasuredHeight();
+            totalHeight += listItem.getMeasuredHeight();
         }
 
         ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height = total + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
         listView.setLayoutParams(params);
         listView.requestLayout();
+        Log.d("DEBUG", "ListView height set to: " + params.height);
     }
 }
