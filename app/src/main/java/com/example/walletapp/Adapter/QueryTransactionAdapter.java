@@ -73,6 +73,28 @@ public class QueryTransactionAdapter extends BaseAdapter {
             typeStr = "Khoản chi";
             money_query.setTextColor(0xFFE45B65);
             money_query.setText(plusOrDevideMoney);
+        } else if (current.getTypeTrans().equals("percentage_money")) {
+            typeStr = "Khoản lãi suất";
+            if (current.getDetailTypeTrans().equals("Trả lãi")) {
+                plusOrDevideMoney = "-" + current.getMoneyTrans();
+                money_query.setTextColor(0xFFE45B65);
+                money_query.setText(plusOrDevideMoney);
+            } else if (current.getDetailTypeTrans().equals("Thu lãi")) {
+                plusOrDevideMoney = "+" + current.getMoneyTrans();
+                money_query.setTextColor(0xFF279CC5);
+                money_query.setText(plusOrDevideMoney);
+            }
+        } else if (current.getTypeTrans().equals("loan_money")) {
+            typeStr = "Khoản vay";
+            if (current.getDetailTypeTrans().equals("Cho vay") || current.getDetailTypeTrans().equals("Trả nợ")) {
+                plusOrDevideMoney = "-" + current.getMoneyTrans();
+                money_query.setTextColor(0xFFE45B65);
+                money_query.setText(plusOrDevideMoney);
+            } else if (current.getDetailTypeTrans().equals("Đi vay") || current.getDetailTypeTrans().equals("Thu nợ")) {
+                plusOrDevideMoney = "+" + current.getMoneyTrans();
+                money_query.setTextColor(0xFF279CC5);
+                money_query.setText(plusOrDevideMoney);
+            }
         }
 
         date_query.setText(outputString);

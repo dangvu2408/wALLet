@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,15 +23,22 @@ import com.example.walletapp.Model.TransactionItem;
 import com.example.walletapp.R;
 import com.example.walletapp.Utils.HeightUtils;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Locale;
 
 public class QueryFragment extends Fragment {
     LinearLayout no_data_query;
-    ListView query_result;
+    ListView query_result, currently;
     Button query_btn;
     SQLiteDatabase database;
+    TextView no_data_current;
     Context context;
-    QueryTransactionAdapter adapter;
+    QueryTransactionAdapter adapter, sortedDayAdapter;
     private ArrayList<TransactionItem> queryList;
     private String SRC_DATABASE_NAME = "app_database.db";
     public QueryFragment() {}
@@ -41,8 +49,15 @@ public class QueryFragment extends Fragment {
         no_data_query = view.findViewById(R.id.no_data_query_in_range);
         query_result = view.findViewById(R.id.transaction_query);
         query_btn = view.findViewById(R.id.query_btn);
+        currently = view.findViewById(R.id.currently);
+        no_data_current = view.findViewById(R.id.no_data_current);
+
+
         this.context = getContext();
         queryList = new ArrayList<>();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, d 'tháng' M, yyyy", new Locale("vi", "VN"));
+
 
         String src = context.getDatabasePath(SRC_DATABASE_NAME).getAbsolutePath();
         database = SQLiteDatabase.openOrCreateDatabase(src, null);
@@ -59,7 +74,12 @@ public class QueryFragment extends Fragment {
 
                 }
                 cursor.close();
+                Collections.reverse(queryList);
+                adapter = new QueryTransactionAdapter(context, queryList);
+                query_result.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
+
+                HeightUtils.setListViewHeight(currently);
                 HeightUtils.setListViewHeight(query_result);
 
                 if (query_result.getLayoutParams().height == 10) {
@@ -70,11 +90,36 @@ public class QueryFragment extends Fragment {
             }
         });
 
-        adapter = new QueryTransactionAdapter(context, queryList);
-        query_result.setAdapter(adapter);
 
+        Cursor cursorSort = database.query("userdata", null, null, null, null, null, null);
+        cursorSort.moveToNext();
+        while (!cursorSort.isAfterLast()) {
+            TransactionItem item = new TransactionItem(cursorSort.getString(3), cursorSort.getString(2), cursorSort.getString(0), cursorSort.getString(1),  cursorSort.getString(4));
+            this.queryList.add(item);
+            cursorSort.moveToNext();
 
+        }
+        cursorSort.close();
 
+        ArrayList<TransactionItem> sortedDayList = new ArrayList<>(queryList);
+        Collections.sort(sortedDayList, new Comparator<TransactionItem>() {
+            @Override
+            public int compare(TransactionItem o1, TransactionItem o2) {
+                LocalDate date1 = LocalDate.parse(o1.getDateTrans(), formatter);
+                LocalDate date2 = LocalDate.parse(o2.getDateTrans(), formatter);
+                return date2.compareTo(date1);
+            }
+        });
+        sortedDayAdapter = new QueryTransactionAdapter(context, sortedDayList);
+        sortedDayAdapter.notifyDataSetChanged();
+        currently.setAdapter(sortedDayAdapter);
+        HeightUtils.setListViewHeight(currently);
+
+        if (currently.getLayoutParams().height == 10) {
+            no_data_current.setVisibility(View.VISIBLE);
+        } else {
+            no_data_current.setVisibility(View.GONE);
+        }
         return view;
     }
 }

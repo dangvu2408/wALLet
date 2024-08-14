@@ -99,7 +99,7 @@
                                 android:text="06/08/2024"
                                 android:id="@+id/begin_day"
                                 android:textColor="#141ed4"
-                                android:fontFamily="@font/sfpro_semibold"
+                                android:fontFamily="@font/sfpro_bold"
                                 android:textSize="18sp"/>
                         </LinearLayout>
                         <ImageView
@@ -139,7 +139,7 @@
                                 android:text="09/08/2024"
                                 android:textColor="#141ed4"
                                 android:id="@+id/end_day"
-                                android:fontFamily="@font/sfpro_semibold"
+                                android:fontFamily="@font/sfpro_bold"
                                 android:textSize="18sp"/>
                         </LinearLayout>
                         <ImageView
@@ -235,8 +235,13 @@
                 <ListView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:divider="@android:color/transparent"
+                    android:dividerHeight="5dp"
+                    android:padding="5dp"
+                    android:nestedScrollingEnabled="true"
                     android:scrollbars="none"
                     android:id="@+id/currently"/>
+
                 <TextView
                     android:id="@+id/no_data_current"
                     android:layout_width="match_parent"

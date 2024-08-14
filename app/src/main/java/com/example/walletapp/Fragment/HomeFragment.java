@@ -137,7 +137,7 @@ public class HomeFragment extends Fragment {
                 balance_bar_data.setBarWidth(0.5f);
                 balance_bar_data_set.setValueTextSize(12f);
                 balance_bar_data_set.setColor(Color.GREEN);
-                balance_bar_data_set.setLabel("Tổng thu");
+                balance_bar_data_set.setLabel("Tổng tiền vào (VND)");
 
                 balance_bar.setData(balance_bar_data);
                 balance_bar.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -182,7 +182,7 @@ public class HomeFragment extends Fragment {
                 balance_bar_data.setBarWidth(0.5f);
                 balance_bar_data_set.setValueTextSize(12f);
                 balance_bar_data_set.setColor(Color.RED);
-                balance_bar_data_set.setLabel("Tổng chi");
+                balance_bar_data_set.setLabel("Tổng tiền ra (VND)");
 
                 balance_bar.setData(balance_bar_data);
                 balance_bar.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);

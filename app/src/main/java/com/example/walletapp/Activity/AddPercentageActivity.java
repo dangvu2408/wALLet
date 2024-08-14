@@ -55,7 +55,7 @@ public class AddPercentageActivity extends AppCompatActivity implements DatePick
         money_input = findViewById(R.id.input_percentage_money);
         dateView = findViewById(R.id.today_or_not);
         dateWidget = findViewById(R.id.date_picker_widget_percentage);
-        listDatabase = findViewById(R.id.list_database_test);
+//        listDatabase = findViewById(R.id.list_database_test);
         btn_delete_data = findViewById(R.id.delete_all_data);
 
         Locale locale = new Locale("en", "US");
@@ -63,10 +63,10 @@ public class AddPercentageActivity extends AppCompatActivity implements DatePick
         TextWatcher watcher = new NumberTextWatcher(this.money_input, locale, numDecs);
         this.money_input.addTextChangedListener(watcher);
 
-        ArrayList<String> list01 = new ArrayList<>();
-        ArrayAdapter<String> adapter01 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list01);
-        listDatabase.setAdapter(adapter01);
-        HeightUtils.setListViewHeight(listDatabase);
+//        ArrayList<String> list01 = new ArrayList<>();
+//        ArrayAdapter<String> adapter01 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list01);
+//        listDatabase.setAdapter(adapter01);
+//        HeightUtils.setListViewHeight(listDatabase);
 
 
 
@@ -118,22 +118,22 @@ public class AddPercentageActivity extends AppCompatActivity implements DatePick
                 }
                 Toast.makeText(AddPercentageActivity.this, msg, Toast.LENGTH_SHORT).show();
 
-                list01.clear();
-                Cursor cursor = database.query("userdata", null, null, null, null, null, null);
-                cursor.moveToNext();
-                String data = "";
-                while (cursor.isAfterLast() == false) {
-                    data = cursor.getString(0) + " - "
-                            + cursor.getString(1) + " - "
-                            + cursor.getString(2) + " - "
-                            + cursor.getString(3) + " - "
-                            + cursor.getString(4);
-                    cursor.moveToNext();
-                    list01.add(data);
-                }
-                cursor.close();
-                adapter01.notifyDataSetChanged();
-//                finish();
+//                list01.clear();
+//                Cursor cursor = database.query("userdata", null, null, null, null, null, null);
+//                cursor.moveToNext();
+//                String data = "";
+//                while (cursor.isAfterLast() == false) {
+//                    data = cursor.getString(0) + " - "
+//                            + cursor.getString(1) + " - "
+//                            + cursor.getString(2) + " - "
+//                            + cursor.getString(3) + " - "
+//                            + cursor.getString(4);
+//                    cursor.moveToNext();
+//                    list01.add(data);
+//                }
+//                cursor.close();
+//                adapter01.notifyDataSetChanged();
+                finish();
             }
         });
 

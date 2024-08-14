@@ -97,6 +97,7 @@
                     android:textColorHint="@color/black"
                     android:fontFamily="@font/sfpro_semibold"
                     android:textSize="20sp"
+                    android:maxLength="250"
                     android:id="@+id/description_expense"
                     android:textColor="@color/black" />
             </LinearLayout>
@@ -125,6 +126,8 @@
                         android:inputType="none"
                         android:paddingTop="3dp"
                         android:paddingBottom="6dp"
+                        android:paddingStart="0dp"
+                        android:paddingEnd="0dp"
                         android:text="Chọn nhóm khoản chi"
                         android:textColor="@color/black"
                         android:id="@+id/auto_complete"/>

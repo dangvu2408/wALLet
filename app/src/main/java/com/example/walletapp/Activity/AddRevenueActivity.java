@@ -56,17 +56,17 @@ public class AddRevenueActivity extends AppCompatActivity implements DatePickerD
         money_input = findViewById(R.id.input_revenue_money);
         dateView = findViewById(R.id.today_or_not);
         dateWidget = findViewById(R.id.date_picker_widget_revenue);
-        listDatabase = findViewById(R.id.list_database_test);
+//        listDatabase = findViewById(R.id.list_database_test);
         btn_delete_data = findViewById(R.id.delete_all_data);
 
         String[] list = getResources().getStringArray(R.array.list_revenue);
         DropdownItemAdapter adapter = new DropdownItemAdapter(this, Arrays.asList(list));
         autoComplete.setDropDownBackgroundResource(R.color.color_01);
         autoComplete.setAdapter(adapter);
-        ArrayList<String> list01 = new ArrayList<>();
-        ArrayAdapter<String> adapter01 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list01);
-        listDatabase.setAdapter(adapter01);
-        HeightUtils.setListViewHeight(listDatabase);
+//        ArrayList<String> list01 = new ArrayList<>();
+//        ArrayAdapter<String> adapter01 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list01);
+//        listDatabase.setAdapter(adapter01);
+//        HeightUtils.setListViewHeight(listDatabase);
 
         Locale locale = new Locale("en", "US");
         int numDecs = 2;
@@ -117,22 +117,22 @@ public class AddRevenueActivity extends AppCompatActivity implements DatePickerD
                 }
                 Toast.makeText(AddRevenueActivity.this, msg, Toast.LENGTH_SHORT).show();
 
-                list01.clear();
-                Cursor cursor = database.query("userdata", null, null, null, null, null, null);
-                cursor.moveToNext();
-                String data = "";
-                while (cursor.isAfterLast() == false) {
-                    data = cursor.getString(0) + " - "
-                            + cursor.getString(1) + " - "
-                            + cursor.getString(2) + " - "
-                            + cursor.getString(3) + " - "
-                            + cursor.getString(4);
-                    cursor.moveToNext();
-                    list01.add(data);
-                }
-                cursor.close();
-                adapter01.notifyDataSetChanged();
-//                finish();
+//                list01.clear();
+//                Cursor cursor = database.query("userdata", null, null, null, null, null, null);
+//                cursor.moveToNext();
+//                String data = "";
+//                while (cursor.isAfterLast() == false) {
+//                    data = cursor.getString(0) + " - "
+//                            + cursor.getString(1) + " - "
+//                            + cursor.getString(2) + " - "
+//                            + cursor.getString(3) + " - "
+//                            + cursor.getString(4);
+//                    cursor.moveToNext();
+//                    list01.add(data);
+//                }
+//                cursor.close();
+//                adapter01.notifyDataSetChanged();
+                finish();
             }
         });
 

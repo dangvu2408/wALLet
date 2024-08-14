@@ -39,8 +39,8 @@ public class HeightUtils {
         for (int i = 0; i < count; i++) {
             View listItem = listAdapter.getView(i, null, listView);
             listItem.measure(
-                    View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.AT_MOST),
-                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+                    View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED),
+                    View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
             );
             totalHeight += listItem.getMeasuredHeight();
         }
