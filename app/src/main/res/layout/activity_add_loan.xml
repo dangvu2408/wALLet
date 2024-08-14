@@ -191,6 +191,22 @@
                 android:paddingRight="50dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Xóa toàn bộ dữ liệu"
+                android:id="@+id/delete_all_data"
+                android:fontFamily="@font/sfpro_bold"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:background="@drawable/bottomnavbackground"
+                android:layout_gravity="center_horizontal"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
             <ListView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

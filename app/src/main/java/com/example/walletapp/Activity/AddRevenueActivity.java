@@ -39,7 +39,7 @@ public class AddRevenueActivity extends AppCompatActivity implements DatePickerD
     EditText des, money_input;
     AutoCompleteTextView autoComplete;
     ImageView back;
-    Button btn_save;
+    Button btn_save, btn_delete_data;
     TextView dateView;
     LinearLayout dateWidget;
     String datepicker;
@@ -57,6 +57,7 @@ public class AddRevenueActivity extends AppCompatActivity implements DatePickerD
         dateView = findViewById(R.id.today_or_not);
         dateWidget = findViewById(R.id.date_picker_widget_revenue);
         listDatabase = findViewById(R.id.list_database_test);
+        btn_delete_data = findViewById(R.id.delete_all_data);
 
         String[] list = getResources().getStringArray(R.array.list_revenue);
         DropdownItemAdapter adapter = new DropdownItemAdapter(this, Arrays.asList(list));
@@ -132,6 +133,20 @@ public class AddRevenueActivity extends AppCompatActivity implements DatePickerD
                 cursor.close();
                 adapter01.notifyDataSetChanged();
 //                finish();
+            }
+        });
+
+        btn_delete_data.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int n = database.delete("userdata", "mainType = ?", new String[]{"revenue_money"});
+                String msg = "";
+                if (n == 0) {
+                    msg = "no delete";
+                } else {
+                    msg = n + " deleted";
+                }
+                Toast.makeText(AddRevenueActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
     }
