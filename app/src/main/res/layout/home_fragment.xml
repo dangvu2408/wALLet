@@ -324,10 +324,7 @@
                 </LinearLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@drawable/itemsbackground"
-                    android:padding="10dp">
+                    android:layout_height="wrap_content">
                     <ListView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -368,13 +365,14 @@
                 </LinearLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@drawable/itemsbackground"
-                    android:padding="10dp">
+                    android:layout_height="wrap_content">
                     <ListView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:divider="@android:color/transparent"
+                        android:dividerHeight="5dp"
+                        android:padding="5dp"
+                        android:nestedScrollingEnabled="true"
                         android:scrollbars="none"
                         android:id="@+id/currently"/>
                     <TextView
