@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">wALLet</string>
+    <string name="description_revenue">Nút \"<b>XÓA</b>\" có chức năng xóa toàn bộ dữ liệu liên quan đến khoản thu, vui lòng cân nhắc kĩ...</string>
+    <string name="description_expense">Nút \"<b>XÓA</b>\" có chức năng xóa toàn bộ dữ liệu liên quan đến khoản chi, vui lòng cân nhắc kĩ...</string>
+    <string name="description_percentage">Nút \"<b>XÓA</b>\" có chức năng xóa toàn bộ dữ liệu liên quan đến khoản lãi suất, vui lòng cân nhắc kĩ...</string>
+    <string name="description_loan">Nút \"<b>XÓA</b>\" có chức năng xóa toàn bộ dữ liệu liên quan đến khoản vay, vui lòng cân nhắc kĩ...</string>
+
 
     <string-array name="list_expense">
         <item>Gia đình</item>

@@ -181,42 +181,50 @@
                     android:background="@drawable/outline_blue"/>
             </LinearLayout>
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lưu"
-                android:id="@+id/save_btn_revenue"
-                android:fontFamily="@font/sfpro_bold"
-                android:textSize="18sp"
-                android:textColor="@color/white"
-                android:background="@drawable/bottomnavbackground"
-                android:layout_gravity="center_horizontal"
-                android:paddingLeft="50dp"
-                android:paddingRight="50dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"/>
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Xóa toàn bộ dữ liệu"
-                android:id="@+id/delete_all_data"
-                android:fontFamily="@font/sfpro_bold"
-                android:textSize="18sp"
-                android:textColor="@color/white"
-                android:background="@drawable/bottomnavbackground"
-                android:layout_gravity="center_horizontal"
-                android:paddingLeft="50dp"
-                android:paddingRight="50dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"/>
-
-            <ListView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/list_database_test"
-                android:scrollbars="none"
-                android:background="@drawable/outline_blue"/>
+                android:orientation="horizontal"
+                android:padding="10dp">
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Lưu"
+                    android:id="@+id/save_btn_revenue"
+                    android:fontFamily="@font/sfpro_bold"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/bottomnavbackground"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingLeft="50dp"
+                    android:paddingRight="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Xóa "
+                    android:id="@+id/delete_all_data"
+                    android:fontFamily="@font/sfpro_bold"
+                    android:textSize="18sp"
+                    android:textColor="#10B6CC"
+                    android:background="@drawable/button_background"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingLeft="50dp"
+                    android:paddingRight="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"/>
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/description_revenue"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/sfpro_regular_italic"/>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
