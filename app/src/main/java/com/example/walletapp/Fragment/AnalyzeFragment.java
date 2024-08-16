@@ -37,7 +37,7 @@ public class AnalyzeFragment extends Fragment {
         List<BarEntry> entries = new ArrayList<>();
         entries.add(new BarEntry(0, new float[]{4500000f, -3000000f}));
         entries.add(new BarEntry(1, new float[]{7000000f, -1500000f}));
-        entries.add(new BarEntry(2, new float[]{760000f, -450000f}));
+        entries.add(new BarEntry(2, new float[]{5600000f, -4500000f}));
 
         ArrayList<String> daysOfMonth = new ArrayList<>();
         daysOfMonth.add("16/08/2024");
@@ -59,6 +59,7 @@ public class AnalyzeFragment extends Fragment {
         net_income_bar_chart.setFitBars(true);
         net_income_bar_chart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
         net_income_bar_chart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(daysOfMonth));
+        net_income_bar_chart.getXAxis().setLabelCount(daysOfMonth.size());
         net_income_bar_chart.getXAxis().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_regular));
         net_income_bar_chart.getAxisRight().setEnabled(false);
         net_income_bar_chart.getAxisLeft().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_regular));

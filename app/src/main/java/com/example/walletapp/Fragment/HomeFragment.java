@@ -49,11 +49,11 @@ import java.util.Locale;
 public class HomeFragment extends Fragment {
     private boolean isOverlayVisible = false;
     Context context;
-    QueryTransactionAdapter sortedDayAdapter;
+    QueryTransactionAdapter sortedDayAdapter, sortedMostAdapter;
     private ArrayList<TransactionItem> queryList;
     private String SRC_DATABASE_NAME = "app_database.db";
-    TextView no_data_current;
-    ListView currently;
+    TextView no_data_current, no_data;
+    ListView currently, most_balance;
     SQLiteDatabase database;
 
     public HomeFragment() {}
@@ -67,6 +67,8 @@ public class HomeFragment extends Fragment {
         LinearLayout hidden = view.findViewById(R.id.layout_hidden);
         currently = view.findViewById(R.id.currently);
         no_data_current = view.findViewById(R.id.no_data_current);
+        no_data = view.findViewById(R.id.no_data);
+        most_balance = view.findViewById(R.id.most_balance);
 
         Button btn_total_revenue = view.findViewById(R.id.total_revenue);
         Button btn_total_expense = view.findViewById(R.id.total_expense);
@@ -238,7 +240,9 @@ public class HomeFragment extends Fragment {
 
         }
         cursor.close();
+
         ArrayList<TransactionItem> sortedDayList = new ArrayList<>(queryList);
+        ArrayList<TransactionItem> sortedMostList = new ArrayList<>(queryList);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, d 'tháng' M, yyyy", new Locale("vi", "VN"));
 
         Collections.sort(sortedDayList, new Comparator<TransactionItem>() {
@@ -249,15 +253,34 @@ public class HomeFragment extends Fragment {
                 return date2.compareTo(date1);
             }
         });
+
+        Collections.sort(sortedMostList, new Comparator<TransactionItem>() {
+            @Override
+            public int compare(TransactionItem o1, TransactionItem o2) {
+                return Float.compare(o2.getMoneyTransFloat(), o1.getMoneyTransFloat());
+            }
+        });
+
         sortedDayAdapter = new QueryTransactionAdapter(context, sortedDayList);
         sortedDayAdapter.notifyDataSetChanged();
         currently.setAdapter(sortedDayAdapter);
         HeightUtils.setListViewHeight(currently);
 
+        sortedMostAdapter = new QueryTransactionAdapter(context, sortedMostList);
+        sortedMostAdapter.notifyDataSetChanged();
+        most_balance.setAdapter(sortedMostAdapter);
+        HeightUtils.setListViewHeight(most_balance);
+
         if (currently.getLayoutParams().height == 10) {
             no_data_current.setVisibility(View.VISIBLE);
         } else {
             no_data_current.setVisibility(View.GONE);
+        }
+
+        if (most_balance.getLayoutParams().height == 10) {
+            no_data.setVisibility(View.VISIBLE);
+        } else {
+            no_data.setVisibility(View.GONE);
         }
         return view;
     }

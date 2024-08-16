@@ -49,4 +49,8 @@ public class TransactionItem {
     public void setDescriptionTrans(String descriptionTrans) {
         this.descriptionTrans = descriptionTrans;
     }
+
+    public float getMoneyTransFloat() {
+        return Float.parseFloat(moneyTrans.replace(",", ""));
+    }
 }
