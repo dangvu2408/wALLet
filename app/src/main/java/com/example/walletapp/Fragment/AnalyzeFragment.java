@@ -49,6 +49,7 @@ public class AnalyzeFragment extends Fragment {
         dataSet.setColors(new int[]{0xFF279CC5, 0xFFE45B65});
         dataSet.setValueTextSize(12f);
         dataSet.setValueTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_semibold));
+        dataSet.setStackLabels(new String[]{"Nguồn tiền vào (VND)", "Nguồn tiền ra (VND)"});
 
         BarData barData = new BarData(dataSet);
         barData.setBarWidth(0.5f);
@@ -67,6 +68,7 @@ public class AnalyzeFragment extends Fragment {
         net_income_bar_chart.getXAxis().enableGridDashedLine(8f, 8f, 0f);
         net_income_bar_chart.animateY(1000, Easing.EaseInOutCubic);
         net_income_bar_chart.invalidate();
+        net_income_bar_chart.getLegend().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_regular));
 
         return view;
     }

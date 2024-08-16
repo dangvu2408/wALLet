@@ -113,12 +113,17 @@ public class QueryFragment extends Fragment {
             }
         });
 
+
+
         Collections.sort(sortedMostList, new Comparator<TransactionItem>() {
             @Override
             public int compare(TransactionItem o1, TransactionItem o2) {
                 return Float.compare(o2.getMoneyTransFloat(), o1.getMoneyTransFloat());
             }
         });
+
+
+
         sortedDayAdapter = new QueryTransactionAdapter(context, sortedDayList);
         sortedDayAdapter.notifyDataSetChanged();
         currently.setAdapter(sortedDayAdapter);
