@@ -160,7 +160,7 @@ public class HomeFragment extends Fragment {
                 BarData balance_bar_data = new BarData(balance_bar_data_set);
                 balance_bar_data.setBarWidth(0.5f);
                 balance_bar_data_set.setValueTextSize(12f);
-                balance_bar_data_set.setColor(Color.GREEN);
+                balance_bar_data_set.setColor(0xFF279CC5);
                 balance_bar_data_set.setLabel("Tổng tiền vào (VND)");
 
                 balance_bar.setData(balance_bar_data);
@@ -169,7 +169,6 @@ public class HomeFragment extends Fragment {
                 balance_bar.getXAxis().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_regular));
                 balance_bar.getXAxis().enableGridDashedLine(8f, 8f, 0f);
                 balance_bar.getXAxis().setLabelCount(months.size());
-                balance_bar.getXAxis().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_regular));
                 balance_bar.getAxisLeft().setEnabled(false);
                 balance_bar.getAxisRight().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_regular));
                 balance_bar.getAxisRight().enableGridDashedLine(8f, 8f, 0f);
@@ -205,7 +204,7 @@ public class HomeFragment extends Fragment {
                 BarData balance_bar_data = new BarData(balance_bar_data_set);
                 balance_bar_data.setBarWidth(0.5f);
                 balance_bar_data_set.setValueTextSize(12f);
-                balance_bar_data_set.setColor(Color.RED);
+                balance_bar_data_set.setColor(0xFFE45B65);
                 balance_bar_data_set.setLabel("Tổng tiền ra (VND)");
 
                 balance_bar.setData(balance_bar_data);
