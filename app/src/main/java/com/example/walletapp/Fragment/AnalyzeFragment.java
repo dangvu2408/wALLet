@@ -68,7 +68,7 @@ public class AnalyzeFragment extends Fragment {
         net_income_bar_chart.getXAxis().enableGridDashedLine(8f, 8f, 0f);
         net_income_bar_chart.animateY(1000, Easing.EaseInOutCubic);
         net_income_bar_chart.invalidate();
-        net_income_bar_chart.getLegend().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_regular));
+        net_income_bar_chart.getLegend().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_semibold));
 
         return view;
     }

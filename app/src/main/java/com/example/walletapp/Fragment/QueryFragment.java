@@ -1,20 +1,30 @@
 package com.example.walletapp.Fragment;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.walletapp.Activity.AddRevenueActivity;
@@ -23,21 +33,30 @@ import com.example.walletapp.Model.TransactionItem;
 import com.example.walletapp.R;
 import com.example.walletapp.Utils.HeightUtils;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.Locale;
 
 public class QueryFragment extends Fragment {
     LinearLayout no_data_query;
+    String datepicker;
+    String outputString = "";
     ListView query_result, currently, most_balance;
     Button query_btn;
     SQLiteDatabase database;
-    TextView no_data_current, no_data;
+    TextView no_data_current, no_data, begin_day, end_day;
     Context context;
+    private Calendar beginDate = Calendar.getInstance();
+    private Calendar endDate = Calendar.getInstance();
+    CardView begin_date_picker, end_date_picker;
     QueryTransactionAdapter adapter, sortedDayAdapter, sortedMostAdapter;
     private ArrayList<TransactionItem> queryList;
     private String SRC_DATABASE_NAME = "app_database.db";
@@ -53,11 +72,66 @@ public class QueryFragment extends Fragment {
         no_data_current = view.findViewById(R.id.no_data_current);
         most_balance = view.findViewById(R.id.most_balance);
         no_data = view.findViewById(R.id.no_data);
+        end_day = view.findViewById(R.id.end_day);
+        begin_day = view.findViewById(R.id.begin_day);
+        begin_date_picker = view.findViewById(R.id.begin_date_picker);
+        end_date_picker = view.findViewById(R.id.end_date_picker);
+
+        Calendar calendarEnd = Calendar.getInstance();
+        Calendar calendarBegin = Calendar.getInstance();
+        calendarBegin.add(Calendar.DAY_OF_MONTH, -7);
+
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        String formattedDateEnd = dateFormat.format(calendarEnd.getTime());
+        String formattedDateBegin = dateFormat.format(calendarBegin.getTime());
+        end_day.setText(formattedDateEnd);
+        begin_day.setText(formattedDateBegin);
 
         this.context = getContext();
         queryList = new ArrayList<>();
-
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, d 'tháng' M, yyyy", new Locale("vi", "VN"));
+        begin_date_picker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DatePickerDialog beginDialog = new DatePickerDialog(context,
+                        R.style.CustomDatePickerDialog, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        beginDate.set(Calendar.YEAR, year);
+                        beginDate.set(Calendar.MONTH, month);
+                        beginDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                        begin_day.setText(dateFormat.format(beginDate.getTime()));
+                    }
+                }, beginDate.get(Calendar.YEAR), beginDate.get(Calendar.MONTH), beginDate.get(Calendar.DAY_OF_MONTH));
+
+                beginDialog.show();
+            }
+        });
+
+        end_date_picker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DatePickerDialog endDialog = new DatePickerDialog(context,
+                        R.style.CustomDatePickerDialog, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        endDate.set(Calendar.YEAR, year);
+                        endDate.set(Calendar.MONTH, month);
+                        endDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                        end_day.setText(dateFormat.format(endDate.getTime()));
+                    }
+                }, endDate.get(Calendar.YEAR), endDate.get(Calendar.MONTH), endDate.get(Calendar.DAY_OF_MONTH));
+
+                endDialog.show();
+            }
+        });
+
+
 
 
         String src = context.getDatabasePath(SRC_DATABASE_NAME).getAbsolutePath();
@@ -113,16 +187,12 @@ public class QueryFragment extends Fragment {
             }
         });
 
-
-
         Collections.sort(sortedMostList, new Comparator<TransactionItem>() {
             @Override
             public int compare(TransactionItem o1, TransactionItem o2) {
                 return Float.compare(o2.getMoneyTransFloat(), o1.getMoneyTransFloat());
             }
         });
-
-
 
         sortedDayAdapter = new QueryTransactionAdapter(context, sortedDayList);
         sortedDayAdapter.notifyDataSetChanged();
@@ -147,4 +217,5 @@ public class QueryFragment extends Fragment {
         }
         return view;
     }
+
 }

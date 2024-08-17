@@ -109,7 +109,7 @@ public class HomeFragment extends Fragment {
         balance_bar.getAxisRight().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_regular));
         balance_bar.getAxisRight().enableGridDashedLine(8f, 8f, 0f);
         balance_bar.animateY(1000, Easing.EaseInOutCubic);
-        balance_bar.getLegend().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_regular));
+        balance_bar.getLegend().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_semibold));
 
         fullLayout.setOnScrollChangeListener(new View.OnScrollChangeListener() {
             @Override
@@ -176,7 +176,7 @@ public class HomeFragment extends Fragment {
                 balance_bar.getAxisRight().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_regular));
                 balance_bar.getAxisRight().enableGridDashedLine(8f, 8f, 0f);
                 balance_bar.animateY(1000, Easing.EaseInOutCubic);
-                balance_bar.getLegend().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_regular));
+                balance_bar.getLegend().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_semibold));
                 CustomBarChartRender barChartRender = new CustomBarChartRender(balance_bar, balance_bar.getAnimator(), balance_bar.getViewPortHandler());
                 barChartRender.setRadius(15);
                 barChartRender.initBuffers();
@@ -221,7 +221,7 @@ public class HomeFragment extends Fragment {
                 balance_bar.getAxisRight().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_regular));
                 balance_bar.getAxisRight().enableGridDashedLine(8f, 8f, 0f);
                 balance_bar.animateY(1000, Easing.EaseInOutCubic);
-                balance_bar.getLegend().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_regular));
+                balance_bar.getLegend().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_semibold));
                 CustomBarChartRender barChartRender = new CustomBarChartRender(balance_bar, balance_bar.getAnimator(), balance_bar.getViewPortHandler());
                 barChartRender.setRadius(15);
                 barChartRender.initBuffers();
