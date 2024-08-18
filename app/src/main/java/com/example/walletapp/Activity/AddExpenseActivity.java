@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -121,37 +122,46 @@ public class AddExpenseActivity extends AppCompatActivity {
                 String description = des.getText().toString();
                 String type = autoComplete.getText().toString();
                 String money = money_input.getText().toString();
-                ContentValues values = new ContentValues();
-                values.put("mainType", "expense_money");
-                values.put("type", type);
-                values.put("money", money);
-                values.put("date", datepicker); // not yet
-                values.put("description", description);
-                String msg = "";
-                if (database.insert("userdata", null, values) == -1) {
-                    msg = "Fail!";
+
+
+                if (money_input.getText().toString().equals("")) {
+                    LayoutInflater inflater = getLayoutInflater();
+                    View layout = inflater.inflate(R.layout.custom_toast_01, null);
+                    Toast toast = new Toast(AddExpenseActivity.this);
+                    toast.setDuration(Toast.LENGTH_LONG);
+                    toast.setView(layout);
+                    toast.show();
+                } else if (autoComplete.getText().toString().equals("Chọn nhóm khoản chi")) {
+                    LayoutInflater inflater = getLayoutInflater();
+                    View layout = inflater.inflate(R.layout.custom_toast_04, null);
+                    Toast toast = new Toast(AddExpenseActivity.this);
+                    toast.setDuration(Toast.LENGTH_LONG);
+                    toast.setView(layout);
+                    toast.show();
                 } else {
-                    msg = "Sucess!";
+                    ContentValues values = new ContentValues();
+                    values.put("mainType", "expense_money");
+                    values.put("type", type);
+                    values.put("money", money);
+                    values.put("date", datepicker); // not yet
+                    values.put("description", description);
+                    if (database.insert("userdata", null, values) == -1) {
+                        LayoutInflater inflater = getLayoutInflater();
+                        View layout = inflater.inflate(R.layout.custom_toast_03, null);
+                        Toast toast = new Toast(AddExpenseActivity.this);
+                        toast.setDuration(Toast.LENGTH_LONG);
+                        toast.setView(layout);
+                        toast.show();
+                    } else {
+                        LayoutInflater inflater = getLayoutInflater();
+                        View layout = inflater.inflate(R.layout.custom_toast_02, null);
+                        Toast toast = new Toast(AddExpenseActivity.this);
+                        toast.setDuration(Toast.LENGTH_LONG);
+                        toast.setView(layout);
+                        toast.show();
+                    }
+                    finish();
                 }
-                Toast.makeText(AddExpenseActivity.this, msg, Toast.LENGTH_SHORT).show();
-
-//                list01.clear();
-//                Cursor cursor = database.query("userdata", null, null, null, null, null, null);
-//                cursor.moveToNext();
-//                String data = "";
-//                while (cursor.isAfterLast() == false) {
-//                    data = cursor.getString(0) + " - "
-//                            + cursor.getString(1) + " - "
-//                            + cursor.getString(2) + " - "
-//                            + cursor.getString(3) + " - "
-//                            + cursor.getString(4);
-//                    cursor.moveToNext();
-//                    list01.add(data);
-//                }
-//                cursor.close();
-//                adapter01.notifyDataSetChanged();
-
-                finish();
             }
         });
 

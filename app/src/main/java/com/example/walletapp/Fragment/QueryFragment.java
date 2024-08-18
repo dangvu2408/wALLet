@@ -91,6 +91,8 @@ public class QueryFragment extends Fragment {
         String formattedDateBegin = dateFormat.format(calendarBegin.getTime());
         end_day.setText(formattedDateEnd);
         begin_day.setText(formattedDateBegin);
+        begin_day_STR = formattedDateBegin;
+        end_day_STR = formattedDateEnd;
 
         this.context = getContext();
         queryList = new ArrayList<>();
