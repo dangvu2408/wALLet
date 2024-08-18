@@ -34,7 +34,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class AddRevenueActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class AddRevenueActivity extends AppCompatActivity {
     SQLiteDatabase database;
     EditText des, money_input;
     AutoCompleteTextView autoComplete;
@@ -45,6 +45,8 @@ public class AddRevenueActivity extends AppCompatActivity implements DatePickerD
     String datepicker;
     ListView listDatabase;
     private String SRC_DATABASE_NAME = "app_database.db";
+    private Calendar datePicker = Calendar.getInstance();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,11 +82,24 @@ public class AddRevenueActivity extends AppCompatActivity implements DatePickerD
             }
         });
 
-        DatePickerDialog dialog = new DatePickerDialog(this, this::onDateSet, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
         dateWidget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.show();
+
+                DatePickerDialog endDialog = new DatePickerDialog(AddRevenueActivity.this,
+                        R.style.CustomDatePickerDialog, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        datePicker.set(Calendar.YEAR, year);
+                        datePicker.set(Calendar.MONTH, month);
+                        datePicker.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                        String selected = DateFormat.getDateInstance(DateFormat.FULL).format(datePicker.getTime());
+                        datepicker = selected;
+                        dateView.setText(selected);
+                    }
+                }, datePicker.get(Calendar.YEAR), datePicker.get(Calendar.MONTH), datePicker.get(Calendar.DAY_OF_MONTH));
+
+                endDialog.show();
             }
         });
 
@@ -151,14 +166,4 @@ public class AddRevenueActivity extends AppCompatActivity implements DatePickerD
         });
     }
 
-    @Override
-    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        Calendar mCalendar = Calendar.getInstance();
-        mCalendar.set(Calendar.YEAR, year);
-        mCalendar.set(Calendar.MONTH, month);
-        mCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        String selected = DateFormat.getDateInstance(DateFormat.FULL).format(mCalendar.getTime());
-        this.datepicker = selected;
-        dateView.setText(selected);
-    }
 }

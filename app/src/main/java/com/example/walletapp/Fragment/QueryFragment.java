@@ -16,8 +16,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.NumberPicker;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -33,6 +35,7 @@ import com.example.walletapp.Model.TransactionItem;
 import com.example.walletapp.R;
 import com.example.walletapp.Utils.HeightUtils;
 
+import java.lang.reflect.Field;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -43,11 +46,12 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class QueryFragment extends Fragment {
     LinearLayout no_data_query;
-    String datepicker;
+    String datepicker, begin_day_STR = "", end_day_STR = "";
     String outputString = "";
     ListView query_result, currently, most_balance;
     Button query_btn;
@@ -103,7 +107,8 @@ public class QueryFragment extends Fragment {
                         beginDate.set(Calendar.MONTH, month);
                         beginDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-                        begin_day.setText(dateFormat.format(beginDate.getTime()));
+                        begin_day_STR = dateFormat.format(beginDate.getTime());
+                        begin_day.setText(begin_day_STR);
                     }
                 }, beginDate.get(Calendar.YEAR), beginDate.get(Calendar.MONTH), beginDate.get(Calendar.DAY_OF_MONTH));
 
@@ -123,7 +128,8 @@ public class QueryFragment extends Fragment {
                         endDate.set(Calendar.MONTH, month);
                         endDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-                        end_day.setText(dateFormat.format(endDate.getTime()));
+                        end_day_STR = dateFormat.format(endDate.getTime());
+                        end_day.setText(end_day_STR);
                     }
                 }, endDate.get(Calendar.YEAR), endDate.get(Calendar.MONTH), endDate.get(Calendar.DAY_OF_MONTH));
 
@@ -150,7 +156,30 @@ public class QueryFragment extends Fragment {
                 }
                 cursor.close();
                 Collections.reverse(queryList);
-                adapter = new QueryTransactionAdapter(context, queryList);
+
+                Collections.sort(queryList, new Comparator<TransactionItem>() {
+                    @Override
+                    public int compare(TransactionItem o1, TransactionItem o2) {
+                        LocalDate date1 = LocalDate.parse(o1.getDateTrans(), formatter);
+                        LocalDate date2 = LocalDate.parse(o2.getDateTrans(), formatter);
+                        return date1.compareTo(date2);
+                    }
+                });
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                LocalDate beginDay = LocalDate.parse(begin_day_STR, formatter);
+                LocalDate endDay = LocalDate.parse(end_day_STR, formatter);
+
+                List<TransactionItem> filteredList = new ArrayList<>();
+                for (TransactionItem item : queryList) {
+                    LocalDate itemDate = item.getDateAsLocalDate();
+                    if ((itemDate.isEqual(beginDay) || itemDate.isAfter(beginDay)) &&
+                            (itemDate.isEqual(endDay) || itemDate.isBefore(endDay))) {
+                        filteredList.add(item);
+                    }
+                }
+
+
+                adapter = new QueryTransactionAdapter(context, filteredList);
                 query_result.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
 
