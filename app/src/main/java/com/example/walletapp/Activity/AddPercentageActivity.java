@@ -138,7 +138,7 @@ public class AddPercentageActivity extends AppCompatActivity {
                     toast.show();
                 } else {
                     ContentValues values = new ContentValues();
-                    values.put("mainType", "expense_money");
+                    values.put("mainType", "percentage_money");
                     values.put("type", type);
                     values.put("money", money);
                     values.put("date", datepicker); // not yet

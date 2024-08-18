@@ -36,8 +36,8 @@
         android:orientation="horizontal"
         android:gravity="center_vertical">
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:layout_marginRight="10dp"
             android:src="@drawable/rec"/>
         <TextView
@@ -57,8 +57,8 @@
         android:orientation="horizontal"
         android:gravity="center_vertical">
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:layout_marginRight="10dp"
             android:src="@drawable/rec"/>
         <TextView
@@ -78,8 +78,8 @@
         android:orientation="horizontal"
         android:gravity="center_vertical">
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:layout_marginRight="10dp"
             android:src="@drawable/rec"/>
         <TextView

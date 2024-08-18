@@ -137,7 +137,7 @@ public class AddRevenueActivity extends AppCompatActivity {
                     toast.show();
                 } else {
                     ContentValues values = new ContentValues();
-                    values.put("mainType", "expense_money");
+                    values.put("mainType", "revenue_money");
                     values.put("type", type);
                     values.put("money", money);
                     values.put("date", datepicker); // not yet

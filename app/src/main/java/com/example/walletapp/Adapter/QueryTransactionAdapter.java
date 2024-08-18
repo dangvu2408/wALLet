@@ -64,34 +64,34 @@ public class QueryTransactionAdapter extends BaseAdapter {
         }
 
         if (current.getTypeTrans().equals("revenue_money")) {
-            plusOrDevideMoney = "+" + current.getMoneyTrans();
+            plusOrDevideMoney = "+" + current.getMoneyTrans() + " VND";
             typeStr = "Khoản thu";
             money_query.setTextColor(0xFF279CC5);
             money_query.setText(plusOrDevideMoney);
         } else if (current.getTypeTrans().equals("expense_money")) {
-            plusOrDevideMoney = "-" + current.getMoneyTrans();
+            plusOrDevideMoney = "-" + current.getMoneyTrans() + " VND";
             typeStr = "Khoản chi";
             money_query.setTextColor(0xFFE45B65);
             money_query.setText(plusOrDevideMoney);
         } else if (current.getTypeTrans().equals("percentage_money")) {
             typeStr = "Khoản lãi suất";
             if (current.getDetailTypeTrans().equals("Trả lãi")) {
-                plusOrDevideMoney = "-" + current.getMoneyTrans();
+                plusOrDevideMoney = "-" + current.getMoneyTrans() + " VND";
                 money_query.setTextColor(0xFFE45B65);
                 money_query.setText(plusOrDevideMoney);
             } else if (current.getDetailTypeTrans().equals("Thu lãi")) {
-                plusOrDevideMoney = "+" + current.getMoneyTrans();
+                plusOrDevideMoney = "+" + current.getMoneyTrans() + " VND";
                 money_query.setTextColor(0xFF279CC5);
                 money_query.setText(plusOrDevideMoney);
             }
         } else if (current.getTypeTrans().equals("loan_money")) {
             typeStr = "Khoản vay";
             if (current.getDetailTypeTrans().equals("Cho vay") || current.getDetailTypeTrans().equals("Trả nợ")) {
-                plusOrDevideMoney = "-" + current.getMoneyTrans();
+                plusOrDevideMoney = "-" + current.getMoneyTrans() + " VND";
                 money_query.setTextColor(0xFFE45B65);
                 money_query.setText(plusOrDevideMoney);
             } else if (current.getDetailTypeTrans().equals("Đi vay") || current.getDetailTypeTrans().equals("Thu nợ")) {
-                plusOrDevideMoney = "+" + current.getMoneyTrans();
+                plusOrDevideMoney = "+" + current.getMoneyTrans() + " VND";
                 money_query.setTextColor(0xFF279CC5);
                 money_query.setText(plusOrDevideMoney);
             }

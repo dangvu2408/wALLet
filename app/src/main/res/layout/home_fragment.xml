@@ -226,7 +226,7 @@
                     android:layout_height="wrap_content"
                     android:text="Thêm giao dịch"
                     android:fontFamily="@font/sfpro_bold"
-                    android:textSize="20sp"
+                    android:textSize="22sp"
                     android:textColor="@color/black"/>
                 <GridView
                     android:id="@+id/gridview_adding"
@@ -247,7 +247,7 @@
                         android:layout_weight="1"
                         android:text="Tổng quan thu - chi"
                         android:fontFamily="@font/sfpro_bold"
-                        android:textSize="20sp"
+                        android:textSize="22sp"
                         android:textColor="@color/black"/>
                     <TextView
                         android:layout_width="wrap_content"
@@ -311,7 +311,7 @@
                         android:layout_weight="1"
                         android:text="Chi tiêu nhiều nhất"
                         android:fontFamily="@font/sfpro_bold"
-                        android:textSize="20sp"
+                        android:textSize="22sp"
                         android:textColor="@color/black"/>
                     <TextView
                         android:layout_width="wrap_content"
@@ -356,7 +356,7 @@
                         android:layout_weight="1"
                         android:text="Giao dịch gần đây"
                         android:fontFamily="@font/sfpro_bold"
-                        android:textSize="20sp"
+                        android:textSize="22sp"
                         android:textColor="@color/black"/>
                     <TextView
                         android:layout_width="wrap_content"

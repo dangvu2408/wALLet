@@ -40,9 +40,9 @@ public class AnalyzeFragment extends Fragment {
         entries.add(new BarEntry(2, new float[]{5600000f, -4500000f}));
 
         ArrayList<String> daysOfMonth = new ArrayList<>();
-        daysOfMonth.add("16/08/2024");
-        daysOfMonth.add("18/08/2024");
-        daysOfMonth.add("30/08/2024");
+        daysOfMonth.add("01 - 10/08/2024");
+        daysOfMonth.add("11 - 20/08/2024");
+        daysOfMonth.add("21 - 31/08/2024");
 
 
         BarDataSet dataSet = new BarDataSet(entries, "");
@@ -67,6 +67,7 @@ public class AnalyzeFragment extends Fragment {
         net_income_bar_chart.getAxisLeft().enableGridDashedLine(8f, 8f, 0f);
         net_income_bar_chart.getXAxis().enableGridDashedLine(8f, 8f, 0f);
         net_income_bar_chart.animateY(1000, Easing.EaseInOutCubic);
+        net_income_bar_chart.getXAxis().setLabelRotationAngle(-30);
         net_income_bar_chart.invalidate();
         net_income_bar_chart.getLegend().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_semibold));
 
