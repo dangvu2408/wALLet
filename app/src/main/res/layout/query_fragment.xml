@@ -57,13 +57,27 @@
             android:paddingBottom="80dp"
             android:paddingLeft="15dp"
             android:paddingRight="15dp">
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Truy vấn giao dịch"
-                android:fontFamily="@font/sfpro_bold"
-                android:textSize="22sp"
-                android:textColor="@color/black"/>
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Truy vấn giao dịch"
+                    android:fontFamily="@font/sfpro_bold"
+                    android:textSize="22sp"
+                    android:textColor="@color/black"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:layout_weight="1"
+                    android:background="#141ed4"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -191,13 +205,27 @@
                 android:nestedScrollingEnabled="true"
                 android:scrollbars="none" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Chi tiêu nhiều nhất"
-                android:fontFamily="@font/sfpro_bold"
-                android:textSize="22sp"
-                android:textColor="@color/black"/>
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chi tiêu nhiều nhất"
+                    android:fontFamily="@font/sfpro_bold"
+                    android:textSize="22sp"
+                    android:textColor="@color/black"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:layout_weight="1"
+                    android:background="#141ed4"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -221,14 +249,28 @@
                     android:layout_centerInParent="true"
                     android:visibility="visible"/>
             </RelativeLayout>
-            <TextView
-                android:layout_width="wrap_content"
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Giao dịch gần đây"
-                android:fontFamily="@font/sfpro_bold"
-                android:textSize="22sp"
-                android:textColor="@color/black"/>
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Giao dịch gần đây"
+                    android:fontFamily="@font/sfpro_bold"
+                    android:textSize="22sp"
+                    android:textColor="@color/black"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:layout_weight="1"
+                    android:background="#141ed4"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">

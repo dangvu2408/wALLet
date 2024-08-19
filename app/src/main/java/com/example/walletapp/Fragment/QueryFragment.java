@@ -185,7 +185,6 @@ public class QueryFragment extends Fragment {
                 query_result.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
 
-                HeightUtils.setListViewHeight(currently);
                 HeightUtils.setListViewHeight(query_result);
 
                 if (query_result.getLayoutParams().height == 10) {
@@ -226,13 +225,13 @@ public class QueryFragment extends Fragment {
         });
 
         sortedDayAdapter = new QueryTransactionAdapter(context, sortedDayList);
-        sortedDayAdapter.notifyDataSetChanged();
         currently.setAdapter(sortedDayAdapter);
+        sortedDayAdapter.notifyDataSetChanged();
         HeightUtils.setListViewHeight(currently);
 
         sortedMostAdapter = new QueryTransactionAdapter(context, sortedMostList);
-        sortedMostAdapter.notifyDataSetChanged();
         most_balance.setAdapter(sortedMostAdapter);
+        sortedMostAdapter.notifyDataSetChanged();
         HeightUtils.setListViewHeight(most_balance);
 
         if (currently.getLayoutParams().height == 10) {

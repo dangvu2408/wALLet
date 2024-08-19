@@ -62,7 +62,6 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home_fragment, container, false);
-        CardView cardView = view.findViewById(R.id.layout_root);
         ScrollView fullLayout = view.findViewById(R.id.scroll_full_view);
         LinearLayout hidden = view.findViewById(R.id.layout_hidden);
         currently = view.findViewById(R.id.currently);
@@ -147,8 +146,8 @@ public class HomeFragment extends Fragment {
                 btn_total_expense.setBackgroundColor(0xffE5EDF4);
 
                 ArrayList<BarEntry> revenue = new ArrayList<>();
-                revenue.add(new BarEntry(0f, 32000000f));
-                revenue.add(new BarEntry(1f, 30000000f));
+                revenue.add(new BarEntry(0f, 0f));
+                revenue.add(new BarEntry(1f, AnalyzeFragment.sumOfInput.floatValue()));
                 ArrayList<String> months = new ArrayList<>();
                 months.add("Tháng trước");
                 months.add("Tháng này");
@@ -191,8 +190,8 @@ public class HomeFragment extends Fragment {
                 btn_total_revenue.setBackgroundColor(0xffE5EDF4);
 
                 ArrayList<BarEntry> expense = new ArrayList<>();
-                expense.add(new BarEntry(0f, 7000000f));
-                expense.add(new BarEntry(1f, 7500000f));
+                expense.add(new BarEntry(0f, 0f));
+                expense.add(new BarEntry(1f, Math.abs(AnalyzeFragment.sumOfOutput.floatValue())));
                 ArrayList<String> months = new ArrayList<>();
                 months.add("Tháng trước");
                 months.add("Tháng này");

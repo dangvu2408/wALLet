@@ -1,5 +1,8 @@
 package com.example.walletapp.Model;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -59,7 +62,19 @@ public class TransactionItem {
     }
 
     public float getMoneyTransFloat() {
-        return Float.parseFloat(moneyTrans.replace(",", ""));
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+        symbols.setGroupingSeparator(',');
+        symbols.setDecimalSeparator('.');
+
+        DecimalFormat format = new DecimalFormat("#,##0.00", symbols);
+        format.setParseBigDecimal(true);
+
+        try {
+            BigDecimal bigDecimal = (BigDecimal) format.parse(moneyTrans);
+            return bigDecimal.floatValue();
+        } catch (ParseException e) {
+            throw new RuntimeException("Error parsing number", e);
+        }
     }
     public LocalDate getDateAsLocalDate() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, d 'tháng' M, yyyy", new Locale("vi", "VN"));
@@ -67,7 +82,7 @@ public class TransactionItem {
             return LocalDate.parse(dateTrans, formatter);
         } catch (DateTimeParseException e) {
             e.printStackTrace();
-            return null; // Xử lý lỗi nếu có vấn đề khi parse
+            return null;
         }
     }
 }
