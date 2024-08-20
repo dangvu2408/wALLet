@@ -269,7 +269,7 @@
                             android:id="@+id/expense_balance"
                             android:fontFamily="@font/sfpro_bold"
                             android:textSize="20sp"
-                            android:textColor="#141ed4"/>
+                            android:textColor="#e35053"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -293,7 +293,7 @@
                             android:id="@+id/expense_1day_balance"
                             android:fontFamily="@font/sfpro_bold"
                             android:textSize="20sp"
-                            android:textColor="#141ed4"/>
+                            android:textColor="#e35053"/>
                     </LinearLayout>
                 </LinearLayout>
                 <com.github.mikephil.charting.charts.PieChart
