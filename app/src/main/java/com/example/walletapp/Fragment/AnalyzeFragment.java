@@ -185,6 +185,8 @@ public class AnalyzeFragment extends Fragment {
         revenue_income_pie_chart.getLegend().setEnabled(true);
         revenue_income_pie_chart.getLegend().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_regular));
         revenue_income_pie_chart.setDrawSliceText(false);
+        revenue_income_pie_chart.animateX(1000, Easing.EaseInOutCubic);
+        revenue_income_pie_chart.spin( 1000,180f,0f, Easing.EaseInOutCubic);
 
         // pie chart expense income
         List<PieEntry> entriesPieA = new ArrayList<>();
@@ -217,7 +219,7 @@ public class AnalyzeFragment extends Fragment {
         });
         PieData pieDataInputA = new PieData(pieDataSetInputA);
         Description des3 = new Description();
-        des2.setText("");
+        des3.setText("");
         expense_income_pie_chart.setDescription(des3);
         expense_income_pie_chart.setData(pieDataInputA);
         CustomPieChartRender pieChartRenderA = new CustomPieChartRender(expense_income_pie_chart, expense_income_pie_chart.getAnimator(), expense_income_pie_chart.getViewPortHandler(), 10f);
@@ -231,6 +233,8 @@ public class AnalyzeFragment extends Fragment {
         expense_income_pie_chart.getLegend().setEnabled(true);
         expense_income_pie_chart.getLegend().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_regular));
         expense_income_pie_chart.setDrawSliceText(false);
+        expense_income_pie_chart.animateX(1000, Easing.EaseInOutCubic);
+        expense_income_pie_chart.spin( 1000,180f,0f, Easing.EaseInOutCubic);
         return view;
     }
 
@@ -407,4 +411,3 @@ public class AnalyzeFragment extends Fragment {
         }
     }
 }
-

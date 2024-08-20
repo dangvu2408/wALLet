@@ -183,7 +183,7 @@
                             android:id="@+id/revenue_balance"
                             android:fontFamily="@font/sfpro_bold"
                             android:textSize="20sp"
-                            android:textColor="#141ed4"/>
+                            android:textColor="#007fff"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -207,7 +207,7 @@
                             android:id="@+id/revenue_1day_balance"
                             android:fontFamily="@font/sfpro_bold"
                             android:textSize="20sp"
-                            android:textColor="#141ed4"/>
+                            android:textColor="#007fff"/>
                     </LinearLayout>
                 </LinearLayout>
 
