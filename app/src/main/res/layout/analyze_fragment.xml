@@ -210,16 +210,13 @@
                             android:textColor="#141ed4"/>
                     </LinearLayout>
                 </LinearLayout>
+
                 <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/revenue_income_pie_chart"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:id="@+id/revenue_income_bar_chart"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp"/>
-                <ListView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/revenue_list"/>
+                    android:paddingBottom="10dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -302,13 +299,9 @@
                 <com.github.mikephil.charting.charts.PieChart
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:id="@+id/expense_income_bar_chart"
+                    android:id="@+id/expense_income_pie_chart"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"/>
-                <ListView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/expense_list"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

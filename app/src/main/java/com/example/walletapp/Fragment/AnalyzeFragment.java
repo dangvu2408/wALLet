@@ -19,15 +19,21 @@ import androidx.fragment.app.Fragment;
 import com.example.walletapp.Model.TransactionItem;
 import com.example.walletapp.R;
 import com.example.walletapp.Render.CustomBarChartRender;
+import com.example.walletapp.Render.CustomPieChartRender;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -45,6 +51,7 @@ import java.util.Locale;
 public class AnalyzeFragment extends Fragment {
     public AnalyzeFragment() {}
     BarChart net_income_bar_chart;
+    PieChart revenue_income_pie_chart, expense_income_pie_chart;
     SQLiteDatabase database;
     private Context context;
     private ArrayList<TransactionItem> queryList;
@@ -61,6 +68,8 @@ public class AnalyzeFragment extends Fragment {
         revenue_1day_balance = view.findViewById(R.id.revenue_1day_balance);
         expense_balance = view.findViewById(R.id.expense_balance);
         expense_1day_balance = view.findViewById(R.id.expense_1day_balance);
+        revenue_income_pie_chart = view.findViewById(R.id.revenue_income_pie_chart);
+        expense_income_pie_chart = view.findViewById(R.id.expense_income_pie_chart);
 
         this.context = getContext();
         queryList = new ArrayList<>();
@@ -128,8 +137,6 @@ public class AnalyzeFragment extends Fragment {
         LocalDate chartBeginDayRange3 = LocalDate.parse(beginDayRange3Str, formatter);
         LocalDate chartEndDayRange3 = LocalDate.parse(endDayRange3Str, formatter);
 
-//        float inputMoneyRange1 = 0, inputMoneyRange2 = 0, inputMoneyRange3 = 0;
-//        float outputMoneyRange1 = 0, outputMoneyRange2 = 0, outputMoneyRange3 = 0;
 
         BigDecimal inputMoneyRange1 = BigDecimal.ZERO;
         BigDecimal inputMoneyRange2 = BigDecimal.ZERO;
@@ -296,6 +303,65 @@ public class AnalyzeFragment extends Fragment {
         net_income_bar_chart.invalidate();
         net_income_bar_chart.getLegend().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_semibold));
 
+        List<PieEntry> entriesPie = new ArrayList<>();
+        entriesPie.add(new PieEntry(2.0f, "Khoản thu"));
+        entriesPie.add(new PieEntry(3.0f, "Thu lãi"));
+        entriesPie.add(new PieEntry(4.0f, "Đi vay"));
+        entriesPie.add(new PieEntry(5.0f, "Thu nợ"));
+        List<Integer> colors = new ArrayList<>();
+        colors.add(Color.parseColor("#99ccff"));
+        colors.add(Color.parseColor("#66b2ff"));
+        colors.add(Color.parseColor("#3299ff"));
+        colors.add(Color.parseColor("#007fff"));
+
+        PieDataSet pieDataSetInput = new PieDataSet(entriesPie, "");
+        pieDataSetInput.setColors(colors);
+        pieDataSetInput.setValueTextSize(12f);
+        pieDataSetInput.setValueTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_semibold));
+        pieDataSetInput.setValueLinePart1Length(0.6f);
+        pieDataSetInput.setValueLinePart2Length(0.3f);
+        pieDataSetInput.setValueLineWidth(2f);
+        pieDataSetInput.setValueLinePart1OffsetPercentage(115f);
+        pieDataSetInput.setUsingSliceColorAsValueLineColor(true);
+        pieDataSetInput.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+        pieDataSetInput.setValueTextSize(12f);
+        pieDataSetInput.setSelectionShift(3f);
+
+
+        PieData pieDataInput = new PieData(pieDataSetInput);
+        Description des2 = new Description();
+        des2.setText("");
+        revenue_income_pie_chart.setDescription(des2);
+        revenue_income_pie_chart.setData(pieDataInput);
+        CustomPieChartRender pieChartRender = new CustomPieChartRender(revenue_income_pie_chart, revenue_income_pie_chart.getAnimator(), revenue_income_pie_chart.getViewPortHandler(), 10f);
+        pieChartRender.initBuffers();
+        revenue_income_pie_chart.setRenderer(pieChartRender);
+        revenue_income_pie_chart.setUsePercentValues(true);
+        revenue_income_pie_chart.setUsePercentValues(true);
+        revenue_income_pie_chart.setDrawHoleEnabled(true);
+        revenue_income_pie_chart.setHoleRadius(50f);
+        revenue_income_pie_chart.setExtraOffsets(40f, 0f, 40f, 0f);
+        revenue_income_pie_chart.invalidate();
+        revenue_income_pie_chart.getLegend().setEnabled(true);
+        revenue_income_pie_chart.getLegend().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_regular));
+        revenue_income_pie_chart.setDrawSliceText(false);
+
         return view;
+    }
+
+    private void initialData() {
+        this.context = getContext();
+        queryList = new ArrayList<>();
+        String src = context.getDatabasePath(SRC_DATABASE_NAME).getAbsolutePath();
+        database = SQLiteDatabase.openOrCreateDatabase(src, null);
+
+        Cursor cursorSort = database.query("userdata", null, null, null, null, null, null);
+        cursorSort.moveToNext();
+        while (!cursorSort.isAfterLast()) {
+            TransactionItem item = new TransactionItem(cursorSort.getString(3), cursorSort.getString(2), cursorSort.getString(0), cursorSort.getString(1),  cursorSort.getString(4));
+            this.queryList.add(item);
+            cursorSort.moveToNext();
+        }
+        cursorSort.close();
     }
 }
