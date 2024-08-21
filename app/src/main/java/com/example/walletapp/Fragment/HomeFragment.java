@@ -132,7 +132,7 @@ public class HomeFragment extends Fragment {
         balance_bar.getXAxis().setValueFormatter(new IndexAxisValueFormatter(months));
 
         BarDataSet balance_bar_data_set = new BarDataSet(revenue, "");
-        balance_bar_data_set.setValueTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_semibold));
+        balance_bar_data_set.setValueTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_semibold));
         BarData balance_bar_data = new BarData(balance_bar_data_set);
 
         balance_bar_data_set.setValueTextSize(12f);
@@ -142,15 +142,15 @@ public class HomeFragment extends Fragment {
         balance_bar.setData(balance_bar_data);
         balance_bar.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
         balance_bar.getXAxis().setValueFormatter(new IndexAxisValueFormatter(months));
-        balance_bar.getXAxis().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_regular));
+        balance_bar.getXAxis().setTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_regular));
         balance_bar.getXAxis().enableGridDashedLine(8f, 8f, 0f);
         balance_bar.getXAxis().setLabelCount(months.size());
-        balance_bar.getXAxis().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_regular));
+        balance_bar.getXAxis().setTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_regular));
         balance_bar.getAxisLeft().setEnabled(false);
-        balance_bar.getAxisRight().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_regular));
+        balance_bar.getAxisRight().setTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_regular));
         balance_bar.getAxisRight().enableGridDashedLine(8f, 8f, 0f);
         balance_bar.animateY(1000, Easing.EaseInOutCubic);
-        balance_bar.getLegend().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_semibold));
+        balance_bar.getLegend().setTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_semibold));
 
         fullLayout.setOnScrollChangeListener(new View.OnScrollChangeListener() {
             @Override
@@ -200,7 +200,7 @@ public class HomeFragment extends Fragment {
                 balance_bar.getXAxis().setValueFormatter(new IndexAxisValueFormatter(months));
 
                 BarDataSet balance_bar_data_set = new BarDataSet(revenue, "");
-                balance_bar_data_set.setValueTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_semibold));
+                balance_bar_data_set.setValueTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_semibold));
                 BarData balance_bar_data = new BarData(balance_bar_data_set);
                 balance_bar_data.setBarWidth(0.5f);
                 balance_bar_data_set.setValueTextSize(12f);
@@ -210,14 +210,14 @@ public class HomeFragment extends Fragment {
                 balance_bar.setData(balance_bar_data);
                 balance_bar.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
                 balance_bar.getXAxis().setValueFormatter(new IndexAxisValueFormatter(months));
-                balance_bar.getXAxis().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_regular));
+                balance_bar.getXAxis().setTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_regular));
                 balance_bar.getXAxis().enableGridDashedLine(8f, 8f, 0f);
                 balance_bar.getXAxis().setLabelCount(months.size());
                 balance_bar.getAxisLeft().setEnabled(false);
-                balance_bar.getAxisRight().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_regular));
+                balance_bar.getAxisRight().setTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_regular));
                 balance_bar.getAxisRight().enableGridDashedLine(8f, 8f, 0f);
                 balance_bar.animateY(1000, Easing.EaseInOutCubic);
-                balance_bar.getLegend().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_semibold));
+                balance_bar.getLegend().setTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_semibold));
                 CustomBarChartRender barChartRender = new CustomBarChartRender(balance_bar, balance_bar.getAnimator(), balance_bar.getViewPortHandler());
                 barChartRender.setRadius(15);
                 barChartRender.initBuffers();
@@ -244,7 +244,7 @@ public class HomeFragment extends Fragment {
                 balance_bar.getXAxis().setValueFormatter(new IndexAxisValueFormatter(months));
 
                 BarDataSet balance_bar_data_set = new BarDataSet(expense, "");
-                balance_bar_data_set.setValueTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_semibold));
+                balance_bar_data_set.setValueTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_semibold));
                 BarData balance_bar_data = new BarData(balance_bar_data_set);
                 balance_bar_data.setBarWidth(0.5f);
                 balance_bar_data_set.setValueTextSize(12f);
@@ -254,15 +254,15 @@ public class HomeFragment extends Fragment {
                 balance_bar.setData(balance_bar_data);
                 balance_bar.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
                 balance_bar.getXAxis().setValueFormatter(new IndexAxisValueFormatter(months));
-                balance_bar.getXAxis().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_regular));
+                balance_bar.getXAxis().setTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_regular));
                 balance_bar.getXAxis().enableGridDashedLine(8f, 8f, 0f);
                 balance_bar.getXAxis().setLabelCount(months.size());
-                balance_bar.getXAxis().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_regular));
+                balance_bar.getXAxis().setTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_regular));
                 balance_bar.getAxisLeft().setEnabled(false);
-                balance_bar.getAxisRight().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_regular));
+                balance_bar.getAxisRight().setTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_regular));
                 balance_bar.getAxisRight().enableGridDashedLine(8f, 8f, 0f);
                 balance_bar.animateY(1000, Easing.EaseInOutCubic);
-                balance_bar.getLegend().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_semibold));
+                balance_bar.getLegend().setTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_semibold));
                 CustomBarChartRender barChartRender = new CustomBarChartRender(balance_bar, balance_bar.getAnimator(), balance_bar.getViewPortHandler());
                 barChartRender.setRadius(15);
                 barChartRender.initBuffers();

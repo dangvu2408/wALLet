@@ -99,7 +99,8 @@
                                         android:text="Xin chào, Nguyễn Văn A"
                                         android:fontFamily="@font/averta_semibold"
                                         android:id="@+id/user_full_name"
-                                        android:textSize="16sp"
+                                        android:textSize="17sp"
+                                        android:layout_marginBottom="5dp"
                                         android:textColor="@color/black"/>
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -137,6 +138,7 @@
                                         android:text="Số dư VND"
                                         android:fontFamily="@font/averta_bold"
                                         android:textSize="18sp"
+                                        android:layout_marginBottom="5dp"
                                         android:textColor="@color/black"/>
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -185,6 +187,7 @@
                             android:text="Tổng số dư: 3.000.000.000 VND"
                             android:fontFamily="@font/averta_semibold"
                             android:textSize="18sp"
+                            android:layout_gravity="center_vertical"
                             android:textColor="@color/black"/>
                         <ImageView
                             android:layout_width="24dp"
@@ -219,7 +222,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

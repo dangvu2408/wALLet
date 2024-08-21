@@ -129,7 +129,7 @@ public class AnalyzeFragment extends Fragment {
         BarDataSet dataSet = new BarDataSet(entries, "");
         dataSet.setColors(new int[]{0xFF279CC5, 0xFFE45B65});
         dataSet.setValueTextSize(12f);
-        dataSet.setValueTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_semibold));
+        dataSet.setValueTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_semibold));
         dataSet.setStackLabels(new String[]{"Nguồn tiền vào (VND)", "Nguồn tiền ra (VND)"});
         BarData barData = new BarData(dataSet);
         barData.setBarWidth(0.5f);
@@ -141,15 +141,15 @@ public class AnalyzeFragment extends Fragment {
         net_income_bar_chart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
         net_income_bar_chart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(daysOfMonth));
         net_income_bar_chart.getXAxis().setLabelCount(daysOfMonth.size());
-        net_income_bar_chart.getXAxis().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_regular));
+        net_income_bar_chart.getXAxis().setTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_regular));
         net_income_bar_chart.getAxisRight().setEnabled(false);
-        net_income_bar_chart.getAxisLeft().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_regular));
+        net_income_bar_chart.getAxisLeft().setTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_regular));
         net_income_bar_chart.getAxisLeft().enableGridDashedLine(8f, 8f, 0f);
         net_income_bar_chart.getXAxis().enableGridDashedLine(8f, 8f, 0f);
         net_income_bar_chart.animateY(1000, Easing.EaseInOutCubic);
         net_income_bar_chart.getXAxis().setLabelRotationAngle(-30);
         net_income_bar_chart.invalidate();
-        net_income_bar_chart.getLegend().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_semibold));
+        net_income_bar_chart.getLegend().setTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_semibold));
 
 
         // pie chart revenue income
@@ -166,7 +166,7 @@ public class AnalyzeFragment extends Fragment {
         PieDataSet pieDataSetInput = new PieDataSet(entriesPie, "");
         pieDataSetInput.setColors(colors);
         pieDataSetInput.setValueTextSize(12f);
-        pieDataSetInput.setValueTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_semibold));
+        pieDataSetInput.setValueTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_semibold));
         pieDataSetInput.setValueLinePart1Length(0.6f);
         pieDataSetInput.setValueLinePart2Length(0.3f);
         pieDataSetInput.setValueLineWidth(2f);
@@ -195,7 +195,7 @@ public class AnalyzeFragment extends Fragment {
         revenue_income_pie_chart.setExtraOffsets(40f, 0f, 40f, 0f);
         revenue_income_pie_chart.invalidate();
         revenue_income_pie_chart.getLegend().setEnabled(true);
-        revenue_income_pie_chart.getLegend().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_regular));
+        revenue_income_pie_chart.getLegend().setTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_semibold));
         revenue_income_pie_chart.setDrawSliceText(false);
         revenue_income_pie_chart.animateX(1000, Easing.EaseInOutCubic);
         revenue_income_pie_chart.spin( 1000,180f,0f, Easing.EaseInOutCubic);
@@ -214,7 +214,7 @@ public class AnalyzeFragment extends Fragment {
         PieDataSet pieDataSetInputA = new PieDataSet(entriesPieA, "");
         pieDataSetInputA.setColors(colorsA);
         pieDataSetInputA.setValueTextSize(12f);
-        pieDataSetInputA.setValueTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_semibold));
+        pieDataSetInputA.setValueTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_semibold));
         pieDataSetInputA.setValueLinePart1Length(0.6f);
         pieDataSetInputA.setValueLinePart2Length(0.3f);
         pieDataSetInputA.setValueLineWidth(2f);
@@ -243,7 +243,7 @@ public class AnalyzeFragment extends Fragment {
         expense_income_pie_chart.setExtraOffsets(40f, 0f, 40f, 0f);
         expense_income_pie_chart.invalidate();
         expense_income_pie_chart.getLegend().setEnabled(true);
-        expense_income_pie_chart.getLegend().setTypeface(ResourcesCompat.getFont(getContext(), R.font.sfpro_regular));
+        expense_income_pie_chart.getLegend().setTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_semibold));
         expense_income_pie_chart.setDrawSliceText(false);
         expense_income_pie_chart.animateX(1000, Easing.EaseInOutCubic);
         expense_income_pie_chart.spin( 1000,180f,0f, Easing.EaseInOutCubic);
