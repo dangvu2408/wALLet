@@ -65,7 +65,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Truy vấn giao dịch"
-                    android:fontFamily="@font/sfpro_bold"
+                    android:fontFamily="@font/averta_bold"
                     android:textSize="22sp"
                     android:textColor="@color/black"/>
                 <LinearLayout
@@ -104,8 +104,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Từ ngày"
-                                android:fontFamily="@font/sfpro_semibold"
-                                android:textSize="16sp"
+                                android:fontFamily="@font/averta_semibold"
+                                android:textSize="18sp"
                                 android:textColor="@color/black"/>
                             <TextView
                                 android:layout_width="wrap_content"
@@ -113,8 +113,8 @@
                                 android:text="06/08/2024"
                                 android:id="@+id/begin_day"
                                 android:textColor="#141ed4"
-                                android:fontFamily="@font/sfpro_bold"
-                                android:textSize="18sp"/>
+                                android:fontFamily="@font/averta_bold"
+                                android:textSize="20sp"/>
                         </LinearLayout>
                         <ImageView
                             android:layout_width="20dp"
@@ -144,8 +144,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Đến ngày"
-                                android:fontFamily="@font/sfpro_semibold"
-                                android:textSize="16sp"
+                                android:fontFamily="@font/averta_semibold"
+                                android:textSize="18sp"
                                 android:textColor="@color/black"/>
                             <TextView
                                 android:layout_width="wrap_content"
@@ -153,8 +153,8 @@
                                 android:text="09/08/2024"
                                 android:textColor="#141ed4"
                                 android:id="@+id/end_day"
-                                android:fontFamily="@font/sfpro_bold"
-                                android:textSize="18sp"/>
+                                android:fontFamily="@font/averta_bold"
+                                android:textSize="20sp"/>
                         </LinearLayout>
                         <ImageView
                             android:layout_width="20dp"
@@ -169,7 +169,7 @@
                 android:layout_height="wrap_content"
                 android:text="Truy vấn"
                 android:id="@+id/query_btn"
-                android:fontFamily="@font/sfpro_bold"
+                android:fontFamily="@font/averta_bold"
                 android:textSize="18sp"
                 android:textColor="@color/white"
                 android:background="@drawable/bottomnavbackground"
@@ -190,7 +190,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Không có phát sinh giao dịch trong \nkhoảng thời gian này"
-                    android:fontFamily="@font/sfpro_semibold"
+                    android:fontFamily="@font/averta_semibold"
                     android:textSize="18sp"
                     android:textAlignment="center"/>
             </LinearLayout>
@@ -213,7 +213,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Chi tiêu nhiều nhất"
-                    android:fontFamily="@font/sfpro_bold"
+                    android:fontFamily="@font/averta_bold"
                     android:textSize="22sp"
                     android:textColor="@color/black"/>
                 <LinearLayout
@@ -244,7 +244,7 @@
                     android:textAlignment="center"
                     android:id="@+id/no_data"
                     android:text="Chưa đủ dữ liệu thống kê"
-                    android:fontFamily="@font/sfpro_semibold"
+                    android:fontFamily="@font/averta_semibold"
                     android:textSize="18sp"
                     android:layout_centerInParent="true"
                     android:visibility="visible"/>
@@ -258,7 +258,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Giao dịch gần đây"
-                    android:fontFamily="@font/sfpro_bold"
+                    android:fontFamily="@font/averta_bold"
                     android:textSize="22sp"
                     android:textColor="@color/black"/>
                 <LinearLayout
@@ -289,7 +289,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:fontFamily="@font/sfpro_semibold"
+                    android:fontFamily="@font/averta_semibold"
                     android:text="Chưa đủ dữ liệu thống kê"
                     android:textAlignment="center"
                     android:textSize="18sp"

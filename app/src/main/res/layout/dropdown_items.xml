@@ -10,7 +10,7 @@
         android:textColor="@color/black"
         android:padding="10dp"
         android:textSize="18sp"
-        android:fontFamily="@font/sfpro_semibold"
+        android:fontFamily="@font/averta_semibold"
         android:layout_height="wrap_content"
         android:text="TextView" />
 </LinearLayout>

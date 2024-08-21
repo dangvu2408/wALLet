@@ -97,7 +97,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="Xin chào, Nguyễn Văn A"
-                                        android:fontFamily="@font/sfpro_semibold"
+                                        android:fontFamily="@font/averta_semibold"
                                         android:id="@+id/user_full_name"
                                         android:textSize="16sp"
                                         android:textColor="@color/black"/>
@@ -105,7 +105,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="Chúc bạn một ngày mới tốt lành!"
-                                        android:fontFamily="@font/sfpro_semibold"
+                                        android:fontFamily="@font/averta_semibold"
                                         android:textSize="16sp"
                                         android:textColor="@color/black"/>
                                 </LinearLayout>
@@ -135,14 +135,15 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="Số dư VND"
-                                        android:fontFamily="@font/sfpro_bold"
+                                        android:fontFamily="@font/averta_bold"
                                         android:textSize="18sp"
                                         android:textColor="@color/black"/>
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="3.000.000.000 VND"
-                                        android:fontFamily="@font/sfpro_semibold"
+                                        android:text="*** *** VND"
+                                        android:id="@+id/eye_balance"
+                                        android:fontFamily="@font/averta_semibold"
                                         android:textSize="16sp"
                                         android:textColor="@color/black"/>
                                 </LinearLayout>
@@ -151,6 +152,7 @@
                                     android:layout_height="70dp"
                                     android:layout_marginLeft="10dp"
                                     android:layout_marginRight="10dp"
+                                    android:id="@+id/eye_view"
                                     android:src="@drawable/eye"/>
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
@@ -181,7 +183,7 @@
                             android:layout_weight="1"
                             android:id="@+id/total_balance"
                             android:text="Tổng số dư: 3.000.000.000 VND"
-                            android:fontFamily="@font/sfpro_semibold"
+                            android:fontFamily="@font/averta_semibold"
                             android:textSize="18sp"
                             android:textColor="@color/black"/>
                         <ImageView
@@ -202,7 +204,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Thêm giao dịch"
-                    android:fontFamily="@font/sfpro_bold"
+                    android:fontFamily="@font/averta_bold"
                     android:textSize="22sp"
                     android:textColor="@color/black"/>
                 <GridView
@@ -223,7 +225,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Tổng quan thu - chi"
-                        android:fontFamily="@font/sfpro_bold"
+                        android:fontFamily="@font/averta_bold"
                         android:textSize="22sp"
                         android:textColor="@color/black"/>
                     <TextView
@@ -231,7 +233,7 @@
                         android:layout_height="wrap_content"
                         android:text="Xem chi tiết"
                         android:id="@+id/more_detail"
-                        android:fontFamily="@font/sfpro_bold"
+                        android:fontFamily="@font/averta_semibold"
                         android:textSize="16sp"
                         android:textColor="#141ed4"/>
                 </LinearLayout>
@@ -258,7 +260,7 @@
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:background="@color/white"
-                            android:fontFamily="@font/sfpro_bold"/>
+                            android:fontFamily="@font/averta_bold"/>
                         <Button
                             android:layout_width="0dp"
                             android:layout_weight="1"
@@ -268,7 +270,7 @@
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:background="@color/white"
-                            android:fontFamily="@font/sfpro_bold"/>
+                            android:fontFamily="@font/averta_bold"/>
                     </LinearLayout>
                     <com.github.mikephil.charting.charts.BarChart
                         android:layout_width="match_parent"
@@ -287,7 +289,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Chi tiêu nhiều nhất"
-                        android:fontFamily="@font/sfpro_bold"
+                        android:fontFamily="@font/averta_bold"
                         android:textSize="22sp"
                         android:textColor="@color/black"/>
                     <TextView
@@ -295,7 +297,7 @@
                         android:layout_height="wrap_content"
                         android:text="Xem tất cả"
                         android:id="@+id/view_all_1"
-                        android:fontFamily="@font/sfpro_bold"
+                        android:fontFamily="@font/averta_semibold"
                         android:textSize="16sp"
                         android:textColor="#141ed4"/>
                 </LinearLayout>
@@ -332,7 +334,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Giao dịch gần đây"
-                        android:fontFamily="@font/sfpro_bold"
+                        android:fontFamily="@font/averta_bold"
                         android:textSize="22sp"
                         android:textColor="@color/black"/>
                     <TextView
@@ -340,7 +342,7 @@
                         android:layout_height="wrap_content"
                         android:text="Xem tất cả"
                         android:id="@+id/view_all_2"
-                        android:fontFamily="@font/sfpro_bold"
+                        android:fontFamily="@font/averta_semibold"
                         android:textSize="16sp"
                         android:textColor="#141ed4"/>
                 </LinearLayout>

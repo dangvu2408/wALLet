@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="NGUYEN VAN A"
-                android:fontFamily="@font/sfpro_bold"
+                android:fontFamily="@font/averta_bold"
                 android:textColor="@color/black"
                 android:id="@+id/username_en"
                 android:textSize="18sp"/>
@@ -55,7 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
-                    android:fontFamily="@font/sfpro_regular"
+                    android:fontFamily="@font/averta_semibold"
                     android:text="Hồ sơ người dùng"
                     android:textColor="#141ed4"/>
                 <ImageView

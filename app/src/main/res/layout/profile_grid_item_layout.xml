@@ -21,7 +21,7 @@
         android:layout_weight="1"
         android:id="@+id/label_setting_item"
         android:text="Đăng nhập và bảo mật"
-        android:fontFamily="@font/sfpro_semibold"
+        android:fontFamily="@font/averta_semibold"
         android:textColor="@color/black"
         android:textSize="18sp"/>
     <ImageView

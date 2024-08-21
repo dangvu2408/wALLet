@@ -56,10 +56,11 @@ public class HomeFragment extends Fragment {
     QueryTransactionAdapter sortedDayAdapter, sortedMostAdapter;
     private ArrayList<TransactionItem> queryList;
     private String SRC_DATABASE_NAME = "app_database.db";
-    TextView no_data_current, no_data;
+    TextView no_data_current, no_data, eye_balance;
     ListView currently, most_balance;
     SQLiteDatabase database;
-    ImageView menu_top1;
+    ImageView menu_top1, eye_view;
+    boolean isEyeClose = true;
 
     public HomeFragment() {}
 
@@ -74,6 +75,24 @@ public class HomeFragment extends Fragment {
         no_data = view.findViewById(R.id.no_data);
         most_balance = view.findViewById(R.id.most_balance);
         menu_top1 = view.findViewById(R.id.menu_top1);
+        eye_view = view.findViewById(R.id.eye_view);
+        eye_balance = view.findViewById(R.id.eye_balance);
+
+        eye_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isEyeClose) {
+                    eye_view.setImageResource(R.drawable.eyeoff);
+                    eye_balance.setText("3.000.000.000 VND");
+                    isEyeClose = false;
+                } else {
+                    eye_view.setImageResource(R.drawable.eye);
+                    eye_balance.setText("*** *** VND");
+                    isEyeClose = true;
+                }
+
+            }
+        });
 
         DrawerLayout drawer = getActivity().findViewById(R.id.drawer_layout);
         menu_top1.setOnClickListener(new View.OnClickListener() {

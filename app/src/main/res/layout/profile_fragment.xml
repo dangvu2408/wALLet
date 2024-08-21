@@ -51,7 +51,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/user_full_name"
                         android:text="Nguyễn Văn A"
-                        android:fontFamily="@font/sfpro_bold"
+                        android:fontFamily="@font/averta_bold"
                         android:textSize="24sp"
                         android:textColor="@color/black"
                         android:textAlignment="center"/>
@@ -72,7 +72,7 @@
                 android:text="Cài đặt"
                 android:paddingTop="10dp"
                 android:paddingBottom="5dp"
-                android:fontFamily="@font/sfpro_bold"
+                android:fontFamily="@font/averta_bold"
                 android:textSize="22sp"
                 android:textColor="@color/black"
                 android:textAlignment="center"/>
@@ -93,7 +93,7 @@
                 android:text="Khác"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:fontFamily="@font/sfpro_bold"
+                android:fontFamily="@font/averta_bold"
                 android:textSize="22sp"
                 android:textColor="@color/black"
                 android:textAlignment="center"/>
@@ -102,55 +102,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:background="@drawable/gridviewbackground">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="10dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp">
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_margin="5dp"
-                        android:src="@drawable/globe"
-                        android:id="@+id/icon_setting_item"/>
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_weight="1"
-                        android:id="@+id/label_setting_item"
-                        android:text="Ngôn ngữ"
-                        android:fontFamily="@font/sfpro_semibold"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"/>
-                    <com.google.android.material.button.MaterialButtonToggleGroup
-                        android:layout_width="120dp"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/group_language"
-                        app:singleSelection="true"
-                        app:checkedButton="@+id/vietnamese">
-                        <Button
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                            android:id="@+id/vietnamese"
-                            android:text="VI"
-                            android:fontFamily="@font/sfpro_semibold"/>
-                        <Button
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                            android:id="@+id/english"
-                            android:text="EN"
-                            android:fontFamily="@font/sfpro_semibold"/>
-                    </com.google.android.material.button.MaterialButtonToggleGroup>
-                </LinearLayout>
                 <GridView
                     android:id="@+id/gridview_others"
                     android:layout_width="match_parent"
@@ -170,7 +121,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/sfpro_bold"
+                    android:fontFamily="@font/averta_bold"
                     android:text="Đăng xuất"
                     android:textColor="@color/black"
                     android:textSize="16sp"
@@ -182,7 +133,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/sfpro_bold"
+                    android:fontFamily="@font/averta_bold"
                     android:text="Đổi tài khoản"
                     android:textColor="@color/black"
                     android:textSize="16sp"
@@ -195,8 +146,8 @@
                 android:layout_height="wrap_content"
                 android:text="Phiên bản 1.0.0"
                 android:id="@+id/app_version"
-                android:fontFamily="@font/sfpro_regular"
-                android:textSize="16sp"
+                android:fontFamily="@font/averta_semibold"
+                android:textSize="18sp"
                 android:textColor="@color/black"
                 android:textAlignment="center"/>
         </LinearLayout>

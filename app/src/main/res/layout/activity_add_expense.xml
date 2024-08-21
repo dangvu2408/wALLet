@@ -30,7 +30,7 @@
             android:text="Thêm khoản chi"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:fontFamily="@font/sfpro_bold"
+            android:fontFamily="@font/averta_bold"
             android:textSize="22sp"/>
     </RelativeLayout>
     <ScrollView
@@ -60,7 +60,7 @@
                     android:paddingRight="10dp"
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
-                    android:fontFamily="@font/sfpro_semibold"
+                    android:fontFamily="@font/averta_semibold"
                     android:textSize="24sp"
                     android:textColor="#141ed4"
                     android:textColorHint="#6971FF"
@@ -71,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:text="VND"
                     android:padding="10dp"
-                    android:fontFamily="@font/sfpro_bold"
+                    android:fontFamily="@font/averta_bold"
                     android:textSize="24sp"
                     android:textColor="#141ed4"/>
             </LinearLayout>
@@ -95,7 +95,7 @@
                     android:hint="Thêm ghi chú cho khoản chi"
                     android:background="@drawable/outline_blue"
                     android:textColorHint="@color/black"
-                    android:fontFamily="@font/sfpro_semibold"
+                    android:fontFamily="@font/averta_semibold"
                     android:textSize="20sp"
                     android:maxLength="250"
                     android:id="@+id/description_expense"
@@ -121,7 +121,7 @@
                     <AutoCompleteTextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:fontFamily="@font/sfpro_semibold"
+                        android:fontFamily="@font/averta_semibold"
                         android:textSize="20sp"
                         android:inputType="none"
                         android:paddingTop="3dp"
@@ -158,7 +158,7 @@
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
                     android:text="Hôm nay"
-                    android:fontFamily="@font/sfpro_semibold"
+                    android:fontFamily="@font/averta_semibold"
                     android:textColor="@color/black"
                     android:textSize="20sp"/>
             </LinearLayout>
@@ -192,7 +192,7 @@
                     android:layout_weight="1"
                     android:text="Lưu"
                     android:id="@+id/save_btn"
-                    android:fontFamily="@font/sfpro_bold"
+                    android:fontFamily="@font/averta_bold"
                     android:textSize="18sp"
                     android:textColor="@color/white"
                     android:background="@drawable/bottomnavbackground"
@@ -208,7 +208,7 @@
                     android:layout_weight="1"
                     android:text="Xóa "
                     android:id="@+id/delete_all_data"
-                    android:fontFamily="@font/sfpro_bold"
+                    android:fontFamily="@font/averta_bold"
                     android:textSize="18sp"
                     android:textColor="#10B6CC"
                     android:background="@drawable/button_background"
@@ -224,7 +224,7 @@
                 android:text="@string/description_expense"
                 android:textSize="16sp"
                 android:textColor="@color/black"
-                android:fontFamily="@font/sfpro_regular_italic"/>
+                android:fontFamily="@font/averta_regular_italic"/>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
