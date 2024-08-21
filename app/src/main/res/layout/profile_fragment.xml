@@ -124,7 +124,7 @@
                     android:fontFamily="@font/averta_bold"
                     android:text="Đăng xuất"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textAllCaps="false"
                     android:background="@drawable/gridviewbackground"
                     android:layout_margin="15dp" />
@@ -136,7 +136,7 @@
                     android:fontFamily="@font/averta_bold"
                     android:text="Đổi tài khoản"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textAllCaps="false"
                     android:background="@drawable/gridviewbackground"
                     android:layout_margin="15dp" />

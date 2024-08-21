@@ -19,6 +19,12 @@
         </activity>
 
         <activity
+            android:name=".Activity.LoginActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
             android:name=".Activity.AddExpenseActivity"
             android:exported="true"
             android:screenOrientation="portrait">

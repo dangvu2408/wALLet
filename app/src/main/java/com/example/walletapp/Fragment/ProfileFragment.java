@@ -1,9 +1,11 @@
 package com.example.walletapp.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
 
@@ -11,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.walletapp.Activity.LoginActivity;
 import com.example.walletapp.Adapter.GridItemsSettingAdapter;
 import com.example.walletapp.Model.GridItem;
 import com.example.walletapp.R;
@@ -21,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProfileFragment extends Fragment {
+    private Button signout;
     public ProfileFragment() {}
     @Nullable
     @Override
@@ -30,6 +34,9 @@ public class ProfileFragment extends Fragment {
         TextView user_fullname = view.findViewById(R.id.user_full_name);
         GridView grid_setting = view.findViewById(R.id.gridview_setting);
         GridView grid_others = view.findViewById(R.id.gridview_others);
+        signout = view.findViewById(R.id.signout);
+
+
         List<GridItem> listSetting = new ArrayList<>();
         List<GridItem> listOthers = new ArrayList<>();
         listSetting.add(new GridItem(R.drawable.shield, "Đăng nhập và bảo mật"));
@@ -45,6 +52,14 @@ public class ProfileFragment extends Fragment {
         grid_others.setAdapter(adapter02);
         HeightUtils.setGridViewHeight(grid_setting, 1);
         HeightUtils.setGridViewHeight(grid_others, 1);
+
+        signout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+                getActivity().overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
+            }
+        });
         return view;
     }
 }

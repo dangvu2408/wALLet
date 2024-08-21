@@ -1,5 +1,6 @@
 package com.example.walletapp.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -52,15 +53,19 @@ public class GridItemAddingAdapter extends ArrayAdapter<GridItem> {
                     switch (position) {
                         case 0:
                             context.startActivity(new Intent(context, AddExpenseActivity.class));
+                            ((Activity) context).overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
                             break;
                         case 1:
                             context.startActivity(new Intent(context, AddRevenueActivity.class));
+                            ((Activity) context).overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
                             break;
                         case 2:
                             context.startActivity(new Intent(context, AddPercentageActivity.class));
+                            ((Activity) context).overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
                             break;
                         case 3:
                             context.startActivity(new Intent(context, AddLoanActivity.class));
+                            ((Activity) context).overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
                             break;
                     }
                 }
