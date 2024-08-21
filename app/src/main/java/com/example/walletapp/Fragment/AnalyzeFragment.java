@@ -9,11 +9,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import com.example.walletapp.Model.TransactionItem;
@@ -63,6 +66,7 @@ public class AnalyzeFragment extends Fragment {
     private BigDecimal outputMoneyRange1 = BigDecimal.ZERO, outputMoneyRange2 = BigDecimal.ZERO, outputMoneyRange3 = BigDecimal.ZERO;
     private BigDecimal pieChartRevenue = BigDecimal.ZERO, pieChartPercentage = BigDecimal.ZERO, pieChartLoanBorrow = BigDecimal.ZERO, pieChartLoanDebt = BigDecimal.ZERO;
     private BigDecimal pieChartExpense = BigDecimal.ZERO, pieChartPercentageA = BigDecimal.ZERO, pieChartLoanLend = BigDecimal.ZERO, pieChartLoanRepay = BigDecimal.ZERO;
+    ImageView menu_top;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -76,7 +80,15 @@ public class AnalyzeFragment extends Fragment {
         revenue_income_pie_chart = view.findViewById(R.id.revenue_income_pie_chart);
         expense_income_pie_chart = view.findViewById(R.id.expense_income_pie_chart);
         total_balance = view.findViewById(R.id.total_balance);
+        menu_top = view.findViewById(R.id.menu_top);
         this.context = getContext();
+        DrawerLayout drawer = getActivity().findViewById(R.id.drawer_layout);
+        menu_top.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.openDrawer(GravityCompat.END);
+            }
+        });
         initialData();
 
         DecimalFormat numFormat = new DecimalFormat("###,###,###.00");

@@ -29,29 +29,6 @@
             android:layout_marginLeft="20dp"
             android:scaleType="fitStart"
             android:src="@drawable/removedicon"/>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/search"
-                android:id="@+id/search_top1"
-                android:layout_margin="10dp"/>
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/whitebell"
-                android:id="@+id/notification_bell1"
-                android:layout_margin="10dp"/>
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/menu"
-                android:id="@+id/menu_top1"
-                android:layout_margin="10dp"/>
-        </LinearLayout>
     </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
@@ -409,27 +386,36 @@
             android:layout_marginLeft="20dp"
             android:scaleType="fitStart"
             android:src="@drawable/removedicon"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:elevation="10dp"
+        android:padding="10dp"
+        android:orientation="horizontal"
+        android:gravity="end">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical">
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@drawable/search"
-                android:id="@+id/search_top"
+                android:id="@+id/search_top1"
                 android:layout_margin="10dp"/>
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@drawable/whitebell"
-                android:id="@+id/notification_bell"
+                android:id="@+id/notification_bell1"
                 android:layout_margin="10dp"/>
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@drawable/menu"
-                android:id="@+id/menu_top"
+                android:id="@+id/menu_top1"
                 android:layout_margin="10dp"/>
         </LinearLayout>
     </LinearLayout>

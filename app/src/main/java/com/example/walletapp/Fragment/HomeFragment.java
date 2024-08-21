@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
@@ -20,6 +21,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import com.example.walletapp.Adapter.GridItemAddingAdapter;
@@ -37,6 +40,7 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.google.android.material.navigation.NavigationView;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -55,6 +59,7 @@ public class HomeFragment extends Fragment {
     TextView no_data_current, no_data;
     ListView currently, most_balance;
     SQLiteDatabase database;
+    ImageView menu_top1;
 
     public HomeFragment() {}
 
@@ -68,6 +73,16 @@ public class HomeFragment extends Fragment {
         no_data_current = view.findViewById(R.id.no_data_current);
         no_data = view.findViewById(R.id.no_data);
         most_balance = view.findViewById(R.id.most_balance);
+        menu_top1 = view.findViewById(R.id.menu_top1);
+
+        DrawerLayout drawer = getActivity().findViewById(R.id.drawer_layout);
+        menu_top1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.openDrawer(GravityCompat.END);
+            }
+        });
+
 
         Button btn_total_revenue = view.findViewById(R.id.total_revenue);
         Button btn_total_expense = view.findViewById(R.id.total_expense);
@@ -75,6 +90,14 @@ public class HomeFragment extends Fragment {
         btn_total_revenue.setBackgroundColor(0xffE5EDF4);
         BarChart balance_bar = view.findViewById(R.id.balance_bar_chart);
         this.context = getContext();
+
+
+
+
+
+
+
+
         queryList = new ArrayList<>();
 
         ArrayList<BarEntry> revenue = new ArrayList<>();

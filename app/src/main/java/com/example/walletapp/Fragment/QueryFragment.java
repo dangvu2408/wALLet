@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.NumberPicker;
@@ -27,6 +28,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import com.example.walletapp.Activity.AddRevenueActivity;
@@ -64,6 +67,7 @@ public class QueryFragment extends Fragment {
     QueryTransactionAdapter adapter, sortedDayAdapter, sortedMostAdapter;
     private ArrayList<TransactionItem> queryList;
     private String SRC_DATABASE_NAME = "app_database.db";
+    ImageView menu_top;
     public QueryFragment() {}
     @Nullable
     @Override
@@ -80,6 +84,15 @@ public class QueryFragment extends Fragment {
         begin_day = view.findViewById(R.id.begin_day);
         begin_date_picker = view.findViewById(R.id.begin_date_picker);
         end_date_picker = view.findViewById(R.id.end_date_picker);
+        menu_top = view.findViewById(R.id.menu_top);
+        DrawerLayout drawer = getActivity().findViewById(R.id.drawer_layout);
+
+        menu_top.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.openDrawer(GravityCompat.END);
+            }
+        });
 
         Calendar calendarEnd = Calendar.getInstance();
         Calendar calendarBegin = Calendar.getInstance();

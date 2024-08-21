@@ -2,6 +2,8 @@ package com.example.walletapp.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.walletapp.Adapter.TabLayoutAdapter;
 import com.example.walletapp.R;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,6 +45,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         TabLayout tabLayout = findViewById(R.id.tablayout);
         ViewPager viewPager = findViewById(R.id.viewPager);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        NavigationView navView = findViewById(R.id.nav_view);
+        View header = navView.getHeaderView(0);
+        ImageView close = header.findViewById(R.id.close_nav);
+
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.closeDrawer(GravityCompat.END);
+            }
+        });
 
         TabLayoutAdapter adapter = new TabLayoutAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
