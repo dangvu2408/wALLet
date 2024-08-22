@@ -4,11 +4,14 @@ import android.app.DatePickerDialog;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -22,8 +25,10 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.example.walletapp.Adapter.DropdownItemAdapter;
+import com.example.walletapp.Model.TransactionItem;
 import com.example.walletapp.NumberTextWatcher;
 import com.example.walletapp.R;
 import com.example.walletapp.Utils.HeightUtils;
@@ -59,6 +64,12 @@ public class AddPercentageActivity extends AppCompatActivity {
         dateWidget = findViewById(R.id.date_picker_widget_percentage);
 //        listDatabase = findViewById(R.id.list_database_test);
         btn_delete_data = findViewById(R.id.delete_all_data);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.color_theme_2));
+        }
 
         Locale locale = new Locale("en", "US");
         int numDecs = 2;
@@ -160,6 +171,7 @@ public class AddPercentageActivity extends AppCompatActivity {
                         toast.show();
                     }
                     finish();
+                    overridePendingTransition(R.anim.close_in, R.anim.close_out);
                 }
             }
         });
@@ -177,6 +189,7 @@ public class AddPercentageActivity extends AppCompatActivity {
                 Toast.makeText(AddPercentageActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 
 }

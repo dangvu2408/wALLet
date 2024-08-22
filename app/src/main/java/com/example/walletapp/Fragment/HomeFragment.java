@@ -1,9 +1,11 @@
 package com.example.walletapp.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +26,11 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.example.walletapp.Activity.LoginActivity;
+import com.example.walletapp.Activity.RecentTransActivity;
+import com.example.walletapp.Activity.SplashActivity;
 import com.example.walletapp.Adapter.GridItemAddingAdapter;
 import com.example.walletapp.Adapter.QueryTransactionAdapter;
 import com.example.walletapp.Model.GridItem;
@@ -42,8 +48,11 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.google.android.material.navigation.NavigationView;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -54,13 +63,16 @@ public class HomeFragment extends Fragment {
     private boolean isOverlayVisible = false;
     Context context;
     QueryTransactionAdapter sortedDayAdapter, sortedMostAdapter;
-    private ArrayList<TransactionItem> queryList;
+    public ArrayList<TransactionItem> queryList;
+    private ArrayList<TransactionItem> sortedDayList, sortedMostList;
     private String SRC_DATABASE_NAME = "app_database.db";
-    TextView no_data_current, no_data, eye_balance;
+    TextView no_data_current, no_data, eye_balance, view_all_2, total_balance;
     ListView currently, most_balance;
     SQLiteDatabase database;
     ImageView menu_top1, eye_view;
     boolean isEyeClose = true;
+    public static BigDecimal inputMoney = BigDecimal.ZERO, outputMoney = BigDecimal.ZERO;
+    public static BigDecimal sumOfBalance = BigDecimal.ZERO;
 
     public HomeFragment() {}
 
@@ -77,13 +89,24 @@ public class HomeFragment extends Fragment {
         menu_top1 = view.findViewById(R.id.menu_top1);
         eye_view = view.findViewById(R.id.eye_view);
         eye_balance = view.findViewById(R.id.eye_balance);
+        view_all_2 = view.findViewById(R.id.view_all_2);
+        total_balance = view.findViewById(R.id.total_balance);
+        this.context = getContext();
+        queryList = new ArrayList<>();
+        initialData();
+
+        sumOfBalance = sumOfBalance.add(inputMoney).add(outputMoney);
+        DecimalFormat numFormat = new DecimalFormat("###,###,###.00");
+        String net_income_str = numFormat.format(sumOfBalance);
+        total_balance.setText("Tổng số dư: " + net_income_str + " VND");
+
 
         eye_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isEyeClose) {
                     eye_view.setImageResource(R.drawable.eyeoff);
-                    eye_balance.setText("3.000.000.000 VND");
+                    eye_balance.setText(net_income_str + " VND");
                     isEyeClose = false;
                 } else {
                     eye_view.setImageResource(R.drawable.eye);
@@ -102,22 +125,19 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        view_all_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), RecentTransActivity.class));
+                getActivity().overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
+            }
+        });
 
         Button btn_total_revenue = view.findViewById(R.id.total_revenue);
         Button btn_total_expense = view.findViewById(R.id.total_expense);
         btn_total_expense.setBackgroundColor(0xffE5EDF4);
         btn_total_revenue.setBackgroundColor(0xffE5EDF4);
         BarChart balance_bar = view.findViewById(R.id.balance_bar_chart);
-        this.context = getContext();
-
-
-
-
-
-
-
-
-        queryList = new ArrayList<>();
 
         ArrayList<BarEntry> revenue = new ArrayList<>();
         revenue.add(new BarEntry(0f, 0f));
@@ -132,7 +152,7 @@ public class HomeFragment extends Fragment {
         balance_bar.getXAxis().setValueFormatter(new IndexAxisValueFormatter(months));
 
         BarDataSet balance_bar_data_set = new BarDataSet(revenue, "");
-        balance_bar_data_set.setValueTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_semibold));
+        balance_bar_data_set.setValueTypeface(ResourcesCompat.getFont(context, R.font.averta_semibold));
         BarData balance_bar_data = new BarData(balance_bar_data_set);
 
         balance_bar_data_set.setValueTextSize(12f);
@@ -142,15 +162,16 @@ public class HomeFragment extends Fragment {
         balance_bar.setData(balance_bar_data);
         balance_bar.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
         balance_bar.getXAxis().setValueFormatter(new IndexAxisValueFormatter(months));
-        balance_bar.getXAxis().setTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_regular));
+        balance_bar.getXAxis().setTypeface(ResourcesCompat.getFont(context, R.font.averta_regular));
         balance_bar.getXAxis().enableGridDashedLine(8f, 8f, 0f);
         balance_bar.getXAxis().setLabelCount(months.size());
-        balance_bar.getXAxis().setTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_regular));
+        balance_bar.getXAxis().setTypeface(ResourcesCompat.getFont(context, R.font.averta_regular));
         balance_bar.getAxisLeft().setEnabled(false);
-        balance_bar.getAxisRight().setTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_regular));
+        balance_bar.getAxisRight().setTypeface(ResourcesCompat.getFont(context, R.font.averta_regular));
         balance_bar.getAxisRight().enableGridDashedLine(8f, 8f, 0f);
         balance_bar.animateY(1000, Easing.EaseInOutCubic);
-        balance_bar.getLegend().setTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_semibold));
+        balance_bar.getLegend().setTypeface(ResourcesCompat.getFont(context, R.font.averta_semibold));
+        balance_bar.invalidate();
 
         fullLayout.setOnScrollChangeListener(new View.OnScrollChangeListener() {
             @Override
@@ -177,7 +198,7 @@ public class HomeFragment extends Fragment {
         listAdding.add(new GridItem(R.drawable.income01, "Khoản thu"));
         listAdding.add(new GridItem(R.drawable.percentage01, "Lãi suất"));
         listAdding.add(new GridItem(R.drawable.target01, "Khoản vay"));
-        GridItemAddingAdapter adapter = new GridItemAddingAdapter(this.getContext(), listAdding);
+        GridItemAddingAdapter adapter = new GridItemAddingAdapter(this.context, listAdding);
         addingGrid.setAdapter(adapter);
         HeightUtils.setGridViewHeight(addingGrid, 4);
 
@@ -189,7 +210,7 @@ public class HomeFragment extends Fragment {
 
                 ArrayList<BarEntry> revenue = new ArrayList<>();
                 revenue.add(new BarEntry(0f, 0f));
-                revenue.add(new BarEntry(1f, AnalyzeFragment.sumOfInput.floatValue()));
+                revenue.add(new BarEntry(1f, inputMoney.floatValue()));
                 ArrayList<String> months = new ArrayList<>();
                 months.add("Tháng trước");
                 months.add("Tháng này");
@@ -200,7 +221,7 @@ public class HomeFragment extends Fragment {
                 balance_bar.getXAxis().setValueFormatter(new IndexAxisValueFormatter(months));
 
                 BarDataSet balance_bar_data_set = new BarDataSet(revenue, "");
-                balance_bar_data_set.setValueTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_semibold));
+                balance_bar_data_set.setValueTypeface(ResourcesCompat.getFont(context, R.font.averta_semibold));
                 BarData balance_bar_data = new BarData(balance_bar_data_set);
                 balance_bar_data.setBarWidth(0.5f);
                 balance_bar_data_set.setValueTextSize(12f);
@@ -210,18 +231,19 @@ public class HomeFragment extends Fragment {
                 balance_bar.setData(balance_bar_data);
                 balance_bar.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
                 balance_bar.getXAxis().setValueFormatter(new IndexAxisValueFormatter(months));
-                balance_bar.getXAxis().setTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_regular));
+                balance_bar.getXAxis().setTypeface(ResourcesCompat.getFont(context, R.font.averta_regular));
                 balance_bar.getXAxis().enableGridDashedLine(8f, 8f, 0f);
                 balance_bar.getXAxis().setLabelCount(months.size());
                 balance_bar.getAxisLeft().setEnabled(false);
-                balance_bar.getAxisRight().setTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_regular));
+                balance_bar.getAxisRight().setTypeface(ResourcesCompat.getFont(context, R.font.averta_regular));
                 balance_bar.getAxisRight().enableGridDashedLine(8f, 8f, 0f);
                 balance_bar.animateY(1000, Easing.EaseInOutCubic);
-                balance_bar.getLegend().setTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_semibold));
+                balance_bar.getLegend().setTypeface(ResourcesCompat.getFont(context, R.font.averta_semibold));
                 CustomBarChartRender barChartRender = new CustomBarChartRender(balance_bar, balance_bar.getAnimator(), balance_bar.getViewPortHandler());
                 barChartRender.setRadius(15);
                 barChartRender.initBuffers();
                 balance_bar.setRenderer(barChartRender);
+                balance_bar.invalidate();
             }
         });
 
@@ -233,7 +255,7 @@ public class HomeFragment extends Fragment {
 
                 ArrayList<BarEntry> expense = new ArrayList<>();
                 expense.add(new BarEntry(0f, 0f));
-                expense.add(new BarEntry(1f, Math.abs(AnalyzeFragment.sumOfOutput.floatValue())));
+                expense.add(new BarEntry(1f, Math.abs(outputMoney.floatValue())));
                 ArrayList<String> months = new ArrayList<>();
                 months.add("Tháng trước");
                 months.add("Tháng này");
@@ -244,7 +266,7 @@ public class HomeFragment extends Fragment {
                 balance_bar.getXAxis().setValueFormatter(new IndexAxisValueFormatter(months));
 
                 BarDataSet balance_bar_data_set = new BarDataSet(expense, "");
-                balance_bar_data_set.setValueTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_semibold));
+                balance_bar_data_set.setValueTypeface(ResourcesCompat.getFont(context, R.font.averta_semibold));
                 BarData balance_bar_data = new BarData(balance_bar_data_set);
                 balance_bar_data.setBarWidth(0.5f);
                 balance_bar_data_set.setValueTextSize(12f);
@@ -254,62 +276,22 @@ public class HomeFragment extends Fragment {
                 balance_bar.setData(balance_bar_data);
                 balance_bar.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
                 balance_bar.getXAxis().setValueFormatter(new IndexAxisValueFormatter(months));
-                balance_bar.getXAxis().setTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_regular));
+                balance_bar.getXAxis().setTypeface(ResourcesCompat.getFont(context, R.font.averta_regular));
                 balance_bar.getXAxis().enableGridDashedLine(8f, 8f, 0f);
                 balance_bar.getXAxis().setLabelCount(months.size());
-                balance_bar.getXAxis().setTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_regular));
+                balance_bar.getXAxis().setTypeface(ResourcesCompat.getFont(context, R.font.averta_regular));
                 balance_bar.getAxisLeft().setEnabled(false);
-                balance_bar.getAxisRight().setTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_regular));
+                balance_bar.getAxisRight().setTypeface(ResourcesCompat.getFont(context, R.font.averta_regular));
                 balance_bar.getAxisRight().enableGridDashedLine(8f, 8f, 0f);
                 balance_bar.animateY(1000, Easing.EaseInOutCubic);
-                balance_bar.getLegend().setTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_semibold));
+                balance_bar.getLegend().setTypeface(ResourcesCompat.getFont(context, R.font.averta_semibold));
                 CustomBarChartRender barChartRender = new CustomBarChartRender(balance_bar, balance_bar.getAnimator(), balance_bar.getViewPortHandler());
                 barChartRender.setRadius(15);
                 barChartRender.initBuffers();
                 balance_bar.setRenderer(barChartRender);
+                balance_bar.invalidate();
             }
         });
-
-        String src = context.getDatabasePath(SRC_DATABASE_NAME).getAbsolutePath();
-        database = SQLiteDatabase.openOrCreateDatabase(src, null);
-        queryList.clear();
-        Cursor cursor = database.query("userdata", null, null, null, null, null, null);
-        cursor.moveToNext();
-        while (!cursor.isAfterLast()) {
-            TransactionItem item = new TransactionItem(cursor.getString(3), cursor.getString(2), cursor.getString(0), cursor.getString(1),  cursor.getString(4));
-            queryList.add(item);
-            cursor.moveToNext();
-
-        }
-        cursor.close();
-
-        ArrayList<TransactionItem> sortedDayList = new ArrayList<>(queryList);
-        ArrayList<TransactionItem> sortedMostList = new ArrayList<>(queryList);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, d 'tháng' M, yyyy", new Locale("vi", "VN"));
-
-        Collections.sort(sortedDayList, new Comparator<TransactionItem>() {
-            @Override
-            public int compare(TransactionItem o1, TransactionItem o2) {
-                LocalDate date1 = LocalDate.parse(o1.getDateTrans(), formatter);
-                LocalDate date2 = LocalDate.parse(o2.getDateTrans(), formatter);
-                return date2.compareTo(date1);
-            }
-        });
-
-        if (sortedDayList.size() > 3) {
-            sortedDayList.subList(3, sortedDayList.size()).clear();
-        }
-
-        Collections.sort(sortedMostList, new Comparator<TransactionItem>() {
-            @Override
-            public int compare(TransactionItem o1, TransactionItem o2) {
-                return Float.compare(o2.getMoneyTransFloat(), o1.getMoneyTransFloat());
-            }
-        });
-
-        if (sortedMostList.size() > 3) {
-            sortedMostList.subList(3, sortedMostList.size()).clear();
-        }
 
         sortedDayAdapter = new QueryTransactionAdapter(context, sortedDayList);
         sortedDayAdapter.notifyDataSetChanged();
@@ -333,5 +315,89 @@ public class HomeFragment extends Fragment {
             no_data.setVisibility(View.GONE);
         }
         return view;
+    }
+
+    private void initialData() {
+        if (this.context != null) {
+            String src = this.context.getDatabasePath(SRC_DATABASE_NAME).getAbsolutePath();
+            database = SQLiteDatabase.openOrCreateDatabase(src, null);
+            Cursor cursor = database.query("userdata", null, null, null, null, null, null);
+            cursor.moveToNext();
+            while (!cursor.isAfterLast()) {
+                TransactionItem item = new TransactionItem(cursor.getString(3), cursor.getString(2), cursor.getString(0), cursor.getString(1),  cursor.getString(4));
+                this.queryList.add(item);
+                cursor.moveToNext();
+            }
+            cursor.close();
+            getListViewData();
+            getBarData();
+        }
+    }
+
+    private void getBarData() {
+        LocalDate today = LocalDate.now();
+        LocalDate localBegin = today.withDayOfMonth(1);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String beginDay = localBegin.format(formatter);
+        LocalDate localEnd = today.with(TemporalAdjusters.lastDayOfMonth());
+        String endDay = localEnd.format(formatter);
+        LocalDate chartBeginDay = LocalDate.parse(beginDay, formatter);
+        LocalDate chartEndDay = LocalDate.parse(endDay, formatter);
+
+        for (TransactionItem item : queryList) {
+            LocalDate itemDate = item.getDateAsLocalDate();
+            if ((itemDate.isEqual(chartBeginDay) || itemDate.isAfter(chartBeginDay)) &&
+                    (itemDate.isEqual(chartEndDay) || itemDate.isBefore(chartEndDay))) {
+                if (item.getTypeTrans().equals("revenue_money")) {
+                    String finalString = item.getMoneyTrans().replace(",", "");
+                    inputMoney = inputMoney.add(new BigDecimal(finalString));
+                } else if (item.getTypeTrans().equals("expense_money")) {
+                    String finalString = item.getMoneyTrans().replace(",", "");
+                    outputMoney = outputMoney.subtract(new BigDecimal(finalString));
+                } else if (item.getTypeTrans().equals("percentage_money")) {
+                    if (item.getDetailTypeTrans().equals("Trả lãi")) {
+                        String finalString = item.getMoneyTrans().replace(",", "");
+                        outputMoney = outputMoney.subtract(new BigDecimal(finalString));
+                    } else if (item.getDetailTypeTrans().equals("Thu lãi")) {
+                        String finalString = item.getMoneyTrans().replace(",", "");
+                        inputMoney = inputMoney.add(new BigDecimal(finalString));
+                    }
+                } else if (item.getTypeTrans().equals("loan_money")) {
+                    if (item.getDetailTypeTrans().equals("Cho vay") || item.getDetailTypeTrans().equals("Trả nợ")) {
+                        String finalString = item.getMoneyTrans().replace(",", "");
+                        outputMoney = outputMoney.subtract(new BigDecimal(finalString));
+                    } else if (item.getDetailTypeTrans().equals("Đi vay") || item.getDetailTypeTrans().equals("Thu nợ")) {
+                        String finalString = item.getMoneyTrans().replace(",", "");
+                        inputMoney = inputMoney.add(new BigDecimal(finalString));
+                    }
+                }
+            }
+        }
+    }
+
+    private void getListViewData() {
+        this.sortedDayList = new ArrayList<>(queryList);
+        this.sortedMostList = new ArrayList<>(queryList);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, d 'tháng' M, yyyy", new Locale("vi", "VN"));
+        Collections.sort(sortedDayList, new Comparator<TransactionItem>() {
+            @Override
+            public int compare(TransactionItem o1, TransactionItem o2) {
+                LocalDate date1 = LocalDate.parse(o1.getDateTrans(), formatter);
+                LocalDate date2 = LocalDate.parse(o2.getDateTrans(), formatter);
+                return date2.compareTo(date1);
+            }
+        });
+        if (sortedDayList.size() > 3) {
+            sortedDayList.subList(3, sortedDayList.size()).clear();
+        }
+        Collections.sort(sortedMostList, new Comparator<TransactionItem>() {
+            @Override
+            public int compare(TransactionItem o1, TransactionItem o2) {
+                return Float.compare(o2.getMoneyTransFloat(), o1.getMoneyTransFloat());
+            }
+        });
+        if (sortedMostList.size() > 3) {
+            sortedMostList.subList(3, sortedMostList.size()).clear();
+        }
     }
 }

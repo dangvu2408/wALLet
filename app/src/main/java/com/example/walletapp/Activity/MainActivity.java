@@ -2,15 +2,21 @@ package com.example.walletapp.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -39,16 +45,24 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.piechart,
             R.drawable.user
     };
+
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TabLayout tabLayout = findViewById(R.id.tablayout);
-        ViewPager viewPager = findViewById(R.id.viewPager);
+        tabLayout = findViewById(R.id.tablayout);
+        viewPager = findViewById(R.id.viewPager);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navView = findViewById(R.id.nav_view);
         View header = navView.getHeaderView(0);
         ImageView close = header.findViewById(R.id.close_nav);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.color_theme_1));
+        }
 
         close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +74,24 @@ public class MainActivity extends AppCompatActivity {
         TabLayoutAdapter adapter = new TabLayoutAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                int position = tab.getPosition();
+                refreshFragment(position);  // Gọi hàm refresh fragment tại vị trí tương ứng
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+                int position = tab.getPosition();
+                refreshFragment(position);  // Gọi hàm refresh lại fragment khi tab được chọn lại
+            }
+        });
+
 
         DisplayMetrics display = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(display);
@@ -115,4 +147,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void refreshFragment(int position) {
+        Fragment fragment = (Fragment) viewPager.getAdapter().instantiateItem(viewPager, position);
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.detach(fragment);
+        ft.attach(fragment);
+        ft.commit();
+    }
+
 }
