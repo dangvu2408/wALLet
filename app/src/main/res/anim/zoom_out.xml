@@ -10,10 +10,10 @@
         android:toYScale="1.0"
         android:pivotX="50%"
         android:pivotY="50%"
-        android:duration="300" />
+        android:duration="200" />
 
     <alpha
         android:fromAlpha="0"
         android:toAlpha="1.0"
-        android:duration="300" />
+        android:duration="200" />
 </set>

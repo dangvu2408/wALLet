@@ -83,6 +83,7 @@ public class AddExpenseActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+                overridePendingTransition(R.anim.close_in, R.anim.close_out);
             }
         });
 
