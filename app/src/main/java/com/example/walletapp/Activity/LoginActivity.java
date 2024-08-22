@@ -1,6 +1,7 @@
 package com.example.walletapp.Activity;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +17,8 @@ import com.example.walletapp.R;
 
 public class LoginActivity extends AppCompatActivity {
     private LinearLayout login_btn;
+    private SQLiteDatabase database;
+    private String SRC_DATABASE_NAME = "app_database.db";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,10 +33,14 @@ public class LoginActivity extends AppCompatActivity {
         login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String src = getDatabasePath(SRC_DATABASE_NAME).getAbsolutePath();
+                database = SQLiteDatabase.openOrCreateDatabase(src, null);
+                database.delete("userdata", null, null);
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
             }
         });
+
 
     }
 

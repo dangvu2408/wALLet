@@ -1,6 +1,8 @@
 package com.example.walletapp.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +27,9 @@ import java.util.List;
 
 public class ProfileFragment extends Fragment {
     private Button signout;
+    private Context context;
+    private SQLiteDatabase database;
+    private String SRC_DATABASE_NAME = "app_database.db";
     public ProfileFragment() {}
     @Nullable
     @Override
@@ -35,6 +40,7 @@ public class ProfileFragment extends Fragment {
         GridView grid_setting = view.findViewById(R.id.gridview_setting);
         GridView grid_others = view.findViewById(R.id.gridview_others);
         signout = view.findViewById(R.id.signout);
+        this.context = getContext();
 
 
         List<GridItem> listSetting = new ArrayList<>();
@@ -53,9 +59,13 @@ public class ProfileFragment extends Fragment {
         HeightUtils.setGridViewHeight(grid_setting, 1);
         HeightUtils.setGridViewHeight(grid_others, 1);
 
+        String src = this.context.getDatabasePath(SRC_DATABASE_NAME).getAbsolutePath();
+        database = SQLiteDatabase.openOrCreateDatabase(src, null);
+
         signout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                database.delete("userdata", null, null);
                 startActivity(new Intent(getActivity(), LoginActivity.class));
                 getActivity().overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
             }

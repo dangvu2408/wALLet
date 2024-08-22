@@ -61,7 +61,7 @@ import java.util.Locale;
 
 public class HomeFragment extends Fragment {
     private boolean isOverlayVisible = false;
-    Context context;
+    private Context context;
     QueryTransactionAdapter sortedDayAdapter, sortedMostAdapter;
     public ArrayList<TransactionItem> queryList;
     private ArrayList<TransactionItem> sortedDayList, sortedMostList;
