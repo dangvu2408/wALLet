@@ -110,11 +110,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"/>
+
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="2dp"
+                        android:layout_height="8dp"
                         android:layout_weight="1"
-                        android:background="@drawable/outline_blue"/>
+                        android:background="@drawable/outline_blue" />
                 </LinearLayout>
                 <TextView
                     android:layout_width="match_parent"

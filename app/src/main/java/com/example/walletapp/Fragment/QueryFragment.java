@@ -53,18 +53,17 @@ import java.util.List;
 import java.util.Locale;
 
 public class QueryFragment extends Fragment {
-    LinearLayout no_data_query;
-    String datepicker, begin_day_STR = "", end_day_STR = "";
-    String outputString = "";
-    ListView query_result, currently, most_balance;
-    Button query_btn;
-    SQLiteDatabase database;
-    TextView no_data_current, no_data, begin_day, end_day;
-    Context context;
+    private LinearLayout no_data_query;
+    private String begin_day_STR = "", end_day_STR = "";
+    private ListView query_result;
+    private Button query_btn;
+    private SQLiteDatabase database;
+    private TextView begin_day, end_day;
+    private Context context;
     private Calendar beginDate = Calendar.getInstance();
     private Calendar endDate = Calendar.getInstance();
-    CardView begin_date_picker, end_date_picker;
-    QueryTransactionAdapter adapter, sortedDayAdapter, sortedMostAdapter;
+    private CardView begin_date_picker, end_date_picker;
+    private QueryTransactionAdapter adapter;
     private ArrayList<TransactionItem> queryList;
     private String SRC_DATABASE_NAME = "app_database.db";
     ImageView menu_top;
@@ -76,10 +75,6 @@ public class QueryFragment extends Fragment {
         no_data_query = view.findViewById(R.id.no_data_query_in_range);
         query_result = view.findViewById(R.id.transaction_query);
         query_btn = view.findViewById(R.id.query_btn);
-        currently = view.findViewById(R.id.currently);
-        no_data_current = view.findViewById(R.id.no_data_current);
-        most_balance = view.findViewById(R.id.most_balance);
-        no_data = view.findViewById(R.id.no_data);
         end_day = view.findViewById(R.id.end_day);
         begin_day = view.findViewById(R.id.begin_day);
         begin_date_picker = view.findViewById(R.id.begin_date_picker);
@@ -207,57 +202,6 @@ public class QueryFragment extends Fragment {
                 }
             }
         });
-
-
-        Cursor cursorSort = database.query("userdata", null, null, null, null, null, null);
-        cursorSort.moveToNext();
-        while (!cursorSort.isAfterLast()) {
-            TransactionItem item = new TransactionItem(cursorSort.getString(3), cursorSort.getString(2), cursorSort.getString(0), cursorSort.getString(1),  cursorSort.getString(4));
-            this.queryList.add(item);
-            cursorSort.moveToNext();
-
-        }
-        cursorSort.close();
-
-        ArrayList<TransactionItem> sortedDayList = new ArrayList<>(queryList);
-        ArrayList<TransactionItem> sortedMostList = new ArrayList<>(queryList);
-        Collections.sort(sortedDayList, new Comparator<TransactionItem>() {
-            @Override
-            public int compare(TransactionItem o1, TransactionItem o2) {
-                LocalDate date1 = LocalDate.parse(o1.getDateTrans(), formatter);
-                LocalDate date2 = LocalDate.parse(o2.getDateTrans(), formatter);
-                return date2.compareTo(date1);
-            }
-        });
-
-        Collections.sort(sortedMostList, new Comparator<TransactionItem>() {
-            @Override
-            public int compare(TransactionItem o1, TransactionItem o2) {
-                return Float.compare(o2.getMoneyTransFloat(), o1.getMoneyTransFloat());
-            }
-        });
-
-        sortedDayAdapter = new QueryTransactionAdapter(context, sortedDayList);
-        currently.setAdapter(sortedDayAdapter);
-        sortedDayAdapter.notifyDataSetChanged();
-        HeightUtils.setListViewHeight(currently);
-
-        sortedMostAdapter = new QueryTransactionAdapter(context, sortedMostList);
-        most_balance.setAdapter(sortedMostAdapter);
-        sortedMostAdapter.notifyDataSetChanged();
-        HeightUtils.setListViewHeight(most_balance);
-
-        if (currently.getLayoutParams().height == 10) {
-            no_data_current.setVisibility(View.VISIBLE);
-        } else {
-            no_data_current.setVisibility(View.GONE);
-        }
-
-        if (most_balance.getLayoutParams().height == 10) {
-            no_data.setVisibility(View.VISIBLE);
-        } else {
-            no_data.setVisibility(View.GONE);
-        }
         return view;
     }
 

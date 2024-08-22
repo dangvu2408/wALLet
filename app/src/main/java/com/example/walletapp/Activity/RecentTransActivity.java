@@ -24,9 +24,11 @@ import com.example.walletapp.Utils.HeightUtils;
 
 import org.w3c.dom.Text;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -41,6 +43,8 @@ public class RecentTransActivity extends AppCompatActivity {
     private ArrayList<TransactionItem> queryList;
     private SQLiteDatabase database;
     private QueryTransactionAdapter sortedDayAdapter;
+    private BigDecimal inputMoney = BigDecimal.ZERO, outputMoney = BigDecimal.ZERO;
+    private BigDecimal sumOfBalance = BigDecimal.ZERO;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,11 +101,52 @@ public class RecentTransActivity extends AppCompatActivity {
             no_data_current_trans.setVisibility(View.GONE);
         }
 
+        LocalDate today = LocalDate.now();
+        LocalDate localBegin = today.withDayOfMonth(1);
+        DateTimeFormatter formatDay = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String beginDay = localBegin.format(formatDay);
+        LocalDate localEnd = today.with(TemporalAdjusters.lastDayOfMonth());
+        String endDay = localEnd.format(formatDay);
+        LocalDate chartBeginDay = LocalDate.parse(beginDay, formatDay);
+        LocalDate chartEndDay = LocalDate.parse(endDay, formatDay);
+
+        for (TransactionItem item : queryList) {
+            LocalDate itemDate = item.getDateAsLocalDate();
+            if ((itemDate.isEqual(chartBeginDay) || itemDate.isAfter(chartBeginDay)) &&
+                    (itemDate.isEqual(chartEndDay) || itemDate.isBefore(chartEndDay))) {
+                if (item.getTypeTrans().equals("revenue_money")) {
+                    String finalString = item.getMoneyTrans().replace(",", "");
+                    inputMoney = inputMoney.add(new BigDecimal(finalString));
+                } else if (item.getTypeTrans().equals("expense_money")) {
+                    String finalString = item.getMoneyTrans().replace(",", "");
+                    outputMoney = outputMoney.subtract(new BigDecimal(finalString));
+                } else if (item.getTypeTrans().equals("percentage_money")) {
+                    if (item.getDetailTypeTrans().equals("Trả lãi")) {
+                        String finalString = item.getMoneyTrans().replace(",", "");
+                        outputMoney = outputMoney.subtract(new BigDecimal(finalString));
+                    } else if (item.getDetailTypeTrans().equals("Thu lãi")) {
+                        String finalString = item.getMoneyTrans().replace(",", "");
+                        inputMoney = inputMoney.add(new BigDecimal(finalString));
+                    }
+                } else if (item.getTypeTrans().equals("loan_money")) {
+                    if (item.getDetailTypeTrans().equals("Cho vay") || item.getDetailTypeTrans().equals("Trả nợ")) {
+                        String finalString = item.getMoneyTrans().replace(",", "");
+                        outputMoney = outputMoney.subtract(new BigDecimal(finalString));
+                    } else if (item.getDetailTypeTrans().equals("Đi vay") || item.getDetailTypeTrans().equals("Thu nợ")) {
+                        String finalString = item.getMoneyTrans().replace(",", "");
+                        inputMoney = inputMoney.add(new BigDecimal(finalString));
+                    }
+                }
+            }
+        }
+
+        sumOfBalance = sumOfBalance.add(inputMoney).add(outputMoney);
+
 
         DecimalFormat numFormat = new DecimalFormat("###,###,###.00");
-        String input_str = numFormat.format(HomeFragment.inputMoney);
-        String output_str = numFormat.format(HomeFragment.outputMoney.abs());
-        String total_str = numFormat.format(HomeFragment.sumOfBalance);
+        String input_str = numFormat.format(inputMoney);
+        String output_str = numFormat.format(outputMoney.abs());
+        String total_str = numFormat.format(sumOfBalance);
         come_in_money.setText(input_str + "VND");
         come_out_money.setText(output_str + "VND");
         total_money.setText(total_str + " VND");

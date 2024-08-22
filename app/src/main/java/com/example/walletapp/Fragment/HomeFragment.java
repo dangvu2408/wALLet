@@ -66,13 +66,14 @@ public class HomeFragment extends Fragment {
     public ArrayList<TransactionItem> queryList;
     private ArrayList<TransactionItem> sortedDayList, sortedMostList;
     private String SRC_DATABASE_NAME = "app_database.db";
-    TextView no_data_current, no_data, eye_balance, view_all_2, total_balance;
-    ListView currently, most_balance;
-    SQLiteDatabase database;
-    ImageView menu_top1, eye_view;
+    private TextView eye_balance, view_all_2, total_balance;
+    private LinearLayout no_data_current, no_data;
+    private ListView currently, most_balance;
+    private SQLiteDatabase database;
+    private ImageView menu_top1, eye_view;
     boolean isEyeClose = true;
-    public static BigDecimal inputMoney = BigDecimal.ZERO, outputMoney = BigDecimal.ZERO;
-    public static BigDecimal sumOfBalance = BigDecimal.ZERO;
+    private BigDecimal inputMoney = BigDecimal.ZERO, outputMoney = BigDecimal.ZERO;
+    private BigDecimal sumOfBalance = BigDecimal.ZERO;
 
     public HomeFragment() {}
 
@@ -113,7 +114,6 @@ public class HomeFragment extends Fragment {
                     eye_balance.setText("*** *** VND");
                     isEyeClose = true;
                 }
-
             }
         });
 
