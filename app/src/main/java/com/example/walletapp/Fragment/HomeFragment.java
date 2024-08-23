@@ -66,7 +66,7 @@ public class HomeFragment extends Fragment {
     public ArrayList<TransactionItem> queryList;
     private ArrayList<TransactionItem> sortedDayList, sortedMostList;
     private String SRC_DATABASE_NAME = "app_database.db";
-    private TextView eye_balance, view_all_2, total_balance;
+    private TextView eye_balance, view_all_1, view_all_2, total_balance;
     private LinearLayout no_data_current, no_data;
     private ListView currently, most_balance;
     private SQLiteDatabase database;
@@ -91,6 +91,7 @@ public class HomeFragment extends Fragment {
         eye_view = view.findViewById(R.id.eye_view);
         eye_balance = view.findViewById(R.id.eye_balance);
         view_all_2 = view.findViewById(R.id.view_all_2);
+        view_all_1 = view.findViewById(R.id.view_all_1);
         total_balance = view.findViewById(R.id.total_balance);
         this.context = getContext();
         queryList = new ArrayList<>();
