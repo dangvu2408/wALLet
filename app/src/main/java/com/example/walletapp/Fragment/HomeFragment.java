@@ -93,6 +93,7 @@ public class HomeFragment extends Fragment {
         view_all_2 = view.findViewById(R.id.view_all_2);
         view_all_1 = view.findViewById(R.id.view_all_1);
         total_balance = view.findViewById(R.id.total_balance);
+
         this.context = getContext();
         queryList = new ArrayList<>();
         initialData();
@@ -100,15 +101,19 @@ public class HomeFragment extends Fragment {
         sumOfBalance = sumOfBalance.add(inputMoney).add(outputMoney);
         DecimalFormat numFormat = new DecimalFormat("###,###,###.00");
         String net_income_str = numFormat.format(sumOfBalance);
+        if (net_income_str.equals(",00")) {
+            net_income_str = "0,00";
+        }
         total_balance.setText("Tổng số dư: " + net_income_str + " VND");
 
 
+        String finalNet_income_str = net_income_str;
         eye_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isEyeClose) {
                     eye_view.setImageResource(R.drawable.eyeoff);
-                    eye_balance.setText(net_income_str + " VND");
+                    eye_balance.setText(finalNet_income_str + " VND");
                     isEyeClose = false;
                 } else {
                     eye_view.setImageResource(R.drawable.eye);

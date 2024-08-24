@@ -10,8 +10,8 @@
         android:scaleType="centerCrop"
         android:src="@drawable/headerbgr" />
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:src="@drawable/x"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="30dp"

@@ -41,15 +41,14 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class AddExpenseActivity extends AppCompatActivity {
-    SQLiteDatabase database;
-    EditText des, money_input;
-    AutoCompleteTextView autoComplete;
-    ImageView back;
-    Button btn_save, btn_delete_all;
-    TextView dateView;
-    LinearLayout dateWidget;
-    String datepicker;
-    ListView listDatabase;
+    private SQLiteDatabase database;
+    private EditText des, money_input;
+    private AutoCompleteTextView autoComplete;
+    private ImageView back;
+    private Button btn_save, btn_delete_all;
+    private TextView dateView;
+    private LinearLayout dateWidget;
+    private String datepicker;
     private Calendar datePicker = Calendar.getInstance();
     private String SRC_DATABASE_NAME = "app_database.db";
 
@@ -65,8 +64,6 @@ public class AddExpenseActivity extends AppCompatActivity {
         money_input = findViewById(R.id.input_expense_money);
         dateView = findViewById(R.id.today_or_not);
         dateWidget = findViewById(R.id.date_picker_widget);
-//        listDatabase = findViewById(R.id.list_database_test);
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -77,11 +74,6 @@ public class AddExpenseActivity extends AppCompatActivity {
         int numDecs = 2;
         TextWatcher watcher = new NumberTextWatcher(this.money_input, locale, numDecs);
         this.money_input.addTextChangedListener(watcher);
-
-//        ArrayList<String> list01 = new ArrayList<>();
-//        ArrayAdapter<String> adapter01 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list01);
-//        listDatabase.setAdapter(adapter01);
-//        HeightUtils.setListViewHeight(listDatabase);
 
         String[] list = getResources().getStringArray(R.array.list_expense);
         DropdownItemAdapter adapter = new DropdownItemAdapter(this, Arrays.asList(list));

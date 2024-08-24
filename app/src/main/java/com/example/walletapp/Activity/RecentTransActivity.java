@@ -147,8 +147,17 @@ public class RecentTransActivity extends AppCompatActivity {
         String input_str = numFormat.format(inputMoney);
         String output_str = numFormat.format(outputMoney.abs());
         String total_str = numFormat.format(sumOfBalance);
-        come_in_money.setText(input_str + "VND");
-        come_out_money.setText(output_str + "VND");
+        if (input_str.equals(",00")) {
+            input_str = "0,00";
+        }
+        if (output_str.equals(",00")) {
+            output_str = "0,00";
+        }
+        if (total_str.equals(",00")) {
+            total_str = "0,00";
+        }
+        come_in_money.setText(input_str + " VND");
+        come_out_money.setText(output_str + " VND");
         total_money.setText(total_str + " VND");
     }
 }

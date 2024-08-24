@@ -41,15 +41,14 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class AddRevenueActivity extends AppCompatActivity {
-    SQLiteDatabase database;
-    EditText des, money_input;
-    AutoCompleteTextView autoComplete;
-    ImageView back;
-    Button btn_save, btn_delete_data;
-    TextView dateView;
-    LinearLayout dateWidget;
-    String datepicker;
-    ListView listDatabase;
+    private SQLiteDatabase database;
+    private EditText des, money_input;
+    private AutoCompleteTextView autoComplete;
+    private ImageView back;
+    private Button btn_save, btn_delete_data;
+    private TextView dateView;
+    private LinearLayout dateWidget;
+    private String datepicker;
     private String SRC_DATABASE_NAME = "app_database.db";
     private Calendar datePicker = Calendar.getInstance();
 
@@ -64,7 +63,6 @@ public class AddRevenueActivity extends AppCompatActivity {
         money_input = findViewById(R.id.input_revenue_money);
         dateView = findViewById(R.id.today_or_not);
         dateWidget = findViewById(R.id.date_picker_widget_revenue);
-//        listDatabase = findViewById(R.id.list_database_test);
         btn_delete_data = findViewById(R.id.delete_all_data);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -77,11 +75,6 @@ public class AddRevenueActivity extends AppCompatActivity {
         DropdownItemAdapter adapter = new DropdownItemAdapter(this, Arrays.asList(list));
         autoComplete.setDropDownBackgroundResource(R.color.color_01);
         autoComplete.setAdapter(adapter);
-//        ArrayList<String> list01 = new ArrayList<>();
-//        ArrayAdapter<String> adapter01 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list01);
-//        listDatabase.setAdapter(adapter01);
-//        HeightUtils.setListViewHeight(listDatabase);
-
         Locale locale = new Locale("en", "US");
         int numDecs = 2;
         TextWatcher watcher = new NumberTextWatcher(this.money_input, locale, numDecs);

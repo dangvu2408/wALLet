@@ -103,6 +103,15 @@ public class AnalyzeFragment extends Fragment {
         String revenue_str = numFormat.format(sumOfInput);
         BigDecimal sumOfOutputAbs = sumOfOutput.abs();
         String expense_str = numFormat.format(sumOfOutputAbs);
+        if (net_income_str.equals(",00")) {
+            net_income_str = "0,00";
+        }
+        if (revenue_str.equals(",00")) {
+            revenue_str = "0,00";
+        }
+        if (expense_str.equals(",00")) {
+            expense_str = "0,00";
+        }
         net_income.setText(net_income_str + " VND");
         revenue_balance.setText(revenue_str + " VND");
         expense_balance.setText(expense_str + " VND");
@@ -115,6 +124,14 @@ public class AnalyzeFragment extends Fragment {
         BigDecimal expense_perday = sumOfOutputAbs.divide(new BigDecimal(daynum), 2, RoundingMode.HALF_UP);
         String revenue_per_str = numFormat.format(revenue_perday);
         String expense_per_str = numFormat.format(expense_perday);
+
+        if (revenue_per_str.equals(",00")) {
+            revenue_per_str = "0,00";
+        }
+        if (expense_per_str.equals(",00")) {
+            expense_per_str = "0,00";
+        }
+
         revenue_1day_balance.setText(revenue_per_str + " VND");
         expense_1day_balance.setText(expense_per_str + " VND");
 

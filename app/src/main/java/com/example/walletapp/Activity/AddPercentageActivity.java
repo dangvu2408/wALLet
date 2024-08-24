@@ -40,15 +40,14 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class AddPercentageActivity extends AppCompatActivity {
-    SQLiteDatabase database;
-    EditText des, money_input;
-    AutoCompleteTextView autoComplete;
-    ImageView back;
-    Button btn_save, btn_delete_data;
-    TextView dateView;
-    LinearLayout dateWidget;
-    String datepicker;
-    ListView listDatabase;
+    private SQLiteDatabase database;
+    private EditText des, money_input;
+    private AutoCompleteTextView autoComplete;
+    private ImageView back;
+    private Button btn_save, btn_delete_data;
+    private TextView dateView;
+    private LinearLayout dateWidget;
+    private String datepicker;
     private String SRC_DATABASE_NAME = "app_database.db";
     private Calendar datePicker = Calendar.getInstance();
     @Override
@@ -62,7 +61,6 @@ public class AddPercentageActivity extends AppCompatActivity {
         money_input = findViewById(R.id.input_percentage_money);
         dateView = findViewById(R.id.today_or_not);
         dateWidget = findViewById(R.id.date_picker_widget_percentage);
-//        listDatabase = findViewById(R.id.list_database_test);
         btn_delete_data = findViewById(R.id.delete_all_data);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -75,13 +73,6 @@ public class AddPercentageActivity extends AppCompatActivity {
         int numDecs = 2;
         TextWatcher watcher = new NumberTextWatcher(this.money_input, locale, numDecs);
         this.money_input.addTextChangedListener(watcher);
-
-//        ArrayList<String> list01 = new ArrayList<>();
-//        ArrayAdapter<String> adapter01 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list01);
-//        listDatabase.setAdapter(adapter01);
-//        HeightUtils.setListViewHeight(listDatabase);
-
-
 
         String[] list = getResources().getStringArray(R.array.list_percentage);
         DropdownItemAdapter adapter = new DropdownItemAdapter(this, Arrays.asList(list));

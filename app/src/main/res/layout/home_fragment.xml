@@ -293,7 +293,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Chi tiêu nhiều nhất"
+                        android:text="Giao dịch có giá trị lớn"
                         android:fontFamily="@font/averta_bold"
                         android:textSize="22sp"
                         android:textColor="@color/black"/>
