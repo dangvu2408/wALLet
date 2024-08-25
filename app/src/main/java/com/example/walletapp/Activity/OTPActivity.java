@@ -1,17 +1,20 @@
 package com.example.walletapp.Activity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.chaos.view.PinView;
 import com.example.walletapp.R;
 
 import java.text.SimpleDateFormat;
@@ -19,6 +22,8 @@ import java.util.Date;
 
 public class OTPActivity extends AppCompatActivity {
     private TextView countdown_time_otp, resend_otp;
+    private LinearLayout next_to_pass_btn;
+    private PinView firstPinView;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +35,8 @@ public class OTPActivity extends AppCompatActivity {
         }
         countdown_time_otp = findViewById(R.id.countdown_time_otp);
         resend_otp = findViewById(R.id.resend_otp);
+        next_to_pass_btn = findViewById(R.id.next_to_pass_btn);
+        firstPinView = findViewById(R.id.firstPinView);
         new CountDownTimer(20*600, 1000) {
             public void onTick(long millisUntilFinished) {
                 countdown_time_otp.setText("Bạn có thể yêu cầu gửi mã mới sau " + new SimpleDateFormat("mm:ss").format(new Date(millisUntilFinished)));
@@ -53,6 +60,13 @@ public class OTPActivity extends AppCompatActivity {
             }
         }.start();
 
+        next_to_pass_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(OTPActivity.this, PasswordActivity.class));
+                overridePendingTransition(0, 0);
+            }
+        });
 
     }
 }

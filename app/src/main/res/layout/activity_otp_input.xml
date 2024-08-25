@@ -126,7 +126,7 @@
             android:paddingBottom="15dp"/>
 
         <LinearLayout
-            android:id="@+id/next_to_otp_btn"
+            android:id="@+id/next_to_pass_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/login_btn_background">
