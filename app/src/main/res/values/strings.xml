@@ -5,7 +5,9 @@
     <string name="description_percentage">Nút \"<b>XÓA</b>\" có chức năng xóa toàn bộ dữ liệu liên quan đến khoản lãi suất, vui lòng cân nhắc kĩ...</string>
     <string name="description_loan">Nút \"<b>XÓA</b>\" có chức năng xóa toàn bộ dữ liệu liên quan đến khoản vay, vui lòng cân nhắc kĩ...</string>
     <string name="description_sms">Vui lòng nhập vào số điện thoại bạn thường xuyên sử dụng để nhận SMS xác thực.</string>
-    <string name="description_otp">Mã xác thực (OTP) đã được gửi tới \n SĐT 0383xxx312</string>
+    <string name="description_otp">Mã xác thực (OTP) đã được gửi tới \n SĐT 0xxxxxxxxx</string>
+    <string name="countdown_time_otp">Bạn có thể yêu cầu gửi mã mới sau 01:00</string>
+    <string name="resend_otp"><u>Gửi lại mã</u></string>
 
 
     <string-array name="list_expense">
