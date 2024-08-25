@@ -49,6 +49,16 @@
             android:exported="true"
             android:screenOrientation="portrait">
         </activity>
+        <activity
+            android:name=".Activity.PhoneNumberActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".Activity.OTPActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+        </activity>
 
         <activity android:name=".Activity.SplashActivity"
             android:exported="true"

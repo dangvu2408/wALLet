@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background001" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:scaleType="fitStart"
+            android:src="@drawable/removedicon"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/login_background"
+        android:elevation="5dp"
+        android:orientation="vertical"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/averta_semibold"
+            android:paddingBottom="10dp"
+            android:text="Tạo tài khoản mới"
+            android:textColor="@color/black"
+            android:textSize="27sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/averta_semibold"
+            android:paddingBottom="5dp"
+            android:text="Nhập mã OTP"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/otp_phone_number"
+            android:fontFamily="@font/averta_regular"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center"
+            android:text="@string/description_otp"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+        <com.chaos.view.PinView
+            android:paddingTop="10dp"
+            android:paddingBottom="20dp"
+            android:id="@+id/firstPinView"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:cursorVisible="true"
+            android:inputType="number"
+            android:textSize="18sp"
+            android:textColor="#141ed4"
+            android:fontFamily="@font/averta_bold"
+            app:cursorWidth="2dp"
+            app:hideLineWhenFilled="true"
+            app:itemCount="6"
+            app:itemHeight="30dp"
+            app:itemRadius="3dp"
+            app:itemSpacing="10dp"
+            app:itemWidth="30dp"
+            app:lineWidth="2dp"
+            app:viewType="rectangle"
+            app:lineColor="#141ed4"/>
+
+        <LinearLayout
+            android:id="@+id/next_to_otp_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/login_btn_background">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/averta_bold"
+                android:padding="15dp"
+                android:text="Tiếp tục"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

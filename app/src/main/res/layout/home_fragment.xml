@@ -130,32 +130,41 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
                                     android:paddingRight="10dp"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
                                     android:orientation="vertical"
                                     android:layout_gravity="center_vertical">
-                                    <TextView
+                                    <LinearLayout
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Số dư VND"
-                                        android:fontFamily="@font/averta_bold"
-                                        android:textSize="18sp"
-                                        android:layout_marginBottom="5dp"
-                                        android:textColor="@color/black"/>
+                                        android:orientation="horizontal">
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Tổng số dư"
+                                            android:fontFamily="@font/averta_bold"
+                                            android:textSize="18sp"
+                                            android:layout_gravity="center_vertical"
+                                            android:textColor="@color/black"/>
+                                        <ImageView
+                                            android:layout_width="20dp"
+                                            android:layout_height="20dp"
+                                            android:layout_marginLeft="70dp"
+                                            android:layout_marginRight="10dp"
+                                            android:id="@+id/eye_view"
+                                            android:src="@drawable/eye"
+                                            android:layout_gravity="center_vertical"/>
+                                    </LinearLayout>
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="*** *** VND"
                                         android:id="@+id/eye_balance"
                                         android:fontFamily="@font/averta_semibold"
-                                        android:textSize="16sp"
+                                        android:textSize="18sp"
+                                        android:paddingTop="5dp"
                                         android:textColor="@color/black"/>
                                 </LinearLayout>
-                                <ImageView
-                                    android:layout_width="20dp"
-                                    android:layout_height="70dp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
-                                    android:id="@+id/eye_view"
-                                    android:src="@drawable/eye"/>
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
                     </LinearLayout>

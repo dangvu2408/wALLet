@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +18,7 @@ import com.example.walletapp.R;
 
 public class LoginActivity extends AppCompatActivity {
     private LinearLayout login_btn;
+    private TextView create_account;
     private SQLiteDatabase database;
     private String SRC_DATABASE_NAME = "app_database.db";
     @Override
@@ -24,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         login_btn = findViewById(R.id.login_btn);
+        create_account = findViewById(R.id.create_account);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
@@ -38,6 +41,14 @@ public class LoginActivity extends AppCompatActivity {
                 database.delete("userdata", null, null);
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
+            }
+        });
+
+        create_account.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, PhoneNumberActivity.class));
+                overridePendingTransition(0,  0);
             }
         });
 

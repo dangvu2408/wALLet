@@ -147,7 +147,7 @@ public class AnalyzeFragment extends Fragment {
         dataSet.setColors(new int[]{0xFF279CC5, 0xFFE45B65});
         dataSet.setValueTextSize(12f);
         dataSet.setValueTypeface(ResourcesCompat.getFont(getContext(), R.font.averta_semibold));
-        dataSet.setStackLabels(new String[]{"Nguồn tiền vào (VND)", "Nguồn tiền ra (VND)"});
+        dataSet.setStackLabels(new String[]{"Nguồn tiền vào", "Nguồn tiền ra"});
         BarData barData = new BarData(dataSet);
         barData.setBarWidth(0.5f);
         Description des = new Description();
