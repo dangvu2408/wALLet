@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background001" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:scaleType="fitStart"
+            android:src="@drawable/removedicon"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/bordered_background"
+        android:layout_marginTop="100dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:translationZ="5dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Xác nhận thông tin của bạn"
+                android:textAlignment="center"
+                android:fontFamily="@font/averta_bold"
+                android:textSize="24sp"
+                android:textColor="#141ed4"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/outline_blue"
+                android:fontFamily="@font/averta_semibold"
+                android:paddingBottom="5dp"
+                android:text="Thông tin cá nhân"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                android:paddingTop="5dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/averta_regular"
+                android:justificationMode="inter_word"
+                android:text="Họ tên"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:paddingTop="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/full_name_confirm"
+                android:fontFamily="@font/averta_semibold"
+                android:justificationMode="inter_word"
+                android:text="NGUYỄN VĂN A"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="10dp">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/averta_regular"
+                        android:justificationMode="inter_word"
+                        android:text="Ngày sinh"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:paddingTop="10dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/date_of_birth_confirm"
+                        android:fontFamily="@font/averta_semibold"
+                        android:justificationMode="inter_word"
+                        android:text="01/01/2000"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/averta_regular"
+                        android:justificationMode="inter_word"
+                        android:text="Giới tính"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:paddingTop="10dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/gender_confirm"
+                        android:fontFamily="@font/averta_semibold"
+                        android:justificationMode="inter_word"
+                        android:text="Nam"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/averta_regular"
+                android:justificationMode="inter_word"
+                android:text="Số điện thoại"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:paddingTop="20dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/phone_number_confirm"
+                android:fontFamily="@font/averta_semibold"
+                android:justificationMode="inter_word"
+                android:text="0123456789"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/outline_blue"
+                android:fontFamily="@font/averta_semibold"
+                android:paddingBottom="5dp"
+                android:text="Thông tin tài khoản"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                android:paddingTop="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/averta_regular"
+                android:justificationMode="inter_word"
+                android:text="Tên đăng nhập"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:paddingTop="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/user_login_confirm"
+                android:fontFamily="@font/averta_semibold"
+                android:justificationMode="inter_word"
+                android:text="0123456789"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/averta_regular"
+                android:justificationMode="inter_word"
+                android:text="Mật khẩu"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:paddingTop="20dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/password_confirm"
+                android:fontFamily="@font/averta_semibold"
+                android:justificationMode="inter_word"
+                android:text="A223456sfsrn"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Xác nhận"
+            android:id="@+id/confirm_btn"
+            android:fontFamily="@font/averta_bold"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:background="@drawable/bottomnavbackground"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"/>
+    </LinearLayout>
+
+</RelativeLayout>

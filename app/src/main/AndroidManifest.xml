@@ -69,6 +69,16 @@
             android:exported="true"
             android:screenOrientation="portrait">
         </activity>
+        <activity
+            android:name=".Activity.VerifyInfoActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".Activity.SigninSuccessActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+        </activity>
 
         <activity android:name=".Activity.SplashActivity"
             android:exported="true"
