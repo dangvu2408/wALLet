@@ -8,6 +8,7 @@
     <string name="description_otp">Mã xác thực (OTP) đã được gửi tới \n SĐT 0xxxxxxxxx</string>
     <string name="countdown_time_otp">Bạn có thể yêu cầu gửi mã mới sau 01:00</string>
     <string name="resend_otp"><u>Gửi lại mã</u></string>
+    <string name="cannot_cancel">Bạn không thể quay lại ở màn hình này. \nQuay lại trang đăng nhập?</string>
 
 
     <string-array name="list_expense">
