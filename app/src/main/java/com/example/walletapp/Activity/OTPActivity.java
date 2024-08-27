@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -21,7 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class OTPActivity extends AppCompatActivity {
-    private TextView countdown_time_otp, resend_otp;
+    private TextView countdown_time_otp, resend_otp, otp_phone_number;
     private LinearLayout next_to_pass_btn;
     private PinView firstPinView;
     @Override
@@ -37,6 +38,7 @@ public class OTPActivity extends AppCompatActivity {
         resend_otp = findViewById(R.id.resend_otp);
         next_to_pass_btn = findViewById(R.id.next_to_pass_btn);
         firstPinView = findViewById(R.id.firstPinView);
+        otp_phone_number = findViewById(R.id.otp_phone_number);
         new CountDownTimer(20*600, 1000) {
             public void onTick(long millisUntilFinished) {
                 countdown_time_otp.setText("Bạn có thể yêu cầu gửi mã mới sau " + new SimpleDateFormat("mm:ss").format(new Date(millisUntilFinished)));
@@ -60,10 +62,23 @@ public class OTPActivity extends AppCompatActivity {
             }
         }.start();
 
+        String phone_num_otp = getIntent().getStringExtra("key_phone_number");
+        String finalStr = "";
+        if (phone_num_otp.length() >= 10) {
+            String firstThree = phone_num_otp.substring(0, 3);
+            String lastThree = phone_num_otp.substring(phone_num_otp.length() - 3);
+            finalStr = firstThree + "xxxx" + lastThree;
+        }
+        otp_phone_number.setText("Mã xác thực (OTP) đã được gửi tới SĐT " + finalStr);
+        Log.d("DEBUG", "Phone: " + phone_num_otp);
+
         next_to_pass_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(OTPActivity.this, PasswordActivity.class));
+                Intent intent = new Intent(OTPActivity.this, PasswordActivity.class);
+                intent.putExtra("key_phone_number", phone_num_otp);
+                Log.d("DEBUG", "Phone (intent): " + phone_num_otp);
+                startActivity(intent);
                 overridePendingTransition(0, 0);
             }
         });
