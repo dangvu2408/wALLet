@@ -132,6 +132,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:id="@+id/gender_group"
                 android:paddingTop="5dp"
                 android:paddingBottom="10dp">
 
@@ -143,7 +144,7 @@
                     android:buttonTint="#141ed4"
                     android:fontFamily="@font/averta_regular"
                     android:text="Nam"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"/>
 
                 <RadioButton
                     android:id="@+id/female_radio"

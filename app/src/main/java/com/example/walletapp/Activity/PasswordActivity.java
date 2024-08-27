@@ -73,10 +73,16 @@ public class PasswordActivity extends AppCompatActivity {
             }
         });
 
+        String phone_num_otp = getIntent().getStringExtra("key_phone_number");
+
         next_to_person_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PasswordActivity.this, PersonalInfoActivity.class));
+                String str_pass = password_input.getText().toString();
+                Intent intent = new Intent(PasswordActivity.this, PersonalInfoActivity.class);
+                intent.putExtra("key_phone_number", phone_num_otp);
+                intent.putExtra("pass_word", str_pass);
+                startActivity(intent);
                 overridePendingTransition(0, 0);
             }
         });
