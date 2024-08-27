@@ -1,6 +1,8 @@
 package com.example.walletapp.Activity;
 
+import android.content.AsyncQueryHandler;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -25,6 +27,7 @@ public class OTPActivity extends AppCompatActivity {
     private TextView countdown_time_otp, resend_otp, otp_phone_number;
     private LinearLayout next_to_pass_btn;
     private PinView firstPinView;
+    private int otp;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,4 +93,5 @@ public class OTPActivity extends AppCompatActivity {
         super.onBackPressed();
         overridePendingTransition(0, 0);
     }
+
 }

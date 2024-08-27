@@ -5,17 +5,22 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.example.walletapp.R;
+
+import java.util.concurrent.TimeUnit;
 
 public class PhoneNumberActivity extends AppCompatActivity {
     private LinearLayout back_to_main, next_to_otp_btn, note_fill;
@@ -34,7 +39,6 @@ public class PhoneNumberActivity extends AppCompatActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.color_theme_1));
         }
-
 
         back_to_main.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,14 +81,15 @@ public class PhoneNumberActivity extends AppCompatActivity {
             }
         });
 
-
-
+        String phone_num = phone_number_input.getText().toString();
 
     }
+
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(0, 0);
     }
+
 }
