@@ -98,7 +98,10 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         if (response.trim().equals("Success")) {
-                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            String phonenumSTR = username_input.getText().toString().trim();
+                            intent.putExtra("key_data", phonenumSTR);
+                            startActivity(intent);
                             overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
                         } else {
                             Toast.makeText(LoginActivity.this, "Đăng nhập thất bại, vui lòng thử lại!", Toast.LENGTH_SHORT).show();

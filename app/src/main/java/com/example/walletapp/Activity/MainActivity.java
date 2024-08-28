@@ -22,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.walletapp.Adapter.TabLayoutAdapter;
+import com.example.walletapp.Fragment.HomeFragment;
 import com.example.walletapp.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -69,9 +70,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 drawer.closeDrawer(GravityCompat.END);
             }
+
         });
 
-        TabLayoutAdapter adapter = new TabLayoutAdapter(getSupportFragmentManager());
+        String phone_user = getIntent().getStringExtra("key_data");
+        Bundle bundle = new Bundle();
+        bundle.putString("key_str_data", phone_user);
+
+
+        TabLayoutAdapter adapter = new TabLayoutAdapter(getSupportFragmentManager(), bundle);
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -91,6 +98,9 @@ public class MainActivity extends AppCompatActivity {
                 refreshFragment(position);  // Gọi hàm refresh lại fragment khi tab được chọn lại
             }
         });
+
+
+
 
 
         DisplayMetrics display = new DisplayMetrics();

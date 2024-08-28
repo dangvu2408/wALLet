@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,7 +67,7 @@ public class HomeFragment extends Fragment {
     public ArrayList<TransactionItem> queryList;
     private ArrayList<TransactionItem> sortedDayList, sortedMostList;
     private String SRC_DATABASE_NAME = "app_database.db";
-    private TextView eye_balance, view_all_1, view_all_2, total_balance;
+    private TextView eye_balance, view_all_1, view_all_2, total_balance, user_full_name;
     private LinearLayout no_data_current, no_data;
     private ListView currently, most_balance;
     private SQLiteDatabase database;
@@ -93,6 +94,8 @@ public class HomeFragment extends Fragment {
         view_all_2 = view.findViewById(R.id.view_all_2);
         view_all_1 = view.findViewById(R.id.view_all_1);
         total_balance = view.findViewById(R.id.total_balance);
+        user_full_name = view.findViewById(R.id.user_full_name);
+
 
         this.context = getContext();
         queryList = new ArrayList<>();
@@ -122,6 +125,9 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
+
+
+        user_full_name.setText("Xin chào, " + getArguments().getString("key_str_data"));
 
         DrawerLayout drawer = getActivity().findViewById(R.id.drawer_layout);
         menu_top1.setOnClickListener(new View.OnClickListener() {

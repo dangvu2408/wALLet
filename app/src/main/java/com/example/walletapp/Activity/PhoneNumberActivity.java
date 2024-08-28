@@ -71,9 +71,11 @@ public class PhoneNumberActivity extends AppCompatActivity {
                 String input = s.toString();
                 if (input.equals("")) {
                     note_fill.setVisibility(View.VISIBLE);
+                    note_already_exits.setVisibility(View.GONE);
                     next_to_otp_btn.setOnClickListener(null);
                 } else {
                     note_fill.setVisibility(View.GONE);
+                    note_already_exits.setVisibility(View.GONE);
                     next_to_otp_btn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
