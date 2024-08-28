@@ -11,6 +11,7 @@
     <string name="cannot_cancel">Bạn không thể quay lại ở màn hình này. \nQuay lại trang đăng nhập?</string>
     <string name="signin_success">Bạn đã tạo tài khoản thành công\nVui lòng quay lại trang đăng nhập.</string>
     <string name="fill_empty_field_phone_number">Số điện thoại không được để trống.</string>
+    <string name="already_exits_on_database">Số điện thoại này đã được đăng kí.</string>
 
 
     <string-array name="list_expense">

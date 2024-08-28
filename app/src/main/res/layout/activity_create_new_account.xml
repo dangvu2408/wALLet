@@ -118,7 +118,8 @@
                 android:id="@+id/note_fill"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp">
+                android:layout_marginRight="20dp"
+                android:visibility="gone">
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
@@ -130,6 +131,32 @@
                     android:fontFamily="@font/averta_regular"
                     android:justificationMode="inter_word"
                     android:text="@string/fill_empty_field_phone_number"
+                    android:textColor="#e35053"
+                    android:textSize="16sp"
+                    android:paddingLeft="10dp"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/note_already_exits"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:visibility="gone">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/alert_circle"
+                    android:layout_gravity="center_vertical"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/averta_regular"
+                    android:justificationMode="inter_word"
+                    android:text="@string/already_exits_on_database"
                     android:textColor="#e35053"
                     android:textSize="16sp"
                     android:paddingLeft="10dp"
