@@ -15,7 +15,7 @@
             android:id="@+id/viewPager"/>
         <com.google.android.material.tabs.TabLayout
             app:tabMode="fixed"
-            app:tabRippleColor="@android:color/transparent"
+            app:tabRippleColor="@null"
             android:id="@+id/tablayout"
             android:focusable="false"
             android:layout_width="match_parent"

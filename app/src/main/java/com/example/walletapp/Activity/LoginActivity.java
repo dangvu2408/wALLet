@@ -1,7 +1,10 @@
 package com.example.walletapp.Activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,9 +27,18 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.walletapp.Constants;
 import com.example.walletapp.R;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.UnknownHostException;
+import java.util.Enumeration;
+import java.util.Formatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,7 +49,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText username_input;
     private TextInputEditText password_input;
     private String SRC_DATABASE_NAME = "app_database.db";
-    private String BASE_URL = "http://192.168.1.41/wALLet_app/login.php";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         password_input = findViewById(R.id.password_input);
         fill_username_now = findViewById(R.id.fill_username_now);
         fill_pass_now = findViewById(R.id.fill_pass_now);
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
@@ -71,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     fill_username_now.setVisibility(View.GONE);
                     fill_pass_now.setVisibility(View.GONE);
-                    login(BASE_URL, user, pass);
+                    login(Constants.BASE_URL_LOGIN, user, pass);
                 }
             }
         });
@@ -111,8 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(LoginActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-                        Log.d("DEBUG", "SERVER ERROR");
+                        Log.d("DEBUG", error.toString());
                     }
                 }
         ){
@@ -127,5 +138,4 @@ public class LoginActivity extends AppCompatActivity {
         };
         queue.add(strRequest);
     }
-
 }

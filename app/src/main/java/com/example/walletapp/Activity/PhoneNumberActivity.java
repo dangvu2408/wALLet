@@ -25,6 +25,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.walletapp.Constants;
 import com.example.walletapp.R;
 
 import java.util.HashMap;
@@ -34,7 +35,6 @@ import java.util.concurrent.TimeUnit;
 public class PhoneNumberActivity extends AppCompatActivity {
     private LinearLayout back_to_main, next_to_otp_btn, note_fill, note_already_exits;
     private EditText phone_number_input;
-    private String BASE_URL = "http://192.168.1.41/wALLet_app/phonenumExits.php";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -80,7 +80,7 @@ public class PhoneNumberActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             String phone_num = phone_number_input.getText().toString();
-                            checkPhoneNum(BASE_URL, phone_num);
+                            checkPhoneNum(Constants.BASE_URL_PHONE_NUMBER_EXITS, phone_num);
                         }
                     });
                 }

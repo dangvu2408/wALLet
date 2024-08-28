@@ -22,6 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.walletapp.Constants;
 import com.example.walletapp.R;
 
 import java.util.HashMap;
@@ -29,7 +30,6 @@ import java.util.Map;
 
 public class VerifyInfoActivity extends AppCompatActivity {
     private Button confirm_btn;
-    private String BASE_URL = "http://192.168.1.41/wALLet_app/insertData.php";
     private TextView full_name_confirm, date_of_birth_confirm, gender_confirm, phone_number_confirm, user_login_confirm, password_confirm;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,7 +67,7 @@ public class VerifyInfoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("DEBUG SERVER ERROR", "Params: " + phone_num_otp + " - "
                         + str_password + " - " + fullname + " - " + dateob + " - " + gender);
-                insertData(BASE_URL, phone_num_otp, str_password, fullname, dateob, gender);
+                insertData(Constants.BASE_URL_ADD_USER, phone_num_otp, str_password, fullname, dateob, gender);
             }
         });
     }
