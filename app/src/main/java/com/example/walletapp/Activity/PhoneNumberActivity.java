@@ -18,13 +18,24 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.walletapp.R;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class PhoneNumberActivity extends AppCompatActivity {
-    private LinearLayout back_to_main, next_to_otp_btn, note_fill;
+    private LinearLayout back_to_main, next_to_otp_btn, note_fill, note_already_exits;
     private EditText phone_number_input;
+    private String BASE_URL = "http://192.168.1.41/wALLet_app/phonenumExits.php";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +43,7 @@ public class PhoneNumberActivity extends AppCompatActivity {
         back_to_main = findViewById(R.id.back_to_main);
         next_to_otp_btn = findViewById(R.id.next_to_otp_btn);
         phone_number_input = findViewById(R.id.phone_number_input);
+        note_already_exits = findViewById(R.id.note_already_exits);
         note_fill = findViewById(R.id.note_fill);
         note_fill.setVisibility(View.GONE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -66,23 +78,16 @@ public class PhoneNumberActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             String phone_num = phone_number_input.getText().toString();
-                            Intent intent = new Intent(PhoneNumberActivity.this, OTPActivity.class);
-                            intent.putExtra("key_phone_number", phone_num);
-                            startActivity(intent);
-                            overridePendingTransition(0, 0);
+                            checkPhoneNum(BASE_URL, phone_num);
                         }
                     });
                 }
             }
-
             @Override
             public void afterTextChanged(Editable s) {
 
             }
         });
-
-        String phone_num = phone_number_input.getText().toString();
-
     }
 
 
@@ -90,6 +95,41 @@ public class PhoneNumberActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(0, 0);
+    }
+
+    private void checkPhoneNum(String url, String phone) {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (response.trim().equals("Already")) {
+                            note_already_exits.setVisibility(View.VISIBLE);
+                        } else {
+                            note_already_exits.setVisibility(View.GONE);
+                            Intent intent = new Intent(PhoneNumberActivity.this, OTPActivity.class);
+                            intent.putExtra("key_phone_number", phone);
+                            startActivity(intent);
+                            overridePendingTransition(0, 0);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(PhoneNumberActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Log.d("DEBUG", "SERVER ERROR");
+                    }
+                }
+        ){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("usernameSignin", phone);
+                return params;
+            }
+        };
+        queue.add(stringRequest);
     }
 
 }
