@@ -30,6 +30,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.walletapp.Activity.AddExpenseActivity;
 import com.example.walletapp.Activity.LoginActivity;
 import com.example.walletapp.Activity.RecentTransActivity;
 import com.example.walletapp.Activity.SplashActivity;
@@ -79,6 +80,8 @@ public class HomeFragment extends Fragment {
     boolean isEyeClose = true;
     private BigDecimal inputMoney = BigDecimal.ZERO, outputMoney = BigDecimal.ZERO;
     private BigDecimal sumOfBalance = BigDecimal.ZERO;
+    private AddExpenseActivity mExpense;
+
 
     public HomeFragment() {}
 
@@ -148,7 +151,8 @@ public class HomeFragment extends Fragment {
         });
 
 
-        user_full_name.setText("Xin chào, " + getArguments().getString("key_fullname_data"));
+
+
 
         DrawerLayout drawer = getActivity().findViewById(R.id.drawer_layout);
         menu_top1.setOnClickListener(new View.OnClickListener() {
@@ -231,7 +235,11 @@ public class HomeFragment extends Fragment {
         listAdding.add(new GridItem(R.drawable.income01, "Khoản thu"));
         listAdding.add(new GridItem(R.drawable.percentage01, "Lãi suất"));
         listAdding.add(new GridItem(R.drawable.target01, "Khoản vay"));
-        GridItemAddingAdapter adapter = new GridItemAddingAdapter(this.context, listAdding);
+        String phone = getArguments().getString("key_username_data");
+        String fullname = getArguments().getString("key_fullname_data");
+
+        user_full_name.setText("Xin chào, " + fullname);
+        GridItemAddingAdapter adapter = new GridItemAddingAdapter(this.context, listAdding, phone, fullname);
         addingGrid.setAdapter(adapter);
         HeightUtils.setGridViewHeight(addingGrid, 4);
 

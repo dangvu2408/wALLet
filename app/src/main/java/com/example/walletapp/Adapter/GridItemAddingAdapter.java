@@ -18,6 +18,7 @@ import com.example.walletapp.Activity.AddExpenseActivity;
 import com.example.walletapp.Activity.AddLoanActivity;
 import com.example.walletapp.Activity.AddPercentageActivity;
 import com.example.walletapp.Activity.AddRevenueActivity;
+import com.example.walletapp.Fragment.HomeFragment;
 import com.example.walletapp.Model.GridItem;
 import com.example.walletapp.R;
 
@@ -26,10 +27,13 @@ import java.util.List;
 public class GridItemAddingAdapter extends ArrayAdapter<GridItem> {
     private Context context;
     private List<GridItem> listItems;
-    public GridItemAddingAdapter(Context context, List<GridItem> listItems) {
+    private String phone, name;
+    public GridItemAddingAdapter(Context context, List<GridItem> listItems, String phone, String name) {
         super(context, 0, listItems);
         this.context = context;
         this.listItems = listItems;
+        this.phone = phone;
+        this.name = name;
     }
 
     @NonNull
@@ -50,24 +54,28 @@ public class GridItemAddingAdapter extends ArrayAdapter<GridItem> {
             @Override
             public void onClick(View v) {
                 if (context != null) {
+                    Intent intent;
                     switch (position) {
                         case 0:
-                            context.startActivity(new Intent(context, AddExpenseActivity.class));
-                            ((Activity) context).overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
+                            intent = new Intent(new Intent(context, AddExpenseActivity.class));
                             break;
                         case 1:
-                            context.startActivity(new Intent(context, AddRevenueActivity.class));
-                            ((Activity) context).overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
+                            intent = new Intent(new Intent(context, AddRevenueActivity.class));
                             break;
                         case 2:
-                            context.startActivity(new Intent(context, AddPercentageActivity.class));
-                            ((Activity) context).overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
+                            intent = new Intent(new Intent(context, AddPercentageActivity.class));
                             break;
                         case 3:
-                            context.startActivity(new Intent(context, AddLoanActivity.class));
-                            ((Activity) context).overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
+                            intent = new Intent(new Intent(context, AddLoanActivity.class));
                             break;
+                        default:
+                            return;
                     }
+
+                    intent.putExtra("key_username_data", phone);
+                    intent.putExtra("key_fullname_data", name);
+                    context.startActivity(intent);
+                    ((Activity) context).overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
                 }
             }
         });

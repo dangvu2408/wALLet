@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.AsyncListUtil;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -113,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 bundle.putString("key_fullname_data", fullname);
                 bundle.putString("key_dob_data", dob);
                 bundle.putString("key_gender_data", gender);
+
             }
         });
 

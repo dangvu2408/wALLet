@@ -6,5 +6,8 @@ public class Constants {
     public static final String BASE_URL_PHONE_NUMBER_EXITS = "http://" + BASE_IP + "/wALLet_app/phonenumExits.php";
     public static final String BASE_URL_ADD_USER = "http://" + BASE_IP + "/wALLet_app/insertData.php";
     public static final String BASE_URL_FETCH_USERDATA = "http://" + BASE_IP + "/wALLet_app/fetchData.php";
+    public static final String BASE_URL_GET_TRANSACTION_DATA = "http://" + BASE_IP + "/wALLet_app/transactionData.php";
+    public static final String BASE_URL_INSERT_TRANS_DATA = "http://" + BASE_IP + "/wALLet_app/insertTransactionData.php";
+
 
 }

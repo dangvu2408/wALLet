@@ -2,6 +2,7 @@ package com.example.walletapp.Activity;
 
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
@@ -27,7 +28,15 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.walletapp.Adapter.DropdownItemAdapter;
+import com.example.walletapp.Constants;
 import com.example.walletapp.Model.TransactionItem;
 import com.example.walletapp.R;
 import com.example.walletapp.NumberTextWatcher;
@@ -38,7 +47,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class AddExpenseActivity extends AppCompatActivity {
     private SQLiteDatabase database;
@@ -48,9 +59,9 @@ public class AddExpenseActivity extends AppCompatActivity {
     private Button btn_save, btn_delete_all;
     private TextView dateView;
     private LinearLayout dateWidget;
-    private String datepicker;
+    private String datepicker, number, fullname;
     private Calendar datePicker = Calendar.getInstance();
-    private String SRC_DATABASE_NAME = "app_database.db";
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -111,14 +122,10 @@ public class AddExpenseActivity extends AppCompatActivity {
             }
         });
 
-        String src = AddExpenseActivity.this.getDatabasePath(SRC_DATABASE_NAME).getAbsolutePath();
-        database = SQLiteDatabase.openOrCreateDatabase(src, null);
-        try {
-            String sql = "CREATE TABLE userdata(mainType TEXT, type TEXT, money VARCHAR(255), date VARCHAR(255), description TEXT)";
-            database.execSQL(sql);
-        } catch (Exception e) {
-            Log.d("DEBUG ERROR", "Table is already exits!");
-        }
+        Intent intent = getIntent();
+        number = intent.getStringExtra("key_username_data");
+        fullname = intent.getStringExtra("key_fullname_data");
+        Log.d("NULL VALUE", number + " - " + fullname);
 
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,6 +133,7 @@ public class AddExpenseActivity extends AppCompatActivity {
                 String description = des.getText().toString();
                 String type = autoComplete.getText().toString();
                 String money = money_input.getText().toString();
+
 
 
                 if (money_input.getText().toString().equals("")) {
@@ -143,47 +151,65 @@ public class AddExpenseActivity extends AppCompatActivity {
                     toast.setView(layout);
                     toast.show();
                 } else {
-                    ContentValues values = new ContentValues();
-                    values.put("mainType", "expense_money");
-                    values.put("type", type);
-                    values.put("money", money);
-                    values.put("date", datepicker); // not yet
-                    values.put("description", description);
-                    if (database.insert("userdata", null, values) == -1) {
-                        LayoutInflater inflater = getLayoutInflater();
-                        View layout = inflater.inflate(R.layout.custom_toast_03, null);
-                        Toast toast = new Toast(AddExpenseActivity.this);
-                        toast.setDuration(Toast.LENGTH_LONG);
-                        toast.setView(layout);
-                        toast.show();
-                    } else {
-                        LayoutInflater inflater = getLayoutInflater();
-                        View layout = inflater.inflate(R.layout.custom_toast_02, null);
-                        Toast toast = new Toast(AddExpenseActivity.this);
-                        toast.setDuration(Toast.LENGTH_LONG);
-                        toast.setView(layout);
-                        toast.show();
-                    }
-                    finish();
-                    overridePendingTransition(R.anim.close_in, R.anim.close_out);
+                    addTransExpense(Constants.BASE_URL_INSERT_TRANS_DATA, "expense_money", type, money, datepicker, description, number, fullname);
                 }
             }
         });
-
-        btn_delete_all.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int n = database.delete("userdata", "mainType = ?", new String[]{"expense_money"});
-                String msg = "";
-                if (n == 0) {
-                    msg = "no delete";
-                } else {
-                    msg = n + " deleted";
-                }
-                Toast.makeText(AddExpenseActivity.this, msg, Toast.LENGTH_SHORT).show();
-            }
-        });
-
     }
 
+    private void addTransExpense(String url, String str1, String str2, String str3, String str4, String str5, String str6, String str7) {
+        Log.d("NULL VALUE", str1 + " - " + str2 + " - " +
+                str3 + " - " + str4 + " - " + str5 + " - " + str6 + " - " + str7);
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest strRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (response.trim().equals("Success")) {
+                            LayoutInflater inflater = getLayoutInflater();
+                            View layout = inflater.inflate(R.layout.custom_toast_02, null);
+                            Toast toast = new Toast(AddExpenseActivity.this);
+                            toast.setDuration(Toast.LENGTH_LONG);
+                            toast.setView(layout);
+                            toast.show();
+                            finish();
+                            overridePendingTransition(R.anim.close_in, R.anim.close_out);
+                        } else {
+                            LayoutInflater inflater = getLayoutInflater();
+                            View layout = inflater.inflate(R.layout.custom_toast_03, null);
+                            Toast toast = new Toast(AddExpenseActivity.this);
+                            toast.setDuration(Toast.LENGTH_LONG);
+                            toast.setView(layout);
+                            toast.show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(AddExpenseActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Log.d("DEBUG", "SERVER ERROR: " + error.getMessage());
+                    }
+                }
+        ){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                Log.d("DEBUG SERVER ERROR", "Params func: " + str1 + " - "
+                        + str2 + " - " + str3 + " - " + str4 + " - " + str5 + " - " +
+                        str6 + " - " + str7);
+                params.put("insertMainType", str1);
+                params.put("insertType", str2);
+                params.put("insertMoney", str3);
+                params.put("insertDate", str4);
+                params.put("insertDescription", str5);
+                params.put("insertUserID", str6);
+                params.put("insertUserfullname", str7);
+                return params;
+            }
+        };
+        queue.add(strRequest);
+    }
 }
