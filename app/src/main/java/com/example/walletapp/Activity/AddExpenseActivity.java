@@ -56,7 +56,7 @@ public class AddExpenseActivity extends AppCompatActivity {
     private EditText des, money_input;
     private AutoCompleteTextView autoComplete;
     private ImageView back;
-    private Button btn_save, btn_delete_all;
+    private Button btn_save;
     private TextView dateView;
     private LinearLayout dateWidget;
     private String datepicker, number, fullname;
@@ -70,7 +70,6 @@ public class AddExpenseActivity extends AppCompatActivity {
         back = findViewById(R.id.back_btn);
         autoComplete = findViewById(R.id.auto_complete);
         btn_save = findViewById(R.id.save_btn);
-        btn_delete_all = findViewById(R.id.delete_all_data);
         des = findViewById(R.id.description_expense);
         money_input = findViewById(R.id.input_expense_money);
         dateView = findViewById(R.id.today_or_not);
@@ -133,9 +132,6 @@ public class AddExpenseActivity extends AppCompatActivity {
                 String description = des.getText().toString();
                 String type = autoComplete.getText().toString();
                 String money = money_input.getText().toString();
-
-
-
                 if (money_input.getText().toString().equals("")) {
                     LayoutInflater inflater = getLayoutInflater();
                     View layout = inflater.inflate(R.layout.custom_toast_01, null);

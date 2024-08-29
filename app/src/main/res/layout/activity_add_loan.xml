@@ -156,29 +156,13 @@
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
                     android:id="@+id/today_or_not"
-                    android:text="Hôm nay"
+                    android:text="Chọn ngày"
                     android:fontFamily="@font/averta_semibold"
                     android:textColor="@color/black"
                     android:textSize="20sp"/>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/creditcard"/>
-                <ListView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/list_card"
-                    android:scrollbars="none"
-                    android:background="@drawable/outline_blue"/>
-            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -201,29 +185,8 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"/>
 
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Xóa "
-                    android:id="@+id/delete_all_data"
-                    android:fontFamily="@font/averta_bold"
-                    android:textSize="18sp"
-                    android:textColor="#10B6CC"
-                    android:background="@drawable/button_background"
-                    android:layout_gravity="center_horizontal"
-                    android:paddingLeft="50dp"
-                    android:paddingRight="50dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"/>
             </LinearLayout>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/description_loan"
-                android:textSize="16sp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/averta_regular_italic"/>
+
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
