@@ -29,7 +29,9 @@ public class TabLayoutAdapter extends FragmentStatePagerAdapter {
             case 2:
                 return new AnalyzeFragment();
             case 3:
-                return new ProfileFragment();
+                fg = new ProfileFragment();
+                fg.setArguments(bundle);
+                return fg;
             default:
                 fg = new HomeFragment();
                 fg.setArguments(bundle);
