@@ -210,7 +210,11 @@ public class HomeFragment extends Fragment {
         listAdding.add(new GridItem(R.drawable.income01, "Khoản thu"));
         listAdding.add(new GridItem(R.drawable.percentage01, "Lãi suất"));
         listAdding.add(new GridItem(R.drawable.target01, "Khoản vay"));
-        GridItemAddingAdapter adapter = new GridItemAddingAdapter(this.context, listAdding);
+        String phone = getArguments().getString("key_username_data");
+        String fullname = getArguments().getString("key_fullname_data");
+
+        user_full_name.setText("Xin chào, " + fullname);
+        GridItemAddingAdapter adapter = new GridItemAddingAdapter(this.context, listAdding, phone, fullname);
         addingGrid.setAdapter(adapter);
         HeightUtils.setGridViewHeight(addingGrid, 4);
 
