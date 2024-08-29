@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +29,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.walletapp.Activity.AddExpenseActivity;
 import com.example.walletapp.Activity.LoginActivity;
 import com.example.walletapp.Activity.RecentTransActivity;
 import com.example.walletapp.Activity.SplashActivity;
@@ -52,9 +50,6 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.google.android.material.navigation.NavigationView;
 
 import java.math.BigDecimal;
-import java.net.Inet4Address;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -80,8 +75,6 @@ public class HomeFragment extends Fragment {
     boolean isEyeClose = true;
     private BigDecimal inputMoney = BigDecimal.ZERO, outputMoney = BigDecimal.ZERO;
     private BigDecimal sumOfBalance = BigDecimal.ZERO;
-    private AddExpenseActivity mExpense;
-
 
     public HomeFragment() {}
 
@@ -116,23 +109,6 @@ public class HomeFragment extends Fragment {
         }
         total_balance.setText("Tổng số dư: " + net_income_str + " VND");
 
-//        int SDK_INT = android.os.Build.VERSION.SDK_INT;
-//        if (SDK_INT > 8) {
-//            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-//                    .permitAll().build();
-//            StrictMode.setThreadPolicy(policy);
-//            InetAddress iAddress = null;
-//            try {
-//                iAddress = InetAddress.getLocalHost();
-//            } catch (UnknownHostException e) {
-//                throw new RuntimeException(e);
-//            }
-//            String currentIp = iAddress.getHostAddress();
-//            System.out.println("Current IP address : " +currentIp);
-//        }
-
-
-
 
         String finalNet_income_str = net_income_str;
         eye_view.setOnClickListener(new View.OnClickListener() {
@@ -151,8 +127,7 @@ public class HomeFragment extends Fragment {
         });
 
 
-
-
+        user_full_name.setText("Xin chào, " + getArguments().getString("key_str_data"));
 
         DrawerLayout drawer = getActivity().findViewById(R.id.drawer_layout);
         menu_top1.setOnClickListener(new View.OnClickListener() {
@@ -235,11 +210,7 @@ public class HomeFragment extends Fragment {
         listAdding.add(new GridItem(R.drawable.income01, "Khoản thu"));
         listAdding.add(new GridItem(R.drawable.percentage01, "Lãi suất"));
         listAdding.add(new GridItem(R.drawable.target01, "Khoản vay"));
-        String phone = getArguments().getString("key_username_data");
-        String fullname = getArguments().getString("key_fullname_data");
-
-        user_full_name.setText("Xin chào, " + fullname);
-        GridItemAddingAdapter adapter = new GridItemAddingAdapter(this.context, listAdding, phone, fullname);
+        GridItemAddingAdapter adapter = new GridItemAddingAdapter(this.context, listAdding);
         addingGrid.setAdapter(adapter);
         HeightUtils.setGridViewHeight(addingGrid, 4);
 
