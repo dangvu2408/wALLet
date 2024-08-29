@@ -42,6 +42,8 @@ public class ProfileFragment extends Fragment {
         signout = view.findViewById(R.id.signout);
         this.context = getContext();
 
+        user_fullname.setText(getArguments().getString("key_fullname_data"));
+
 
         List<GridItem> listSetting = new ArrayList<>();
         List<GridItem> listOthers = new ArrayList<>();

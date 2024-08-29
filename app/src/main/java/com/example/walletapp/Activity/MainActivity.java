@@ -1,12 +1,14 @@
 package com.example.walletapp.Activity;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.AsyncListUtil;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Build;
@@ -20,12 +22,31 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.walletapp.Adapter.TabLayoutAdapter;
+import com.example.walletapp.Constants;
 import com.example.walletapp.Fragment.HomeFragment;
+import com.example.walletapp.Model.UserModel;
 import com.example.walletapp.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     private int[] navIcons = {
@@ -49,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
     private TabLayout tabLayout;
+    private ArrayList<String> userDataLogin;
+    private String jsonUserValue = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,10 +95,31 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-
-        String phone_user = getIntent().getStringExtra("key_data");
         Bundle bundle = new Bundle();
-        bundle.putString("key_str_data", phone_user);
+        userDataLogin = new ArrayList<>();
+        String phone_user = getIntent().getStringExtra("key_data");
+        fetchData(Constants.BASE_URL_FETCH_USERDATA, phone_user, new DataCallback() {
+            @Override
+            public void onDataLoaded(ArrayList<String> data) {
+                userDataLogin = data;
+                String username = userDataLogin.get(0);
+                String password = userDataLogin.get(1);
+                String fullname = userDataLogin.get(2);
+                String dob = userDataLogin.get(3);
+                String gender = userDataLogin.get(4);
+
+                bundle.putString("key_username_data", username);
+                bundle.putString("key_password_data", password);
+                bundle.putString("key_fullname_data", fullname);
+                bundle.putString("key_dob_data", dob);
+                bundle.putString("key_gender_data", gender);
+            }
+        });
+
+        Log.d("USER DATA LOGIN", userDataLogin.toString());
+        Log.d("USER DATA LOGIN", "Size: " + userDataLogin.size());
+
+
 
 
         TabLayoutAdapter adapter = new TabLayoutAdapter(getSupportFragmentManager(), bundle);
@@ -166,4 +210,54 @@ public class MainActivity extends AppCompatActivity {
         ft.commit();
     }
 
+    private void fetchData(String url, String key, DataCallback callback) {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest jsonArr = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (response.trim().equals("Error")) {
+                            Toast.makeText(MainActivity.this, "LỖI LẤY THÔNG TIN", Toast.LENGTH_SHORT).show();
+                        } else {
+                            System.out.println(response);
+
+                            try {
+                                JSONArray jsonArray = new JSONArray(response);
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject obj = jsonArray.getJSONObject(i);
+                                    userDataLogin.add(obj.getString("username"));
+                                    userDataLogin.add(obj.getString("password"));
+                                    userDataLogin.add(obj.getString("fullname"));
+                                    userDataLogin.add(obj.getString("dob"));
+                                    userDataLogin.add(obj.getString("gender"));
+                                }
+                                callback.onDataLoaded(userDataLogin);
+                                Log.d("DEBUG USER DATA LOGIN", userDataLogin.toString());
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("DEBUG JSON RESPONSE", error.toString());
+                    }
+                }
+        ){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("usernameKey", key);
+                return params;
+            }
+        };
+        queue.add(jsonArr);
+    }
+
+    public interface DataCallback {
+        void onDataLoaded(ArrayList<String> data);
+    }
 }
