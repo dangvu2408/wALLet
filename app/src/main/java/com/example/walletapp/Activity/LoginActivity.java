@@ -45,10 +45,8 @@ import java.util.Map;
 public class LoginActivity extends AppCompatActivity {
     private LinearLayout login_btn, fill_username_now, fill_pass_now;
     private TextView create_account;
-    private SQLiteDatabase database;
     private EditText username_input;
     private TextInputEditText password_input;
-    private String SRC_DATABASE_NAME = "app_database.db";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -70,9 +68,6 @@ public class LoginActivity extends AppCompatActivity {
         login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String src = getDatabasePath(SRC_DATABASE_NAME).getAbsolutePath();
-                database = SQLiteDatabase.openOrCreateDatabase(src, null);
-                database.delete("userdata", null, null);
                 String user = username_input.getText().toString().trim();
                 String pass = password_input.getText().toString().trim();
                 if (user.equals("")) {

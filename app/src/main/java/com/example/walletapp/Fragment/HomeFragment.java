@@ -35,6 +35,7 @@ import com.example.walletapp.Activity.SplashActivity;
 import com.example.walletapp.Adapter.GridItemAddingAdapter;
 import com.example.walletapp.Adapter.QueryTransactionAdapter;
 import com.example.walletapp.Model.GridItem;
+import com.example.walletapp.Model.TransModel;
 import com.example.walletapp.Model.TransactionItem;
 import com.example.walletapp.R;
 import com.example.walletapp.Render.CustomBarChartRender;
@@ -64,13 +65,11 @@ public class HomeFragment extends Fragment {
     private boolean isOverlayVisible = false;
     private Context context;
     QueryTransactionAdapter sortedDayAdapter, sortedMostAdapter;
-    public ArrayList<TransactionItem> queryList;
-    private ArrayList<TransactionItem> sortedDayList, sortedMostList;
-    private String SRC_DATABASE_NAME = "app_database.db";
+    private ArrayList<TransModel> sortedDayList, sortedMostList;
+    private ArrayList<TransModel> userTransData;
     private TextView eye_balance, view_all_1, view_all_2, total_balance, user_full_name;
     private LinearLayout no_data_current, no_data;
     private ListView currently, most_balance;
-    private SQLiteDatabase database;
     private ImageView menu_top1, eye_view;
     boolean isEyeClose = true;
     private BigDecimal inputMoney = BigDecimal.ZERO, outputMoney = BigDecimal.ZERO;
@@ -95,11 +94,13 @@ public class HomeFragment extends Fragment {
         view_all_1 = view.findViewById(R.id.view_all_1);
         total_balance = view.findViewById(R.id.total_balance);
         user_full_name = view.findViewById(R.id.user_full_name);
-
-
         this.context = getContext();
-        queryList = new ArrayList<>();
+        user_full_name.setText("Xin chào, " + getArguments().getString("key_str_data"));
+        this.userTransData = new ArrayList<>();
+        this.userTransData = getArguments().getParcelableArrayList("trans_data_key"); //important
         initialData();
+
+
 
         sumOfBalance = sumOfBalance.add(inputMoney).add(outputMoney);
         DecimalFormat numFormat = new DecimalFormat("###,###,###.00");
@@ -127,7 +128,6 @@ public class HomeFragment extends Fragment {
         });
 
 
-        user_full_name.setText("Xin chào, " + getArguments().getString("key_str_data"));
 
         DrawerLayout drawer = getActivity().findViewById(R.id.drawer_layout);
         menu_top1.setOnClickListener(new View.OnClickListener() {
@@ -140,7 +140,9 @@ public class HomeFragment extends Fragment {
         view_all_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), RecentTransActivity.class));
+                Intent intent = new Intent(getActivity(), RecentTransActivity.class);
+                intent.putExtra("key_trans_data", userTransData);
+                startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
             }
         });
@@ -335,16 +337,6 @@ public class HomeFragment extends Fragment {
 
     private void initialData() {
         if (this.context != null) {
-            String src = this.context.getDatabasePath(SRC_DATABASE_NAME).getAbsolutePath();
-            database = SQLiteDatabase.openOrCreateDatabase(src, null);
-            Cursor cursor = database.query("userdata", null, null, null, null, null, null);
-            cursor.moveToNext();
-            while (!cursor.isAfterLast()) {
-                TransactionItem item = new TransactionItem(cursor.getString(3), cursor.getString(2), cursor.getString(0), cursor.getString(1),  cursor.getString(4));
-                this.queryList.add(item);
-                cursor.moveToNext();
-            }
-            cursor.close();
             getListViewData();
             getBarData();
         }
@@ -360,7 +352,7 @@ public class HomeFragment extends Fragment {
         LocalDate chartBeginDay = LocalDate.parse(beginDay, formatter);
         LocalDate chartEndDay = LocalDate.parse(endDay, formatter);
 
-        for (TransactionItem item : queryList) {
+        for (TransModel item : userTransData) {
             LocalDate itemDate = item.getDateAsLocalDate();
             if ((itemDate.isEqual(chartBeginDay) || itemDate.isAfter(chartBeginDay)) &&
                     (itemDate.isEqual(chartEndDay) || itemDate.isBefore(chartEndDay))) {
@@ -392,12 +384,12 @@ public class HomeFragment extends Fragment {
     }
 
     private void getListViewData() {
-        this.sortedDayList = new ArrayList<>(queryList);
-        this.sortedMostList = new ArrayList<>(queryList);
+        this.sortedDayList = new ArrayList<>(userTransData);
+        this.sortedMostList = new ArrayList<>(userTransData);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, d 'tháng' M, yyyy", new Locale("vi", "VN"));
-        Collections.sort(sortedDayList, new Comparator<TransactionItem>() {
+        Collections.sort(sortedDayList, new Comparator<TransModel>() {
             @Override
-            public int compare(TransactionItem o1, TransactionItem o2) {
+            public int compare(TransModel o1, TransModel o2) {
                 LocalDate date1 = LocalDate.parse(o1.getDateTrans(), formatter);
                 LocalDate date2 = LocalDate.parse(o2.getDateTrans(), formatter);
                 return date2.compareTo(date1);
@@ -406,9 +398,9 @@ public class HomeFragment extends Fragment {
         if (sortedDayList.size() > 3) {
             sortedDayList.subList(3, sortedDayList.size()).clear();
         }
-        Collections.sort(sortedMostList, new Comparator<TransactionItem>() {
+        Collections.sort(sortedMostList, new Comparator<TransModel>() {
             @Override
-            public int compare(TransactionItem o1, TransactionItem o2) {
+            public int compare(TransModel o1, TransModel o2) {
                 return Float.compare(o2.getMoneyTransFloat(), o1.getMoneyTransFloat());
             }
         });

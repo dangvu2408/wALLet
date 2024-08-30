@@ -34,6 +34,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.walletapp.Activity.AddRevenueActivity;
 import com.example.walletapp.Adapter.QueryTransactionAdapter;
+import com.example.walletapp.Model.TransModel;
 import com.example.walletapp.Model.TransactionItem;
 import com.example.walletapp.R;
 import com.example.walletapp.Utils.HeightUtils;
@@ -57,15 +58,13 @@ public class QueryFragment extends Fragment {
     private String begin_day_STR = "", end_day_STR = "";
     private ListView query_result;
     private Button query_btn;
-    private SQLiteDatabase database;
     private TextView begin_day, end_day;
     private Context context;
     private Calendar beginDate = Calendar.getInstance();
     private Calendar endDate = Calendar.getInstance();
     private CardView begin_date_picker, end_date_picker;
     private QueryTransactionAdapter adapter;
-    private ArrayList<TransactionItem> queryList;
-    private String SRC_DATABASE_NAME = "app_database.db";
+    private ArrayList<TransModel> queryList;
     ImageView menu_top;
     public QueryFragment() {}
     @Nullable
@@ -88,6 +87,9 @@ public class QueryFragment extends Fragment {
                 drawer.openDrawer(GravityCompat.END);
             }
         });
+
+        this.queryList = new ArrayList<>();
+        this.queryList = getArguments().getParcelableArrayList("trans_data_key"); //important
 
         Calendar calendarEnd = Calendar.getInstance();
         Calendar calendarBegin = Calendar.getInstance();
@@ -149,27 +151,14 @@ public class QueryFragment extends Fragment {
 
 
 
-
-        String src = context.getDatabasePath(SRC_DATABASE_NAME).getAbsolutePath();
-        database = SQLiteDatabase.openOrCreateDatabase(src, null);
         query_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                queryList.clear();
-                Cursor cursor = database.query("userdata", null, null, null, null, null, null);
-                cursor.moveToNext();
-                while (!cursor.isAfterLast()) {
-                    TransactionItem item = new TransactionItem(cursor.getString(3), cursor.getString(2), cursor.getString(0), cursor.getString(1),  cursor.getString(4));
-                    queryList.add(item);
-                    cursor.moveToNext();
 
-                }
-                cursor.close();
-                Collections.reverse(queryList);
 
-                Collections.sort(queryList, new Comparator<TransactionItem>() {
+                Collections.sort(queryList, new Comparator<TransModel>() {
                     @Override
-                    public int compare(TransactionItem o1, TransactionItem o2) {
+                    public int compare(TransModel o1, TransModel o2) {
                         LocalDate date1 = LocalDate.parse(o1.getDateTrans(), formatter);
                         LocalDate date2 = LocalDate.parse(o2.getDateTrans(), formatter);
                         return date1.compareTo(date2);
@@ -179,8 +168,8 @@ public class QueryFragment extends Fragment {
                 LocalDate beginDay = LocalDate.parse(begin_day_STR, formatter);
                 LocalDate endDay = LocalDate.parse(end_day_STR, formatter);
 
-                List<TransactionItem> filteredList = new ArrayList<>();
-                for (TransactionItem item : queryList) {
+                List<TransModel> filteredList = new ArrayList<>();
+                for (TransModel item : queryList) {
                     LocalDate itemDate = item.getDateAsLocalDate();
                     if ((itemDate.isEqual(beginDay) || itemDate.isAfter(beginDay)) &&
                             (itemDate.isEqual(endDay) || itemDate.isBefore(endDay))) {

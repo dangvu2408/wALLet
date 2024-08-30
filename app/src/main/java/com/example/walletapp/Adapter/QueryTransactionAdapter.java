@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.walletapp.Model.TransModel;
 import com.example.walletapp.Model.TransactionItem;
 import com.example.walletapp.R;
 
@@ -17,8 +18,8 @@ import java.util.Locale;
 
 public class QueryTransactionAdapter extends BaseAdapter {
     private Context context;
-    private List<TransactionItem> item;
-    public QueryTransactionAdapter(Context context, List<TransactionItem> item) {
+    private List<TransModel> item;
+    public QueryTransactionAdapter(Context context, List<TransModel> item) {
         this.context = context;
         this.item = item;
     }
@@ -43,7 +44,7 @@ public class QueryTransactionAdapter extends BaseAdapter {
         if (listItem == null) {
             listItem = LayoutInflater.from(context).inflate(R.layout.query_listitem, parent, false);
         }
-        TransactionItem current = item.get(position);
+        TransModel current = item.get(position);
 
         TextView date_query = listItem.findViewById(R.id.date_query);
         TextView money_query = listItem.findViewById(R.id.money_query);

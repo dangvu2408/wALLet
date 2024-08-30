@@ -33,6 +33,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.walletapp.Adapter.TabLayoutAdapter;
 import com.example.walletapp.Constants;
 import com.example.walletapp.Fragment.HomeFragment;
+import com.example.walletapp.Model.TransModel;
 import com.example.walletapp.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private ArrayList<String> userDataLogin;
+    private ArrayList<TransModel> userTransData;
     private String jsonUserValue = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
         bundle.putString("key_str_data", phone_user);
 
         userDataLogin = new ArrayList<>();
+        userTransData = new ArrayList<>();
         fetchData(Constants.BASE_URL_FETCH_USERDATA, phone_user, new DataCallback() {
             @Override
             public void onDataLoaded(ArrayList<String> data) {
@@ -113,6 +116,15 @@ public class MainActivity extends AppCompatActivity {
                 bundle.putString("key_fullname_data", fullname);
                 bundle.putString("key_dob_data", dob);
                 bundle.putString("key_gender_data", gender);
+            }
+        });
+
+        getTransData(Constants.BASE_URL_GET_TRANSACTION_DATA, phone_user, new DataCallbackTrans() {
+            @Override
+            public void onDataLoaded(ArrayList<TransModel> data) {
+                userTransData = data;
+                Log.d("USER TRANS DATA TEST", "Test " + userTransData.get(1).toString());
+                bundle.putParcelableArrayList("trans_data_key", userTransData);
             }
         });
 
@@ -252,8 +264,61 @@ public class MainActivity extends AppCompatActivity {
         queue.add(jsonArr);
     }
 
+    private void getTransData(String url, String key, DataCallbackTrans callback) {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest strTrans = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (response.trim().equals("Error")) {
+                            Toast.makeText(MainActivity.this, "LỖI LẤY THÔNG TIN", Toast.LENGTH_SHORT).show();
+                        } else {
+                            System.out.println(response);
+                            try {
+                                JSONArray jsonArray = new JSONArray(response);
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject obj = jsonArray.getJSONObject(i);
+                                    userTransData.add(new TransModel(obj.getString("mainType"),
+                                            obj.getString("type"),
+                                            obj.getString("money"),
+                                            obj.getString("date"),
+                                            obj.getString("description"),
+                                            obj.getString("userid"),
+                                            obj.getString("userfullname"),
+                                            obj.getString("idtransaction")));
+                                }
+                                callback.onDataLoaded(userTransData);
+                                Log.d("DEBUG USER DATA TRANS", userTransData.get(0).getTransID().toString());
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("DEBUG JSON RESPONSE", error.toString());
+                    }
+                }
+        ){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("usernameKey", key);
+                return params;
+            }
+        };
+        queue.add(strTrans);
+    }
+
+
     public interface DataCallback {
         void onDataLoaded(ArrayList<String> data);
     }
 
+    public interface DataCallbackTrans {
+        void onDataLoaded(ArrayList<TransModel> data);
+    }
 }

@@ -18,6 +18,7 @@ import androidx.core.content.ContextCompat;
 
 import com.example.walletapp.Adapter.QueryTransactionAdapter;
 import com.example.walletapp.Fragment.HomeFragment;
+import com.example.walletapp.Model.TransModel;
 import com.example.walletapp.Model.TransactionItem;
 import com.example.walletapp.R;
 import com.example.walletapp.Utils.HeightUtils;
@@ -40,7 +41,7 @@ public class RecentTransActivity extends AppCompatActivity {
     private ListView current_transaction;
     private ImageView back_btn;
     private String SRC_DATABASE_NAME = "app_database.db";
-    private ArrayList<TransactionItem> queryList;
+    private ArrayList<TransModel> queryList;
     private SQLiteDatabase database;
     private QueryTransactionAdapter sortedDayAdapter;
     private BigDecimal inputMoney = BigDecimal.ZERO, outputMoney = BigDecimal.ZERO;
@@ -55,6 +56,8 @@ public class RecentTransActivity extends AppCompatActivity {
         come_in_money = findViewById(R.id.come_in_money);
         come_out_money = findViewById(R.id.come_out_money);
         total_money = findViewById(R.id.total_money);
+
+        this.queryList = getIntent().getParcelableArrayListExtra("key_trans_data");
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
@@ -73,18 +76,11 @@ public class RecentTransActivity extends AppCompatActivity {
         String src = this.getDatabasePath(SRC_DATABASE_NAME).getAbsolutePath();
         database = SQLiteDatabase.openOrCreateDatabase(src, null);
         queryList = new ArrayList<>();
-        Cursor cursorSort = database.query("userdata", null, null, null, null, null, null);
-        cursorSort.moveToNext();
-        while (!cursorSort.isAfterLast()) {
-            TransactionItem item = new TransactionItem(cursorSort.getString(3), cursorSort.getString(2), cursorSort.getString(0), cursorSort.getString(1),  cursorSort.getString(4));
-            this.queryList.add(item);
-            cursorSort.moveToNext();
-        }
-        cursorSort.close();
-        ArrayList<TransactionItem> sortedDayList = new ArrayList<>(queryList);
-        Collections.sort(sortedDayList, new Comparator<TransactionItem>() {
+
+        ArrayList<TransModel> sortedDayList = new ArrayList<>(queryList);
+        Collections.sort(sortedDayList, new Comparator<TransModel>() {
             @Override
-            public int compare(TransactionItem o1, TransactionItem o2) {
+            public int compare(TransModel o1, TransModel o2) {
                 LocalDate date1 = LocalDate.parse(o1.getDateTrans(), formatter);
                 LocalDate date2 = LocalDate.parse(o2.getDateTrans(), formatter);
                 return date2.compareTo(date1);
@@ -110,7 +106,7 @@ public class RecentTransActivity extends AppCompatActivity {
         LocalDate chartBeginDay = LocalDate.parse(beginDay, formatDay);
         LocalDate chartEndDay = LocalDate.parse(endDay, formatDay);
 
-        for (TransactionItem item : queryList) {
+        for (TransModel item : queryList) {
             LocalDate itemDate = item.getDateAsLocalDate();
             if ((itemDate.isEqual(chartBeginDay) || itemDate.isAfter(chartBeginDay)) &&
                     (itemDate.isEqual(chartEndDay) || itemDate.isBefore(chartEndDay))) {
