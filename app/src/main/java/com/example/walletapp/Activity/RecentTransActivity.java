@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.example.walletapp.Adapter.EditTransactionAdapter;
 import com.example.walletapp.Adapter.QueryTransactionAdapter;
 import com.example.walletapp.Fragment.HomeFragment;
 import com.example.walletapp.Model.TransModel;
@@ -43,7 +44,7 @@ public class RecentTransActivity extends AppCompatActivity {
     private String SRC_DATABASE_NAME = "app_database.db";
     private ArrayList<TransModel> queryList;
     private SQLiteDatabase database;
-    private QueryTransactionAdapter sortedDayAdapter;
+    private EditTransactionAdapter sortedDayAdapter;
     private BigDecimal inputMoney = BigDecimal.ZERO, outputMoney = BigDecimal.ZERO;
     private BigDecimal sumOfBalance = BigDecimal.ZERO;
     @Override
@@ -84,7 +85,7 @@ public class RecentTransActivity extends AppCompatActivity {
             }
         });
 
-        sortedDayAdapter = new QueryTransactionAdapter(this, sortedDayList);
+        sortedDayAdapter = new EditTransactionAdapter(this, sortedDayList);
         current_transaction.setAdapter(sortedDayAdapter);
         sortedDayAdapter.notifyDataSetChanged();
         HeightUtils.setListViewHeight(current_transaction);
