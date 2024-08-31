@@ -19,6 +19,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import com.example.walletapp.Model.TransModel;
 import com.example.walletapp.Model.TransactionItem;
 import com.example.walletapp.R;
 import com.example.walletapp.Render.CustomBarChartRender;
@@ -57,7 +58,7 @@ public class AnalyzeFragment extends Fragment {
     PieChart revenue_income_pie_chart, expense_income_pie_chart;
     SQLiteDatabase database;
     private Context context;
-    private ArrayList<TransactionItem> queryList;
+    private ArrayList<TransModel> queryList;
     private String SRC_DATABASE_NAME = "app_database.db";
     private String range1, range2, range3;
     private TextView net_income, revenue_balance, revenue_1day_balance, expense_balance, expense_1day_balance, total_balance;
@@ -82,6 +83,8 @@ public class AnalyzeFragment extends Fragment {
         total_balance = view.findViewById(R.id.total_balance);
         menu_top = view.findViewById(R.id.menu_top);
         this.context = getContext();
+        queryList = new ArrayList<>();
+        queryList = getArguments().getParcelableArrayList("trans_data_key"); //important
         DrawerLayout drawer = getActivity().findViewById(R.id.drawer_layout);
         menu_top.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -268,18 +271,7 @@ public class AnalyzeFragment extends Fragment {
     }
 
     private void initialData() {
-        queryList = new ArrayList<>();
-        String src = this.context.getDatabasePath(SRC_DATABASE_NAME).getAbsolutePath();
-        database = SQLiteDatabase.openOrCreateDatabase(src, null);
 
-        Cursor cursorSort = database.query("userdata", null, null, null, null, null, null);
-        cursorSort.moveToNext();
-        while (!cursorSort.isAfterLast()) {
-            TransactionItem item = new TransactionItem(cursorSort.getString(3), cursorSort.getString(2), cursorSort.getString(0), cursorSort.getString(1),  cursorSort.getString(4));
-            this.queryList.add(item);
-            cursorSort.moveToNext();
-        }
-        cursorSort.close();
         barChartInitData();
         pieChartInitData();
     }
@@ -332,7 +324,7 @@ public class AnalyzeFragment extends Fragment {
         LocalDate chartBeginDayRange3 = LocalDate.parse(beginDayRange3Str, formatter);
         LocalDate chartEndDayRange3 = LocalDate.parse(endDayRange3Str, formatter);
 
-        for (TransactionItem item : queryList) {
+        for (TransModel item : queryList) {
             LocalDate itemDate = item.getDateAsLocalDate();
             if ((itemDate.isEqual(chartBeginDayRange1) || itemDate.isAfter(chartBeginDayRange1)) &&
                     (itemDate.isEqual(chartEndDayRange1) || itemDate.isBefore(chartEndDayRange1))) {
@@ -418,7 +410,7 @@ public class AnalyzeFragment extends Fragment {
     }
 
     private void pieChartInitData() {
-        for (TransactionItem item : queryList) {
+        for (TransModel item : queryList) {
             String finalString = item.getMoneyTrans().replace(",", "");
             if (item.getTypeTrans().equals("revenue_money")) {
                 pieChartRevenue = pieChartRevenue.add(new BigDecimal(finalString));

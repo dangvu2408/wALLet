@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProfileFragment extends Fragment {
-    private Button signout;
+    private Button signout, update_data;
     private Context context;
     private SQLiteDatabase database;
     private String SRC_DATABASE_NAME = "app_database.db";
@@ -40,6 +40,7 @@ public class ProfileFragment extends Fragment {
         GridView grid_setting = view.findViewById(R.id.gridview_setting);
         GridView grid_others = view.findViewById(R.id.gridview_others);
         signout = view.findViewById(R.id.signout);
+        update_data = view.findViewById(R.id.update_data);
         this.context = getContext();
 
         user_fullname.setText(getArguments().getString("key_fullname_data"));

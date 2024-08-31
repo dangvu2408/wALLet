@@ -80,6 +80,8 @@ public class QueryFragment extends Fragment {
         end_date_picker = view.findViewById(R.id.end_date_picker);
         menu_top = view.findViewById(R.id.menu_top);
         DrawerLayout drawer = getActivity().findViewById(R.id.drawer_layout);
+        queryList = new ArrayList<>();
+        queryList = getArguments().getParcelableArrayList("trans_data_key"); //important
 
         menu_top.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,8 +90,7 @@ public class QueryFragment extends Fragment {
             }
         });
 
-        this.queryList = new ArrayList<>();
-        this.queryList = getArguments().getParcelableArrayList("trans_data_key"); //important
+
 
         Calendar calendarEnd = Calendar.getInstance();
         Calendar calendarBegin = Calendar.getInstance();
@@ -105,7 +106,6 @@ public class QueryFragment extends Fragment {
         end_day_STR = formattedDateEnd;
 
         this.context = getContext();
-        queryList = new ArrayList<>();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, d 'tháng' M, yyyy", new Locale("vi", "VN"));
         begin_date_picker.setOnClickListener(new View.OnClickListener() {
             @Override

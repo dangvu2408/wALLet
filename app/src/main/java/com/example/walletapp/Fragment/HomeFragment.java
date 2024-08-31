@@ -343,40 +343,42 @@ public class HomeFragment extends Fragment {
     }
 
     private void getBarData() {
-        LocalDate today = LocalDate.now();
-        LocalDate localBegin = today.withDayOfMonth(1);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String beginDay = localBegin.format(formatter);
-        LocalDate localEnd = today.with(TemporalAdjusters.lastDayOfMonth());
-        String endDay = localEnd.format(formatter);
-        LocalDate chartBeginDay = LocalDate.parse(beginDay, formatter);
-        LocalDate chartEndDay = LocalDate.parse(endDay, formatter);
+        if (userTransData != null) {
+            LocalDate today = LocalDate.now();
+            LocalDate localBegin = today.withDayOfMonth(1);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            String beginDay = localBegin.format(formatter);
+            LocalDate localEnd = today.with(TemporalAdjusters.lastDayOfMonth());
+            String endDay = localEnd.format(formatter);
+            LocalDate chartBeginDay = LocalDate.parse(beginDay, formatter);
+            LocalDate chartEndDay = LocalDate.parse(endDay, formatter);
 
-        for (TransModel item : userTransData) {
-            LocalDate itemDate = item.getDateAsLocalDate();
-            if ((itemDate.isEqual(chartBeginDay) || itemDate.isAfter(chartBeginDay)) &&
-                    (itemDate.isEqual(chartEndDay) || itemDate.isBefore(chartEndDay))) {
-                if (item.getTypeTrans().equals("revenue_money")) {
-                    String finalString = item.getMoneyTrans().replace(",", "");
-                    inputMoney = inputMoney.add(new BigDecimal(finalString));
-                } else if (item.getTypeTrans().equals("expense_money")) {
-                    String finalString = item.getMoneyTrans().replace(",", "");
-                    outputMoney = outputMoney.subtract(new BigDecimal(finalString));
-                } else if (item.getTypeTrans().equals("percentage_money")) {
-                    if (item.getDetailTypeTrans().equals("Trả lãi")) {
-                        String finalString = item.getMoneyTrans().replace(",", "");
-                        outputMoney = outputMoney.subtract(new BigDecimal(finalString));
-                    } else if (item.getDetailTypeTrans().equals("Thu lãi")) {
+            for (TransModel item : userTransData) {
+                LocalDate itemDate = item.getDateAsLocalDate();
+                if ((itemDate.isEqual(chartBeginDay) || itemDate.isAfter(chartBeginDay)) &&
+                        (itemDate.isEqual(chartEndDay) || itemDate.isBefore(chartEndDay))) {
+                    if (item.getTypeTrans().equals("revenue_money")) {
                         String finalString = item.getMoneyTrans().replace(",", "");
                         inputMoney = inputMoney.add(new BigDecimal(finalString));
-                    }
-                } else if (item.getTypeTrans().equals("loan_money")) {
-                    if (item.getDetailTypeTrans().equals("Cho vay") || item.getDetailTypeTrans().equals("Trả nợ")) {
+                    } else if (item.getTypeTrans().equals("expense_money")) {
                         String finalString = item.getMoneyTrans().replace(",", "");
                         outputMoney = outputMoney.subtract(new BigDecimal(finalString));
-                    } else if (item.getDetailTypeTrans().equals("Đi vay") || item.getDetailTypeTrans().equals("Thu nợ")) {
-                        String finalString = item.getMoneyTrans().replace(",", "");
-                        inputMoney = inputMoney.add(new BigDecimal(finalString));
+                    } else if (item.getTypeTrans().equals("percentage_money")) {
+                        if (item.getDetailTypeTrans().equals("Trả lãi")) {
+                            String finalString = item.getMoneyTrans().replace(",", "");
+                            outputMoney = outputMoney.subtract(new BigDecimal(finalString));
+                        } else if (item.getDetailTypeTrans().equals("Thu lãi")) {
+                            String finalString = item.getMoneyTrans().replace(",", "");
+                            inputMoney = inputMoney.add(new BigDecimal(finalString));
+                        }
+                    } else if (item.getTypeTrans().equals("loan_money")) {
+                        if (item.getDetailTypeTrans().equals("Cho vay") || item.getDetailTypeTrans().equals("Trả nợ")) {
+                            String finalString = item.getMoneyTrans().replace(",", "");
+                            outputMoney = outputMoney.subtract(new BigDecimal(finalString));
+                        } else if (item.getDetailTypeTrans().equals("Đi vay") || item.getDetailTypeTrans().equals("Thu nợ")) {
+                            String finalString = item.getMoneyTrans().replace(",", "");
+                            inputMoney = inputMoney.add(new BigDecimal(finalString));
+                        }
                     }
                 }
             }
@@ -384,28 +386,34 @@ public class HomeFragment extends Fragment {
     }
 
     private void getListViewData() {
-        this.sortedDayList = new ArrayList<>(userTransData);
-        this.sortedMostList = new ArrayList<>(userTransData);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, d 'tháng' M, yyyy", new Locale("vi", "VN"));
-        Collections.sort(sortedDayList, new Comparator<TransModel>() {
-            @Override
-            public int compare(TransModel o1, TransModel o2) {
-                LocalDate date1 = LocalDate.parse(o1.getDateTrans(), formatter);
-                LocalDate date2 = LocalDate.parse(o2.getDateTrans(), formatter);
-                return date2.compareTo(date1);
+        if (userTransData != null) {
+            this.sortedDayList = new ArrayList<>(userTransData);
+            this.sortedMostList = new ArrayList<>(userTransData);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, d 'tháng' M, yyyy", new Locale("vi", "VN"));
+            Collections.sort(sortedDayList, new Comparator<TransModel>() {
+                @Override
+                public int compare(TransModel o1, TransModel o2) {
+                    LocalDate date1 = LocalDate.parse(o1.getDateTrans(), formatter);
+                    LocalDate date2 = LocalDate.parse(o2.getDateTrans(), formatter);
+                    return date2.compareTo(date1);
+                }
+            });
+            if (sortedDayList.size() > 3) {
+                sortedDayList.subList(3, sortedDayList.size()).clear();
             }
-        });
-        if (sortedDayList.size() > 3) {
-            sortedDayList.subList(3, sortedDayList.size()).clear();
-        }
-        Collections.sort(sortedMostList, new Comparator<TransModel>() {
-            @Override
-            public int compare(TransModel o1, TransModel o2) {
-                return Float.compare(o2.getMoneyTransFloat(), o1.getMoneyTransFloat());
+            Collections.sort(sortedMostList, new Comparator<TransModel>() {
+                @Override
+                public int compare(TransModel o1, TransModel o2) {
+                    return Float.compare(o2.getMoneyTransFloat(), o1.getMoneyTransFloat());
+                }
+            });
+            if (sortedMostList.size() > 3) {
+                sortedMostList.subList(3, sortedMostList.size()).clear();
             }
-        });
-        if (sortedMostList.size() > 3) {
-            sortedMostList.subList(3, sortedMostList.size()).clear();
+        } else {
+            this.sortedDayList = new ArrayList<>();
+            this.sortedMostList = new ArrayList<>();
         }
+
     }
 }
