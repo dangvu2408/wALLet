@@ -212,5 +212,9 @@ public class AddLoanActivity extends AppCompatActivity {
         queue.add(strRequest);
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.close_in, R.anim.close_out);
+    }
 }

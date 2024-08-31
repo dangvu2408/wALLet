@@ -73,9 +73,6 @@ public class RecentTransActivity extends AppCompatActivity {
             }
         });
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, d 'tháng' M, yyyy", new Locale("vi", "VN"));
-        String src = this.getDatabasePath(SRC_DATABASE_NAME).getAbsolutePath();
-        database = SQLiteDatabase.openOrCreateDatabase(src, null);
-        queryList = new ArrayList<>();
 
         ArrayList<TransModel> sortedDayList = new ArrayList<>(queryList);
         Collections.sort(sortedDayList, new Comparator<TransModel>() {
@@ -155,5 +152,11 @@ public class RecentTransActivity extends AppCompatActivity {
         come_in_money.setText(input_str + " VND");
         come_out_money.setText(output_str + " VND");
         total_money.setText(total_str + " VND");
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.close_in, R.anim.close_out);
     }
 }

@@ -16,6 +16,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.walletapp.Activity.LoginActivity;
+import com.example.walletapp.Activity.RecentTransActivity;
+import com.example.walletapp.Activity.UpdatingActivity;
 import com.example.walletapp.Adapter.GridItemsSettingAdapter;
 import com.example.walletapp.Model.GridItem;
 import com.example.walletapp.R;
@@ -28,8 +30,6 @@ import java.util.List;
 public class ProfileFragment extends Fragment {
     private Button signout, update_data;
     private Context context;
-    private SQLiteDatabase database;
-    private String SRC_DATABASE_NAME = "app_database.db";
     public ProfileFragment() {}
     @Nullable
     @Override
@@ -54,6 +54,9 @@ public class ProfileFragment extends Fragment {
         listOthers.add(new GridItem(R.drawable.dollarsign, "Tỉ giá ngoại tệ"));
         listOthers.add(new GridItem(R.drawable.airplay, "Thông tin chung"));
 
+        String str_username = getArguments().getString("key_username_data");
+        String str_password = getArguments().getString("key_password_data");
+
 
         GridItemsSettingAdapter adapter01 = new GridItemsSettingAdapter(this.getContext(), listSetting);
         GridItemsSettingAdapter adapter02 = new GridItemsSettingAdapter(this.getContext(), listOthers);
@@ -62,15 +65,25 @@ public class ProfileFragment extends Fragment {
         HeightUtils.setGridViewHeight(grid_setting, 1);
         HeightUtils.setGridViewHeight(grid_others, 1);
 
-        String src = this.context.getDatabasePath(SRC_DATABASE_NAME).getAbsolutePath();
-        database = SQLiteDatabase.openOrCreateDatabase(src, null);
+        update_data.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), UpdatingActivity.class);
+                intent.putExtra("key_update_username", str_username);
+                intent.putExtra("key_update_password", str_password);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
+            }
+        });
 
         signout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                database.delete("userdata", null, null);
                 startActivity(new Intent(getActivity(), LoginActivity.class));
                 getActivity().overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
+                if (ProfileFragment.this.getActivity() != null) {
+                    ProfileFragment.this.getActivity().finish();
+                }
             }
         });
         return view;

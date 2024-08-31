@@ -28,6 +28,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.walletapp.Activity.LoginActivity;
 import com.example.walletapp.Activity.RecentTransActivity;
@@ -67,13 +68,14 @@ public class HomeFragment extends Fragment {
     QueryTransactionAdapter sortedDayAdapter, sortedMostAdapter;
     private ArrayList<TransModel> sortedDayList, sortedMostList;
     private ArrayList<TransModel> userTransData;
-    private TextView eye_balance, view_all_1, view_all_2, total_balance, user_full_name;
+    private TextView eye_balance, view_all_1, view_all_2, total_balance, user_full_name, more_detail;
     private LinearLayout no_data_current, no_data;
     private ListView currently, most_balance;
     private ImageView menu_top1, eye_view;
     boolean isEyeClose = true;
     private BigDecimal inputMoney = BigDecimal.ZERO, outputMoney = BigDecimal.ZERO;
     private BigDecimal sumOfBalance = BigDecimal.ZERO;
+    private ViewPager pager;
 
     public HomeFragment() {}
 
@@ -93,12 +95,20 @@ public class HomeFragment extends Fragment {
         view_all_2 = view.findViewById(R.id.view_all_2);
         view_all_1 = view.findViewById(R.id.view_all_1);
         total_balance = view.findViewById(R.id.total_balance);
+        more_detail = view.findViewById(R.id.more_detail);
         user_full_name = view.findViewById(R.id.user_full_name);
         this.context = getContext();
-        user_full_name.setText("Xin chào, " + getArguments().getString("key_str_data"));
         this.userTransData = new ArrayList<>();
         this.userTransData = getArguments().getParcelableArrayList("trans_data_key"); //important
         initialData();
+
+        pager = getActivity().findViewById(R.id.viewPager);
+        more_detail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pager.setCurrentItem(2);
+            }
+        });
 
 
 

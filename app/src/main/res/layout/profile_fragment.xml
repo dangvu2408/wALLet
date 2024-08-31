@@ -127,7 +127,7 @@
                     android:textSize="18sp"
                     android:textAllCaps="false"
                     android:background="@drawable/gridviewbackground"
-                    android:layout_margin="15dp" />
+                    android:layout_margin="10dp" />
                 <Button
                     android:id="@+id/update_data"
                     android:layout_width="0dp"
@@ -139,17 +139,9 @@
                     android:textSize="18sp"
                     android:textAllCaps="false"
                     android:background="@drawable/gridviewbackground"
-                    android:layout_margin="15dp" />
+                    android:layout_margin="10dp" />
             </LinearLayout>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Phiên bản 1.0.0"
-                android:id="@+id/app_version"
-                android:fontFamily="@font/averta_semibold"
-                android:textSize="18sp"
-                android:textColor="@color/black"
-                android:textAlignment="center"/>
+
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
