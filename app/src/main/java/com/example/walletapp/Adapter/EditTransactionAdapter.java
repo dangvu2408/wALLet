@@ -157,28 +157,13 @@ public class EditTransactionAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 showDialogEdit(context, current);
-                Toast.makeText(context, "Chỉnh sửa giao dịch: " + "1. Ngày: " + current.getDateTrans()
-                        + " 2. Số tiền: " + current.getMoneyTrans()
-                        + " 3. Loại giao dịch: " + current.getTypeTrans()
-                        + " 4. Chi tiết: " + current.getDetailTypeTrans()
-                        + " 5. Ghi chú: " + current.getDescriptionTrans()
-                        + " 6. Tên chủ tk: " + current.getUserFullname()
-                        + " 7. ID giao dịch: " + current.getTransID()
-                        + " 8. Tên đăng nhập: " + current.getUserID(), Toast.LENGTH_SHORT).show();
             }
         });
 
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Xóa giao dịch: " + "1. Ngày: " + current.getDateTrans()
-                        + " 2. Số tiền: " + current.getMoneyTrans()
-                        + " 3. Loại giao dịch: " + current.getTypeTrans()
-                        + " 4. Chi tiết: " + current.getDetailTypeTrans()
-                        + " 5. Ghi chú: " + current.getDescriptionTrans()
-                        + " 6. Tên chủ tk: " + current.getUserFullname()
-                        + " 7. ID giao dịch: " + current.getTransID()
-                        + " 8. Tên đăng nhập: " + current.getUserID(), Toast.LENGTH_SHORT).show();
+                showDialogDelete(context, current);
             }
         });
 
@@ -290,6 +275,35 @@ public class EditTransactionAdapter extends BaseAdapter {
 
     }
 
+    private void showDialogDelete(Context context, TransModel item) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View dialogView = inflater.inflate(R.layout.dialog_delete_alert, null);
+        builder.setView(dialogView);
+        AlertDialog dialog = builder.create();
+        dialog.getWindow().setBackgroundDrawableResource(R.drawable.login_background);
+
+        Button btnDelete = dialogView.findViewById(R.id.delete_anywway);
+        Button btnCancel = dialogView.findViewById(R.id.cancel_delete);
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteData(Constants.BASE_URL_DELETE_TRANS_DATA, item.getTransID());
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
     private void updateData(String url, String str1, String str2, String str3, String str4, String str5, String str6) {
         RequestQueue queue = Volley.newRequestQueue(context);
         StringRequest strRequest = new StringRequest(Request.Method.POST, url,
@@ -320,6 +334,37 @@ public class EditTransactionAdapter extends BaseAdapter {
                 params.put("updateMoney", str4);
                 params.put("updateDate", str5);
                 params.put("updateDes", str6);
+                return params;
+            }
+        };
+        queue.add(strRequest);
+    }
+
+    private void deleteData(String url, String id) {
+        RequestQueue queue = Volley.newRequestQueue(context);
+        StringRequest strRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (response.trim().equals("Success")) {
+                            Toast.makeText(context, "XÓA THÀNH CÔNG", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(context, "XÓA THẤT BẠI", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("DEBUG", "SERVER ERROR: " + error.getMessage());
+                    }
+                }
+        ) {
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("deleteIDTrans", id);
                 return params;
             }
         };

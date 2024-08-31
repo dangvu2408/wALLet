@@ -57,7 +57,7 @@ public class RecentTransActivity extends AppCompatActivity {
         come_in_money = findViewById(R.id.come_in_money);
         come_out_money = findViewById(R.id.come_out_money);
         total_money = findViewById(R.id.total_money);
-
+        this.queryList = new ArrayList<>();
         this.queryList = getIntent().getParcelableArrayListExtra("key_trans_data");
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

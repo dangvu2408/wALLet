@@ -15,6 +15,7 @@
     <string name="fill_username">Trường tên đăng nhập không được để trống</string>
     <string name="fill_password">Trường mật khẩu không được để trống</string>
     <string name="updating_data">Đang cập nhật dữ liệu,\nvui lòng đợi trong giây lát...</string>
+    <string name="delete_alert">Bạn chắc chắn muốn xóa giao dịch này?</string>
 
 
     <string-array name="list_expense">
