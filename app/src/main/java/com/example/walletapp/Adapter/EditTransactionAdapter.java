@@ -311,9 +311,19 @@ public class EditTransactionAdapter extends BaseAdapter {
                     @Override
                     public void onResponse(String response) {
                         if (response.trim().equals("Success")) {
-                            Toast.makeText(context, "CẬP NHẬT THÀNH CÔNG", Toast.LENGTH_SHORT).show();
+                            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                            View layout = inflater.inflate(R.layout.custom_toast_08, null);
+                            Toast toast = new Toast(context);
+                            toast.setDuration(Toast.LENGTH_LONG);
+                            toast.setView(layout);
+                            toast.show();
                         } else {
-                            Toast.makeText(context, "CẬP NHẬT THẤT BẠI", Toast.LENGTH_SHORT).show();
+                            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                            View layout = inflater.inflate(R.layout.custom_toast_10, null);
+                            Toast toast = new Toast(context);
+                            toast.setDuration(Toast.LENGTH_LONG);
+                            toast.setView(layout);
+                            toast.show();
                         }
                     }
                 },
@@ -347,9 +357,19 @@ public class EditTransactionAdapter extends BaseAdapter {
                     @Override
                     public void onResponse(String response) {
                         if (response.trim().equals("Success")) {
-                            Toast.makeText(context, "XÓA THÀNH CÔNG", Toast.LENGTH_SHORT).show();
+                            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                            View layout = inflater.inflate(R.layout.custom_toast_09, null);
+                            Toast toast = new Toast(context);
+                            toast.setDuration(Toast.LENGTH_LONG);
+                            toast.setView(layout);
+                            toast.show();
                         } else {
-                            Toast.makeText(context, "XÓA THẤT BẠI", Toast.LENGTH_SHORT).show();
+                            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                            View layout = inflater.inflate(R.layout.custom_toast_11, null);
+                            Toast toast = new Toast(context);
+                            toast.setDuration(Toast.LENGTH_LONG);
+                            toast.setView(layout);
+                            toast.show();
                         }
                     }
                 },
