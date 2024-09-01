@@ -4,8 +4,8 @@
 
 ## 1. Cài đặt
 Cài đặt dự án trong Terminal của Visual Studio Code: \
-`git clone https://github.com/dangvu2408/wALLet.git` \
+```git clone https://github.com/dangvu2408/wALLet.git``` \
 Trong file `Constans.java` có đường dẫn `app\src\main\java\com\example\walletapp\Constants.java`, chỉnh sửa IP \
-`BASE_IP = "192.168.1.139"` \
+```BASE_IP = "192.168.1.139"``` \
 Tiến hành chạy ứng dụng trên thiết bị Android của bạn, khuyến khích sử dụng Android Studio để build app. \
 UPDATING...
