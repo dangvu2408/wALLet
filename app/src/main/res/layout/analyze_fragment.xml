@@ -98,7 +98,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Thu nhập ròng"
+                    android:text="Thu nhập ròng tháng này"
                     android:fontFamily="@font/averta_bold"
                     android:textSize="22sp"
                     android:textColor="@color/black"/>

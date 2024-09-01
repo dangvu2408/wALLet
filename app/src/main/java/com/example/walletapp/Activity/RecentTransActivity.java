@@ -37,7 +37,7 @@ import java.util.Comparator;
 import java.util.Locale;
 
 public class RecentTransActivity extends AppCompatActivity {
-    private TextView come_in_money, come_out_money, total_money;
+    private TextView come_in_money, come_out_money, total_money, current_month;
     private LinearLayout no_data_current_trans;
     private ListView current_transaction;
     private ImageView back_btn;
@@ -59,6 +59,8 @@ public class RecentTransActivity extends AppCompatActivity {
         come_in_money = findViewById(R.id.come_in_money);
         come_out_money = findViewById(R.id.come_out_money);
         total_money = findViewById(R.id.total_money);
+        current_month = findViewById(R.id.current_month);
+
         this.queryList = new ArrayList<>();
         this.queryList = getIntent().getParcelableArrayListExtra("key_trans_data");
 
@@ -105,6 +107,10 @@ public class RecentTransActivity extends AppCompatActivity {
         String endDay = localEnd.format(formatDay);
         LocalDate chartBeginDay = LocalDate.parse(beginDay, formatDay);
         LocalDate chartEndDay = LocalDate.parse(endDay, formatDay);
+
+        int currentMonthValue = today.getMonthValue();
+        current_month.setText("Dòng tiền tháng " + currentMonthValue);
+
 
         for (TransModel item : queryList) {
             LocalDate itemDate = item.getDateAsLocalDate();

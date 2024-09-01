@@ -114,7 +114,6 @@ public class HomeFragment extends Fragment {
 
 
 
-        sumOfBalance = sumOfBalance.add(inputMoney).add(outputMoney).add(inputMoneyLast).add(outputMoneyLast);
         DecimalFormat numFormat = new DecimalFormat("###,###,###.00");
         String net_income_str = numFormat.format(sumOfBalance);
         if (net_income_str.equals(",00")) {
@@ -349,6 +348,33 @@ public class HomeFragment extends Fragment {
 
     private void initialData() {
         if (this.context != null) {
+            if (userTransData != null) {
+                for (TransModel item : userTransData) {
+                    if (item.getTypeTrans().equals("revenue_money")) {
+                        String finalString = item.getMoneyTrans().replace(",", "");
+                        sumOfBalance = sumOfBalance.add(new BigDecimal(finalString));
+                    } else if (item.getTypeTrans().equals("expense_money")) {
+                        String finalString = item.getMoneyTrans().replace(",", "");
+                        sumOfBalance = sumOfBalance.subtract(new BigDecimal(finalString));
+                    } else if (item.getTypeTrans().equals("percentage_money")) {
+                        if (item.getDetailTypeTrans().equals("Trả lãi")) {
+                            String finalString = item.getMoneyTrans().replace(",", "");
+                            sumOfBalance = sumOfBalance.subtract(new BigDecimal(finalString));
+                        } else if (item.getDetailTypeTrans().equals("Thu lãi")) {
+                            String finalString = item.getMoneyTrans().replace(",", "");
+                            sumOfBalance = sumOfBalance.add(new BigDecimal(finalString));
+                        }
+                    } else if (item.getTypeTrans().equals("loan_money")) {
+                        if (item.getDetailTypeTrans().equals("Cho vay") || item.getDetailTypeTrans().equals("Trả nợ")) {
+                            String finalString = item.getMoneyTrans().replace(",", "");
+                            sumOfBalance = sumOfBalance.subtract(new BigDecimal(finalString));
+                        } else if (item.getDetailTypeTrans().equals("Đi vay") || item.getDetailTypeTrans().equals("Thu nợ")) {
+                            String finalString = item.getMoneyTrans().replace(",", "");
+                            sumOfBalance = sumOfBalance.add(new BigDecimal(finalString));
+                        }
+                    }
+                }
+            }
             getListViewData();
             getBarData();
         }

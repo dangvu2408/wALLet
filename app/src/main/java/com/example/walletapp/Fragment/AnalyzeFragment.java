@@ -119,7 +119,7 @@ public class AnalyzeFragment extends Fragment {
         net_income.setText(net_income_str + " VND");
         revenue_balance.setText(revenue_str + " VND");
         expense_balance.setText(expense_str + " VND");
-        total_balance.setText("Tổng số dư: " + net_income_str + " VND");
+        total_balance.setText("Số dư tháng này: " + net_income_str + " VND");
 
         YearMonth currentMonth = YearMonth.now();
         int daynum = currentMonth.lengthOfMonth();
@@ -420,24 +420,37 @@ public class AnalyzeFragment extends Fragment {
 
     private void pieChartInitData() {
         if (queryList != null) {
+            LocalDate today = LocalDate.now();
+            LocalDate localBegin = today.withDayOfMonth(1);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            String beginDay = localBegin.format(formatter);
+            LocalDate localEnd = today.with(TemporalAdjusters.lastDayOfMonth());
+            String endDay = localEnd.format(formatter);
+            LocalDate pieBeginDay = LocalDate.parse(beginDay, formatter);
+            LocalDate pieEndDay = LocalDate.parse(endDay, formatter);
+
             for (TransModel item : queryList) {
                 String finalString = item.getMoneyTrans().replace(",", "");
-                if (item.getTypeTrans().equals("revenue_money")) {
-                    pieChartRevenue = pieChartRevenue.add(new BigDecimal(finalString));
-                } else if (item.getTypeTrans().equals("percentage_money") && item.getDetailTypeTrans().equals("Thu lãi")) {
-                    pieChartPercentage = pieChartPercentage.add(new BigDecimal(finalString));
-                } else if (item.getTypeTrans().equals("loan_money") && (item.getDetailTypeTrans().equals("Đi vay"))) {
-                    pieChartLoanBorrow = pieChartLoanBorrow.add(new BigDecimal(finalString));
-                } else if (item.getTypeTrans().equals("loan_money") && (item.getDetailTypeTrans().equals("Thu nợ"))) {
-                    pieChartLoanDebt = pieChartLoanDebt.add(new BigDecimal(finalString));
-                } else if (item.getTypeTrans().equals("expense_money")) {
-                    pieChartExpense = pieChartExpense.add(new BigDecimal(finalString));
-                } else if (item.getTypeTrans().equals("percentage_money") && item.getDetailTypeTrans().equals("Trả lãi")) {
-                    pieChartPercentageA = pieChartPercentageA.add(new BigDecimal(finalString));
-                } else if (item.getTypeTrans().equals("loan_money") && (item.getDetailTypeTrans().equals("Cho vay"))) {
-                    pieChartLoanLend = pieChartLoanLend.add(new BigDecimal(finalString));
-                } else if (item.getTypeTrans().equals("loan_money") && (item.getDetailTypeTrans().equals("Trả nợ"))) {
-                    pieChartLoanRepay = pieChartLoanRepay.add(new BigDecimal(finalString));
+                LocalDate itemDate = item.getDateAsLocalDate();
+                if ((itemDate.isEqual(pieBeginDay) || itemDate.isAfter(pieBeginDay)) &&
+                        (itemDate.isEqual(pieEndDay) || itemDate.isBefore(pieEndDay))){
+                    if (item.getTypeTrans().equals("revenue_money")) {
+                        pieChartRevenue = pieChartRevenue.add(new BigDecimal(finalString));
+                    } else if (item.getTypeTrans().equals("percentage_money") && item.getDetailTypeTrans().equals("Thu lãi")) {
+                        pieChartPercentage = pieChartPercentage.add(new BigDecimal(finalString));
+                    } else if (item.getTypeTrans().equals("loan_money") && (item.getDetailTypeTrans().equals("Đi vay"))) {
+                        pieChartLoanBorrow = pieChartLoanBorrow.add(new BigDecimal(finalString));
+                    } else if (item.getTypeTrans().equals("loan_money") && (item.getDetailTypeTrans().equals("Thu nợ"))) {
+                        pieChartLoanDebt = pieChartLoanDebt.add(new BigDecimal(finalString));
+                    } else if (item.getTypeTrans().equals("expense_money")) {
+                        pieChartExpense = pieChartExpense.add(new BigDecimal(finalString));
+                    } else if (item.getTypeTrans().equals("percentage_money") && item.getDetailTypeTrans().equals("Trả lãi")) {
+                        pieChartPercentageA = pieChartPercentageA.add(new BigDecimal(finalString));
+                    } else if (item.getTypeTrans().equals("loan_money") && (item.getDetailTypeTrans().equals("Cho vay"))) {
+                        pieChartLoanLend = pieChartLoanLend.add(new BigDecimal(finalString));
+                    } else if (item.getTypeTrans().equals("loan_money") && (item.getDetailTypeTrans().equals("Trả nợ"))) {
+                        pieChartLoanRepay = pieChartLoanRepay.add(new BigDecimal(finalString));
+                    }
                 }
             }
         }

@@ -49,6 +49,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Dòng tiền tháng này"
+                    android:id="@+id/current_month"
+                    android:fontFamily="@font/averta_bold"
+                    android:textColor="@color/black"
+                    android:textSize="21sp"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -129,6 +137,21 @@
                     android:textColor="#141ed4"
                     android:layout_marginBottom="10dp"/>
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@drawable/outline_blue"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Giao dịch gần đây"
+                android:fontFamily="@font/averta_bold"
+                android:textColor="@color/black"
+                android:paddingTop="10dp"
+                android:paddingBottom="5dp"
+                android:textSize="21sp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
