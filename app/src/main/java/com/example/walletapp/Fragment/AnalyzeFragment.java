@@ -28,6 +28,7 @@ import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -155,6 +156,13 @@ public class AnalyzeFragment extends Fragment {
         barData.setBarWidth(0.5f);
         Description des = new Description();
         des.setText("");
+
+        LimitLine limit = new LimitLine(0f);
+        limit.setLineWidth(2f);
+        limit.setLineColor(0xFFE45B65);
+        limit.enableDashedLine(8f, 8f, 0f);
+        net_income_bar_chart.getAxisLeft().addLimitLine(limit);
+
         net_income_bar_chart.setDescription(des);
         net_income_bar_chart.setData(barData);
         net_income_bar_chart.setFitBars(true);

@@ -25,8 +25,8 @@
         android:layout_marginTop="120dp"
         android:layout_marginLeft="10dp">
         <com.google.android.material.imageview.ShapeableImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
             android:src="@drawable/defaultavt"
             android:id="@+id/profile_avatar"
             app:strokeColor="#10B6CC"
@@ -34,17 +34,19 @@
             android:padding="5dp"
             app:shapeAppearanceOverlay="@style/roundedImg"/>
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="15dp">
+            android:paddingLeft="15dp"
+            android:paddingRight="30dp">
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="NGUYEN VAN A"
+                android:text="PHẠM NGUYỄN KHÁNH DUY"
                 android:fontFamily="@font/averta_bold"
                 android:textColor="@color/black"
                 android:id="@+id/username_en"
+                android:singleLine="true"
                 android:textSize="18sp"/>
             <LinearLayout
                 android:layout_width="wrap_content"

@@ -34,12 +34,15 @@ public class VerifyInfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
         setContentView(R.layout.activity_verify_info);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.color_theme_1));
         }
+
+
         confirm_btn = findViewById(R.id.confirm_btn);
         full_name_confirm = findViewById(R.id.full_name_confirm);
         date_of_birth_confirm = findViewById(R.id.date_of_birth_confirm);

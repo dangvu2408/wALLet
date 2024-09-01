@@ -66,6 +66,8 @@ public class AddRevenueActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+
         setContentView(R.layout.activity_add_revenue);
         back = findViewById(R.id.back_btn);
         btn_save = findViewById(R.id.save_btn_revenue);

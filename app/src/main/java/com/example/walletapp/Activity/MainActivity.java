@@ -81,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navView = findViewById(R.id.nav_view);
         View header = navView.getHeaderView(0);
         ImageView close = header.findViewById(R.id.close_nav);
+        TextView username_en = header.findViewById(R.id.username_en);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -110,6 +112,8 @@ public class MainActivity extends AppCompatActivity {
                 String fullname = userDataLogin.get(2);
                 String dob = userDataLogin.get(3);
                 String gender = userDataLogin.get(4);
+
+                username_en.setText(fullname.toUpperCase());
 
                 bundle.putString("key_username_data", username);
                 bundle.putString("key_password_data", password);

@@ -54,6 +54,7 @@ import com.google.android.material.navigation.NavigationView;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
@@ -74,6 +75,7 @@ public class HomeFragment extends Fragment {
     private ImageView menu_top1, eye_view;
     boolean isEyeClose = true;
     private BigDecimal inputMoney = BigDecimal.ZERO, outputMoney = BigDecimal.ZERO;
+    private BigDecimal inputMoneyLast = BigDecimal.ZERO, outputMoneyLast = BigDecimal.ZERO;
     private BigDecimal sumOfBalance = BigDecimal.ZERO;
     private ViewPager pager;
 
@@ -112,7 +114,7 @@ public class HomeFragment extends Fragment {
 
 
 
-        sumOfBalance = sumOfBalance.add(inputMoney).add(outputMoney);
+        sumOfBalance = sumOfBalance.add(inputMoney).add(outputMoney).add(inputMoneyLast).add(outputMoneyLast);
         DecimalFormat numFormat = new DecimalFormat("###,###,###.00");
         String net_income_str = numFormat.format(sumOfBalance);
         if (net_income_str.equals(",00")) {
@@ -237,7 +239,7 @@ public class HomeFragment extends Fragment {
                 btn_total_expense.setBackgroundColor(0xffE5EDF4);
 
                 ArrayList<BarEntry> revenue = new ArrayList<>();
-                revenue.add(new BarEntry(0f, 0f));
+                revenue.add(new BarEntry(0f, inputMoneyLast.floatValue()));
                 revenue.add(new BarEntry(1f, inputMoney.floatValue()));
                 ArrayList<String> months = new ArrayList<>();
                 months.add("Tháng trước");
@@ -282,7 +284,7 @@ public class HomeFragment extends Fragment {
                 btn_total_revenue.setBackgroundColor(0xffE5EDF4);
 
                 ArrayList<BarEntry> expense = new ArrayList<>();
-                expense.add(new BarEntry(0f, 0f));
+                expense.add(new BarEntry(0f, Math.abs(outputMoneyLast.floatValue())));
                 expense.add(new BarEntry(1f, Math.abs(outputMoney.floatValue())));
                 ArrayList<String> months = new ArrayList<>();
                 months.add("Tháng trước");
@@ -388,6 +390,44 @@ public class HomeFragment extends Fragment {
                         } else if (item.getDetailTypeTrans().equals("Đi vay") || item.getDetailTypeTrans().equals("Thu nợ")) {
                             String finalString = item.getMoneyTrans().replace(",", "");
                             inputMoney = inputMoney.add(new BigDecimal(finalString));
+                        }
+                    }
+                }
+            }
+
+            YearMonth lastMonth = YearMonth.from(today).minusMonths(1);
+            LocalDate firstDayOfLastMonth = lastMonth.atDay(1);
+            LocalDate lastDayOfLastMonth = lastMonth.atEndOfMonth();
+            String beginDayLast = firstDayOfLastMonth.format(formatter);
+            String endDayLast = lastDayOfLastMonth.format(formatter);
+            LocalDate chartBeginDayLast = LocalDate.parse(beginDayLast, formatter);
+            LocalDate chartEndDayLast = LocalDate.parse(endDayLast, formatter);
+
+            for (TransModel item : userTransData) {
+                LocalDate itemDate = item.getDateAsLocalDate();
+                if ((itemDate.isEqual(chartBeginDayLast) || itemDate.isAfter(chartBeginDayLast)) &&
+                        (itemDate.isEqual(chartEndDayLast) || itemDate.isBefore(chartEndDayLast))) {
+                    if (item.getTypeTrans().equals("revenue_money")) {
+                        String finalString = item.getMoneyTrans().replace(",", "");
+                        inputMoneyLast = inputMoneyLast.add(new BigDecimal(finalString));
+                    } else if (item.getTypeTrans().equals("expense_money")) {
+                        String finalString = item.getMoneyTrans().replace(",", "");
+                        outputMoneyLast = outputMoneyLast.subtract(new BigDecimal(finalString));
+                    } else if (item.getTypeTrans().equals("percentage_money")) {
+                        if (item.getDetailTypeTrans().equals("Trả lãi")) {
+                            String finalString = item.getMoneyTrans().replace(",", "");
+                            outputMoneyLast = outputMoneyLast.subtract(new BigDecimal(finalString));
+                        } else if (item.getDetailTypeTrans().equals("Thu lãi")) {
+                            String finalString = item.getMoneyTrans().replace(",", "");
+                            inputMoneyLast = inputMoneyLast.add(new BigDecimal(finalString));
+                        }
+                    } else if (item.getTypeTrans().equals("loan_money")) {
+                        if (item.getDetailTypeTrans().equals("Cho vay") || item.getDetailTypeTrans().equals("Trả nợ")) {
+                            String finalString = item.getMoneyTrans().replace(",", "");
+                            outputMoneyLast = outputMoneyLast.subtract(new BigDecimal(finalString));
+                        } else if (item.getDetailTypeTrans().equals("Đi vay") || item.getDetailTypeTrans().equals("Thu nợ")) {
+                            String finalString = item.getMoneyTrans().replace(",", "");
+                            inputMoneyLast = inputMoneyLast.add(new BigDecimal(finalString));
                         }
                     }
                 }

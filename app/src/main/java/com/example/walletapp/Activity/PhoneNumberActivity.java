@@ -39,6 +39,8 @@ public class PhoneNumberActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+
         setContentView(R.layout.activity_create_new_account);
         back_to_main = findViewById(R.id.back_to_main);
         next_to_otp_btn = findViewById(R.id.next_to_otp_btn);

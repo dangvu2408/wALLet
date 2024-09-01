@@ -50,6 +50,8 @@ public class RecentTransActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+
         setContentView(R.layout.activity_recent_balance);
         current_transaction = findViewById(R.id.current_transaction);
         no_data_current_trans = findViewById(R.id.no_data_current_trans);
