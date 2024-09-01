@@ -5,6 +5,8 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -23,10 +25,12 @@ import com.android.volley.toolbox.Volley;
 import com.example.walletapp.Constants;
 import com.example.walletapp.R;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class UpdatingActivity extends AppCompatActivity {
+    private Boolean isSuccess;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,53 +44,77 @@ public class UpdatingActivity extends AppCompatActivity {
         new Update().execute(new Void[0]);
     }
 
-    private class Update extends AsyncTask<Void, Void, Void> {
+    private class Update extends AsyncTask<Void, Void, Boolean> {
+        private String user, pass;
         private Update() {}
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            user = getIntent().getStringExtra("key_update_username");
+            pass = getIntent().getStringExtra("key_update_password");
         }
 
         @Override
-        protected Void doInBackground(Void... voids) {
-            String user = getIntent().getStringExtra("key_update_username");
-            String pass = getIntent().getStringExtra("key_update_password");
+        protected Boolean doInBackground(Void... voids) {
             Log.d("UPDATING DATA PARAMS", "Params = " + user + " - " + pass);
-            login(Constants.BASE_URL_LOGIN, user, pass);
-            return null;
+            final boolean[] result = {false};
+            login(Constants.BASE_URL_LOGIN, user, pass, new DataCallbackSTR() {
+                @Override
+                public void onDataLoaded(Boolean data) {
+                    result[0] = data;
+                    Log.d("UPDATING DATA PARAMS", "Params = " + result[0]);
+                }
+            });
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return result[0];
         }
 
         @Override
-        protected void onPostExecute(Void unused) {
-            super.onPostExecute(unused);
+        protected void onPostExecute(Boolean isSuccess) {
+            super.onPostExecute(isSuccess);
+            Log.d("DEBUG ERROR UPDATE", "YorN post :vvvv: " + isSuccess);
+
+            int toastLayoutId = (isSuccess) ? R.layout.custom_toast_12 : R.layout.custom_toast_13;
+            LayoutInflater inflater = getLayoutInflater();
+            View layout = inflater.inflate(toastLayoutId, null);
+            Toast toast = new Toast(UpdatingActivity.this);
+            toast.setDuration(Toast.LENGTH_LONG);
+            toast.setView(layout);
+            toast.show();
+
             Intent intent = new Intent(UpdatingActivity.this, MainActivity.class);
+            intent.putExtra("key_data", user);
             startActivity(intent);
             overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
+
         }
     }
 
-    private void login(String url, String str1, String str2) {
+    private void login(String url, String str1, String str2, DataCallbackSTR callback) {
+
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest strRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         if (response.trim().equals("Success")) {
-                            Intent intent = new Intent(UpdatingActivity.this, MainActivity.class);
-                            intent.putExtra("key_data", str1);
-                            startActivity(intent);
-                            overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
+                            isSuccess = true;
                         } else {
-                            Toast.makeText(UpdatingActivity.this, "Cập nhật dữ liệu thất bại, vui lòng thử lại!", Toast.LENGTH_SHORT).show();
-
+                            isSuccess = false;
                         }
+                        callback.onDataLoaded(isSuccess);
+                        Log.d("DEBUG ERROR UPDATE", "YorN" + isSuccess);
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.d("DEBUG", error.toString());
+                        Log.d("DEBUG ERROR UPDATE", error.toString());
                     }
                 }
         ){
@@ -100,5 +128,9 @@ public class UpdatingActivity extends AppCompatActivity {
             }
         };
         queue.add(strRequest);
+    }
+
+    public interface DataCallbackSTR {
+        void onDataLoaded(Boolean data);
     }
 }
