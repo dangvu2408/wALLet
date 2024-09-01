@@ -154,29 +154,30 @@ public class QueryFragment extends Fragment {
         query_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                Collections.sort(queryList, new Comparator<TransModel>() {
-                    @Override
-                    public int compare(TransModel o1, TransModel o2) {
-                        LocalDate date1 = LocalDate.parse(o1.getDateTrans(), formatter);
-                        LocalDate date2 = LocalDate.parse(o2.getDateTrans(), formatter);
-                        return date1.compareTo(date2);
-                    }
-                });
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                LocalDate beginDay = LocalDate.parse(begin_day_STR, formatter);
-                LocalDate endDay = LocalDate.parse(end_day_STR, formatter);
-
                 List<TransModel> filteredList = new ArrayList<>();
-                for (TransModel item : queryList) {
-                    LocalDate itemDate = item.getDateAsLocalDate();
-                    if ((itemDate.isEqual(beginDay) || itemDate.isAfter(beginDay)) &&
-                            (itemDate.isEqual(endDay) || itemDate.isBefore(endDay))) {
-                        filteredList.add(item);
-                    }
-                }
+                if (queryList != null) {
+                    Collections.sort(queryList, new Comparator<TransModel>() {
+                        @Override
+                        public int compare(TransModel o1, TransModel o2) {
+                            LocalDate date1 = LocalDate.parse(o1.getDateTrans(), formatter);
+                            LocalDate date2 = LocalDate.parse(o2.getDateTrans(), formatter);
+                            return date1.compareTo(date2);
+                        }
+                    });
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    LocalDate beginDay = LocalDate.parse(begin_day_STR, formatter);
+                    LocalDate endDay = LocalDate.parse(end_day_STR, formatter);
 
+
+                    for (TransModel item : queryList) {
+                        LocalDate itemDate = item.getDateAsLocalDate();
+                        if ((itemDate.isEqual(beginDay) || itemDate.isAfter(beginDay)) &&
+                                (itemDate.isEqual(endDay) || itemDate.isBefore(endDay))) {
+                            filteredList.add(item);
+                        }
+                    }
+
+                }
 
                 adapter = new QueryTransactionAdapter(context, filteredList);
                 query_result.setAdapter(adapter);

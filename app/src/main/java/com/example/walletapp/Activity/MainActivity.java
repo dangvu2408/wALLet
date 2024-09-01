@@ -127,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataLoaded(ArrayList<TransModel> data) {
                 userTransData = data;
-                Log.d("USER TRANS DATA TEST", "Test " + userTransData.get(1).toString());
                 bundle.putParcelableArrayList("trans_data_key", userTransData);
             }
         });
@@ -228,10 +227,9 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         if (response.trim().equals("Error")) {
-                            Toast.makeText(MainActivity.this, "LỖI LẤY THÔNG TIN", Toast.LENGTH_SHORT).show();
+                            Log.d("AAA", "ad");
                         } else {
                             System.out.println(response);
-
                             try {
                                 JSONArray jsonArray = new JSONArray(response);
                                 for (int i = 0; i < jsonArray.length(); i++) {
@@ -275,7 +273,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         if (response.trim().equals("Error")) {
-                            Toast.makeText(MainActivity.this, "LỖI LẤY THÔNG TIN", Toast.LENGTH_SHORT).show();
+                            Log.d("AAA", "ad");
                         } else {
                             System.out.println(response);
                             try {

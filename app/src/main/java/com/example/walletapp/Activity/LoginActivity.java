@@ -112,6 +112,7 @@ public class LoginActivity extends AppCompatActivity {
                             intent.putExtra("key_data", phonenumSTR);
                             startActivity(intent);
                             overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
+                            finish();
                         } else {
                             Toast.makeText(LoginActivity.this, "Đăng nhập thất bại, vui lòng thử lại!", Toast.LENGTH_SHORT).show();
                         }

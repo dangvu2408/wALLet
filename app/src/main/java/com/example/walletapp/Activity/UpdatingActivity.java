@@ -91,7 +91,7 @@ public class UpdatingActivity extends AppCompatActivity {
             intent.putExtra("key_data", user);
             startActivity(intent);
             overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
-
+            finish();
         }
     }
 

@@ -81,9 +81,7 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), LoginActivity.class));
                 getActivity().overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
-                if (ProfileFragment.this.getActivity() != null) {
-                    ProfileFragment.this.getActivity().finish();
-                }
+                getActivity().finish();
             }
         });
         return view;

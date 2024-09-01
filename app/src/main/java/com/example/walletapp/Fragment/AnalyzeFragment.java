@@ -279,7 +279,6 @@ public class AnalyzeFragment extends Fragment {
     }
 
     private void initialData() {
-
         barChartInitData();
         pieChartInitData();
     }
@@ -332,85 +331,87 @@ public class AnalyzeFragment extends Fragment {
         LocalDate chartBeginDayRange3 = LocalDate.parse(beginDayRange3Str, formatter);
         LocalDate chartEndDayRange3 = LocalDate.parse(endDayRange3Str, formatter);
 
-        for (TransModel item : queryList) {
-            LocalDate itemDate = item.getDateAsLocalDate();
-            if ((itemDate.isEqual(chartBeginDayRange1) || itemDate.isAfter(chartBeginDayRange1)) &&
-                    (itemDate.isEqual(chartEndDayRange1) || itemDate.isBefore(chartEndDayRange1))) {
-                if (item.getTypeTrans().equals("revenue_money")) {
-                    String finalString = item.getMoneyTrans().replace(",", "");
-                    inputMoneyRange1 = inputMoneyRange1.add(new BigDecimal(finalString));
-                } else if (item.getTypeTrans().equals("expense_money")) {
-                    String finalString = item.getMoneyTrans().replace(",", "");
-                    outputMoneyRange1 = outputMoneyRange1.subtract(new BigDecimal(finalString));
-                } else if (item.getTypeTrans().equals("percentage_money")) {
-                    if (item.getDetailTypeTrans().equals("Trả lãi")) {
-                        String finalString = item.getMoneyTrans().replace(",", "");
-                        outputMoneyRange1 = outputMoneyRange1.subtract(new BigDecimal(finalString));
-                    } else if (item.getDetailTypeTrans().equals("Thu lãi")) {
+        if (queryList != null) {
+            for (TransModel item : queryList) {
+                LocalDate itemDate = item.getDateAsLocalDate();
+                if ((itemDate.isEqual(chartBeginDayRange1) || itemDate.isAfter(chartBeginDayRange1)) &&
+                        (itemDate.isEqual(chartEndDayRange1) || itemDate.isBefore(chartEndDayRange1))) {
+                    if (item.getTypeTrans().equals("revenue_money")) {
                         String finalString = item.getMoneyTrans().replace(",", "");
                         inputMoneyRange1 = inputMoneyRange1.add(new BigDecimal(finalString));
-                    }
-                } else if (item.getTypeTrans().equals("loan_money")) {
-                    if (item.getDetailTypeTrans().equals("Cho vay") || item.getDetailTypeTrans().equals("Trả nợ")) {
+                    } else if (item.getTypeTrans().equals("expense_money")) {
                         String finalString = item.getMoneyTrans().replace(",", "");
                         outputMoneyRange1 = outputMoneyRange1.subtract(new BigDecimal(finalString));
-                    } else if (item.getDetailTypeTrans().equals("Đi vay") || item.getDetailTypeTrans().equals("Thu nợ")) {
-                        String finalString = item.getMoneyTrans().replace(",", "");
-                        inputMoneyRange1 = inputMoneyRange1.add(new BigDecimal(finalString));
+                    } else if (item.getTypeTrans().equals("percentage_money")) {
+                        if (item.getDetailTypeTrans().equals("Trả lãi")) {
+                            String finalString = item.getMoneyTrans().replace(",", "");
+                            outputMoneyRange1 = outputMoneyRange1.subtract(new BigDecimal(finalString));
+                        } else if (item.getDetailTypeTrans().equals("Thu lãi")) {
+                            String finalString = item.getMoneyTrans().replace(",", "");
+                            inputMoneyRange1 = inputMoneyRange1.add(new BigDecimal(finalString));
+                        }
+                    } else if (item.getTypeTrans().equals("loan_money")) {
+                        if (item.getDetailTypeTrans().equals("Cho vay") || item.getDetailTypeTrans().equals("Trả nợ")) {
+                            String finalString = item.getMoneyTrans().replace(",", "");
+                            outputMoneyRange1 = outputMoneyRange1.subtract(new BigDecimal(finalString));
+                        } else if (item.getDetailTypeTrans().equals("Đi vay") || item.getDetailTypeTrans().equals("Thu nợ")) {
+                            String finalString = item.getMoneyTrans().replace(",", "");
+                            inputMoneyRange1 = inputMoneyRange1.add(new BigDecimal(finalString));
+                        }
                     }
                 }
-            }
 
-            if ((itemDate.isEqual(chartBeginDayRange2) || itemDate.isAfter(chartBeginDayRange2)) &&
-                    (itemDate.isEqual(chartEndDayRange2) || itemDate.isBefore(chartEndDayRange2))) {
-                if (item.getTypeTrans().equals("revenue_money")) {
-                    String finalString = item.getMoneyTrans().replace(",", "");
-                    inputMoneyRange2 = inputMoneyRange2.add(new BigDecimal(finalString));
-                } else if (item.getTypeTrans().equals("expense_money")) {
-                    String finalString = item.getMoneyTrans().replace(",", "");
-                    outputMoneyRange2 = outputMoneyRange2.subtract(new BigDecimal(finalString));
-                } else if (item.getTypeTrans().equals("percentage_money")) {
-                    if (item.getDetailTypeTrans().equals("Trả lãi")) {
-                        String finalString = item.getMoneyTrans().replace(",", "");
-                        outputMoneyRange2 = outputMoneyRange2.subtract(new BigDecimal(finalString));
-                    } else if (item.getDetailTypeTrans().equals("Thu lãi")) {
+                if ((itemDate.isEqual(chartBeginDayRange2) || itemDate.isAfter(chartBeginDayRange2)) &&
+                        (itemDate.isEqual(chartEndDayRange2) || itemDate.isBefore(chartEndDayRange2))) {
+                    if (item.getTypeTrans().equals("revenue_money")) {
                         String finalString = item.getMoneyTrans().replace(",", "");
                         inputMoneyRange2 = inputMoneyRange2.add(new BigDecimal(finalString));
-                    }
-                } else if (item.getTypeTrans().equals("loan_money")) {
-                    if (item.getDetailTypeTrans().equals("Cho vay") || item.getDetailTypeTrans().equals("Trả nợ")) {
+                    } else if (item.getTypeTrans().equals("expense_money")) {
                         String finalString = item.getMoneyTrans().replace(",", "");
                         outputMoneyRange2 = outputMoneyRange2.subtract(new BigDecimal(finalString));
-                    } else if (item.getDetailTypeTrans().equals("Đi vay") || item.getDetailTypeTrans().equals("Thu nợ")) {
-                        String finalString = item.getMoneyTrans().replace(",", "");
-                        inputMoneyRange2 = inputMoneyRange2.add(new BigDecimal(finalString));
+                    } else if (item.getTypeTrans().equals("percentage_money")) {
+                        if (item.getDetailTypeTrans().equals("Trả lãi")) {
+                            String finalString = item.getMoneyTrans().replace(",", "");
+                            outputMoneyRange2 = outputMoneyRange2.subtract(new BigDecimal(finalString));
+                        } else if (item.getDetailTypeTrans().equals("Thu lãi")) {
+                            String finalString = item.getMoneyTrans().replace(",", "");
+                            inputMoneyRange2 = inputMoneyRange2.add(new BigDecimal(finalString));
+                        }
+                    } else if (item.getTypeTrans().equals("loan_money")) {
+                        if (item.getDetailTypeTrans().equals("Cho vay") || item.getDetailTypeTrans().equals("Trả nợ")) {
+                            String finalString = item.getMoneyTrans().replace(",", "");
+                            outputMoneyRange2 = outputMoneyRange2.subtract(new BigDecimal(finalString));
+                        } else if (item.getDetailTypeTrans().equals("Đi vay") || item.getDetailTypeTrans().equals("Thu nợ")) {
+                            String finalString = item.getMoneyTrans().replace(",", "");
+                            inputMoneyRange2 = inputMoneyRange2.add(new BigDecimal(finalString));
+                        }
                     }
                 }
-            }
 
-            if ((itemDate.isEqual(chartBeginDayRange3) || itemDate.isAfter(chartBeginDayRange3)) &&
-                    (itemDate.isEqual(chartEndDayRange3) || itemDate.isBefore(chartEndDayRange3))) {
-                if (item.getTypeTrans().equals("revenue_money")) {
-                    String finalString = item.getMoneyTrans().replace(",", "");
-                    inputMoneyRange3 = inputMoneyRange3.add(new BigDecimal(finalString));
-                } else if (item.getTypeTrans().equals("expense_money")) {
-                    String finalString = item.getMoneyTrans().replace(",", "");
-                    outputMoneyRange3 = outputMoneyRange3.subtract(new BigDecimal(finalString));
-                } else if (item.getTypeTrans().equals("percentage_money")) {
-                    if (item.getDetailTypeTrans().equals("Trả lãi")) {
-                        String finalString = item.getMoneyTrans().replace(",", "");
-                        outputMoneyRange3 = outputMoneyRange3.subtract(new BigDecimal(finalString));
-                    } else if (item.getDetailTypeTrans().equals("Thu lãi")) {
+                if ((itemDate.isEqual(chartBeginDayRange3) || itemDate.isAfter(chartBeginDayRange3)) &&
+                        (itemDate.isEqual(chartEndDayRange3) || itemDate.isBefore(chartEndDayRange3))) {
+                    if (item.getTypeTrans().equals("revenue_money")) {
                         String finalString = item.getMoneyTrans().replace(",", "");
                         inputMoneyRange3 = inputMoneyRange3.add(new BigDecimal(finalString));
-                    }
-                } else if (item.getTypeTrans().equals("loan_money")) {
-                    if (item.getDetailTypeTrans().equals("Cho vay") || item.getDetailTypeTrans().equals("Trả nợ")) {
+                    } else if (item.getTypeTrans().equals("expense_money")) {
                         String finalString = item.getMoneyTrans().replace(",", "");
                         outputMoneyRange3 = outputMoneyRange3.subtract(new BigDecimal(finalString));
-                    } else if (item.getDetailTypeTrans().equals("Đi vay") || item.getDetailTypeTrans().equals("Thu nợ")) {
-                        String finalString = item.getMoneyTrans().replace(",", "");
-                        inputMoneyRange3 = inputMoneyRange3.add(new BigDecimal(finalString));
+                    } else if (item.getTypeTrans().equals("percentage_money")) {
+                        if (item.getDetailTypeTrans().equals("Trả lãi")) {
+                            String finalString = item.getMoneyTrans().replace(",", "");
+                            outputMoneyRange3 = outputMoneyRange3.subtract(new BigDecimal(finalString));
+                        } else if (item.getDetailTypeTrans().equals("Thu lãi")) {
+                            String finalString = item.getMoneyTrans().replace(",", "");
+                            inputMoneyRange3 = inputMoneyRange3.add(new BigDecimal(finalString));
+                        }
+                    } else if (item.getTypeTrans().equals("loan_money")) {
+                        if (item.getDetailTypeTrans().equals("Cho vay") || item.getDetailTypeTrans().equals("Trả nợ")) {
+                            String finalString = item.getMoneyTrans().replace(",", "");
+                            outputMoneyRange3 = outputMoneyRange3.subtract(new BigDecimal(finalString));
+                        } else if (item.getDetailTypeTrans().equals("Đi vay") || item.getDetailTypeTrans().equals("Thu nợ")) {
+                            String finalString = item.getMoneyTrans().replace(",", "");
+                            inputMoneyRange3 = inputMoneyRange3.add(new BigDecimal(finalString));
+                        }
                     }
                 }
             }
@@ -418,24 +419,26 @@ public class AnalyzeFragment extends Fragment {
     }
 
     private void pieChartInitData() {
-        for (TransModel item : queryList) {
-            String finalString = item.getMoneyTrans().replace(",", "");
-            if (item.getTypeTrans().equals("revenue_money")) {
-                pieChartRevenue = pieChartRevenue.add(new BigDecimal(finalString));
-            } else if (item.getTypeTrans().equals("percentage_money") && item.getDetailTypeTrans().equals("Thu lãi")) {
-                pieChartPercentage = pieChartPercentage.add(new BigDecimal(finalString));
-            } else if (item.getTypeTrans().equals("loan_money") && (item.getDetailTypeTrans().equals("Đi vay"))) {
-                pieChartLoanBorrow = pieChartLoanBorrow.add(new BigDecimal(finalString));
-            } else if (item.getTypeTrans().equals("loan_money") && (item.getDetailTypeTrans().equals("Thu nợ"))) {
-                pieChartLoanDebt = pieChartLoanDebt.add(new BigDecimal(finalString));
-            } else if (item.getTypeTrans().equals("expense_money")) {
-                pieChartExpense = pieChartExpense.add(new BigDecimal(finalString));
-            } else if (item.getTypeTrans().equals("percentage_money") && item.getDetailTypeTrans().equals("Trả lãi")) {
-                pieChartPercentageA = pieChartPercentageA.add(new BigDecimal(finalString));
-            } else if (item.getTypeTrans().equals("loan_money") && (item.getDetailTypeTrans().equals("Cho vay"))) {
-                pieChartLoanLend = pieChartLoanLend.add(new BigDecimal(finalString));
-            } else if (item.getTypeTrans().equals("loan_money") && (item.getDetailTypeTrans().equals("Trả nợ"))) {
-                pieChartLoanRepay = pieChartLoanRepay.add(new BigDecimal(finalString));
+        if (queryList != null) {
+            for (TransModel item : queryList) {
+                String finalString = item.getMoneyTrans().replace(",", "");
+                if (item.getTypeTrans().equals("revenue_money")) {
+                    pieChartRevenue = pieChartRevenue.add(new BigDecimal(finalString));
+                } else if (item.getTypeTrans().equals("percentage_money") && item.getDetailTypeTrans().equals("Thu lãi")) {
+                    pieChartPercentage = pieChartPercentage.add(new BigDecimal(finalString));
+                } else if (item.getTypeTrans().equals("loan_money") && (item.getDetailTypeTrans().equals("Đi vay"))) {
+                    pieChartLoanBorrow = pieChartLoanBorrow.add(new BigDecimal(finalString));
+                } else if (item.getTypeTrans().equals("loan_money") && (item.getDetailTypeTrans().equals("Thu nợ"))) {
+                    pieChartLoanDebt = pieChartLoanDebt.add(new BigDecimal(finalString));
+                } else if (item.getTypeTrans().equals("expense_money")) {
+                    pieChartExpense = pieChartExpense.add(new BigDecimal(finalString));
+                } else if (item.getTypeTrans().equals("percentage_money") && item.getDetailTypeTrans().equals("Trả lãi")) {
+                    pieChartPercentageA = pieChartPercentageA.add(new BigDecimal(finalString));
+                } else if (item.getTypeTrans().equals("loan_money") && (item.getDetailTypeTrans().equals("Cho vay"))) {
+                    pieChartLoanLend = pieChartLoanLend.add(new BigDecimal(finalString));
+                } else if (item.getTypeTrans().equals("loan_money") && (item.getDetailTypeTrans().equals("Trả nợ"))) {
+                    pieChartLoanRepay = pieChartLoanRepay.add(new BigDecimal(finalString));
+                }
             }
         }
     }
