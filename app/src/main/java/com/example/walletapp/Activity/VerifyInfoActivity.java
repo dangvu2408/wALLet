@@ -42,7 +42,6 @@ public class VerifyInfoActivity extends AppCompatActivity {
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.color_theme_1));
         }
 
-
         confirm_btn = findViewById(R.id.confirm_btn);
         full_name_confirm = findViewById(R.id.full_name_confirm);
         date_of_birth_confirm = findViewById(R.id.date_of_birth_confirm);
