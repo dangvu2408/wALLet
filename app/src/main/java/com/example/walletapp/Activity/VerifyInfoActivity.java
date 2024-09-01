@@ -63,7 +63,6 @@ public class VerifyInfoActivity extends AppCompatActivity {
         user_login_confirm.setText(phone_num_otp);
         password_confirm.setText(str_password);
 
-
         confirm_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
