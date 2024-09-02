@@ -125,7 +125,7 @@
                     android:id="@+id/net_income"
                     android:fontFamily="@font/averta_bold"
                     android:textSize="20sp"
-                    android:textColor="#141ed4"/>
+                    android:textColor="@color/main_color_01"/>
                 <com.github.mikephil.charting.charts.BarChart
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
@@ -187,7 +187,7 @@
                             android:id="@+id/revenue_balance"
                             android:fontFamily="@font/averta_bold"
                             android:textSize="20sp"
-                            android:textColor="#007fff"/>
+                            android:textColor="@color/main_color_02"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -211,7 +211,7 @@
                             android:id="@+id/revenue_1day_balance"
                             android:fontFamily="@font/averta_bold"
                             android:textSize="20sp"
-                            android:textColor="#007fff"/>
+                            android:textColor="@color/main_color_02"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -275,7 +275,7 @@
                             android:id="@+id/expense_balance"
                             android:fontFamily="@font/averta_bold"
                             android:textSize="20sp"
-                            android:textColor="#e35053"/>
+                            android:textColor="@color/main_color_03"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -299,7 +299,7 @@
                             android:id="@+id/expense_1day_balance"
                             android:fontFamily="@font/averta_bold"
                             android:textSize="20sp"
-                            android:textColor="#e35053"/>
+                            android:textColor="@color/main_color_03"/>
                     </LinearLayout>
                 </LinearLayout>
                 <com.github.mikephil.charting.charts.PieChart

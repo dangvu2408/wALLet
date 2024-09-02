@@ -59,7 +59,7 @@
             android:id="@+id/cancel_delete"
             android:fontFamily="@font/averta_bold"
             android:textSize="18sp"
-            android:textColor="#10B6CC"
+            android:textColor="@color/main_color_04"
             android:background="@drawable/button_background"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"

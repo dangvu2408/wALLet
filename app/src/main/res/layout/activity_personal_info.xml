@@ -115,7 +115,7 @@
                     android:paddingTop="5dp"
                     android:paddingBottom="10dp"
                     android:text="Chọn ngày sinh"
-                    android:textColor="#808080"
+                    android:textColor="@color/color_02"
                     android:textSize="20sp" />
             </LinearLayout>
 
@@ -141,7 +141,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:buttonTint="#141ed4"
+                    android:buttonTint="@color/main_color_01"
                     android:fontFamily="@font/averta_regular"
                     android:text="Nam"
                     android:textSize="20sp"/>
@@ -151,7 +151,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:buttonTint="#141ed4"
+                    android:buttonTint="@color/main_color_01"
                     android:fontFamily="@font/averta_regular"
                     android:text="Nữ"
                     android:textSize="20sp" />

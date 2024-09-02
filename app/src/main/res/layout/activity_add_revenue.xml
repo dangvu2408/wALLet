@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
-        android:background="#367ADF"
+        android:background="@color/color_theme_2"
         android:translationZ="5dp"
         android:id="@+id/layout_hidden"
         android:gravity="center_vertical">
@@ -61,8 +61,8 @@
                     android:paddingBottom="10dp"
                     android:fontFamily="@font/averta_semibold"
                     android:textSize="24sp"
-                    android:textColor="#141ed4"
-                    android:textColorHint="#6971FF"
+                    android:textColor="@color/main_color_01"
+                    android:textColorHint="@color/main_color_02"
                     android:inputType="number"
                     android:background="@drawable/inputbackground"/>
                 <TextView
@@ -72,7 +72,7 @@
                     android:padding="10dp"
                     android:fontFamily="@font/averta_bold"
                     android:textSize="24sp"
-                    android:textColor="#141ed4"/>
+                    android:textColor="@color/main_color_01"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"

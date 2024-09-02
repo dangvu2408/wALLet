@@ -20,7 +20,7 @@
                 android:layout_height="80dp"
                 android:src="@drawable/defaultavt"
                 android:id="@+id/profile_avatar"
-                app:strokeColor="#10B6CC"
+                app:strokeColor="@color/main_color_04"
                 app:strokeWidth="2dp"
                 android:padding="5dp"
                 android:translationZ="8dp"
@@ -64,7 +64,7 @@
             android:orientation="vertical"
             android:paddingRight="10dp"
             android:paddingLeft="10dp"
-            android:background="#E5EDF4"
+            android:background="@color/color_01"
             android:paddingBottom="90dp">
             <TextView
                 android:layout_width="wrap_content"

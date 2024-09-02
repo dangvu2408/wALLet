@@ -39,7 +39,7 @@
             android:text="Xin chúc mừng!"
             android:fontFamily="@font/averta_bold"
             android:textSize="26sp"
-            android:textColor="#141ed4"
+            android:textColor="@color/main_color_01"
             android:textAlignment="center"/>
         <TextView
             android:layout_width="match_parent"

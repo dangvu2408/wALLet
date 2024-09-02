@@ -80,7 +80,7 @@
                 android:fontFamily="@font/averta_regular"
                 android:justificationMode="inter_word"
                 android:text="@string/fill_username"
-                android:textColor="#e35053"
+                android:textColor="@color/main_color_03"
                 android:textSize="16sp"
                 android:paddingLeft="10dp"
                 android:layout_gravity="center_vertical"/>
@@ -97,7 +97,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             app:passwordToggleEnabled="true"
-            app:passwordToggleTint="#141ed4"
+            app:passwordToggleTint="@color/main_color_01"
             app:hintEnabled="false">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -131,7 +131,7 @@
                 android:fontFamily="@font/averta_regular"
                 android:justificationMode="inter_word"
                 android:text="@string/fill_password"
-                android:textColor="#e35053"
+                android:textColor="@color/main_color_03"
                 android:textSize="16sp"
                 android:paddingLeft="10dp"
                 android:layout_gravity="center_vertical"/>

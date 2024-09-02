@@ -45,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Quay lại"
-                android:textColor="#141ed4"
+                android:textColor="@color/main_color_01"
                 android:textSize="18sp"
                 android:paddingLeft="5dp"
                 android:fontFamily="@font/averta_bold"
@@ -131,7 +131,7 @@
                     android:fontFamily="@font/averta_regular"
                     android:justificationMode="inter_word"
                     android:text="@string/fill_empty_field_phone_number"
-                    android:textColor="#e35053"
+                    android:textColor="@color/main_color_03"
                     android:textSize="16sp"
                     android:paddingLeft="10dp"
                     android:layout_gravity="center_vertical"/>
@@ -157,7 +157,7 @@
                     android:fontFamily="@font/averta_regular"
                     android:justificationMode="inter_word"
                     android:text="@string/already_exits_on_database"
-                    android:textColor="#e35053"
+                    android:textColor="@color/main_color_03"
                     android:textSize="16sp"
                     android:paddingLeft="10dp"
                     android:layout_gravity="center_vertical"/>

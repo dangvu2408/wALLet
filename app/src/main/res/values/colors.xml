@@ -3,6 +3,17 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="color_01">#E5EDF4</color>
+    <color name="color_02">#808080</color>
+    <color name="draw_color_01">#E45B65</color>
+    <color name="draw_color_02">#02AB63</color>
+    <color name="draw_color_03">#C8E7FC</color>
+    <color name="draw_color_04">#4683EF</color>
+
+    <color name="main_color_01">#141ED4</color>
+    <color name="main_color_02">#007FFF</color>
+    <color name="main_color_03">#E35053</color>
+    <color name="main_color_04">#10B6CC</color>
+    <color name="main_color_05">#279CC5</color>
     <color name="color_theme_1">#C7EAFD</color>
     <color name="color_theme_2">#367ADF</color>
 </resources>

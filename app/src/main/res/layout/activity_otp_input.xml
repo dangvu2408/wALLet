@@ -67,7 +67,7 @@
             android:layout_gravity="center_horizontal"
             android:textAlignment="center"
             android:text="@string/description_otp"
-            android:textColor="#141ed4"
+            android:textColor="@color/main_color_01"
             android:textSize="18sp"
             android:paddingBottom="15dp"
             android:paddingTop="10dp"/>
@@ -80,11 +80,11 @@
             android:cursorVisible="true"
             android:inputType="number"
             android:textSize="22sp"
-            android:textColor="#141ed4"
+            android:textColor="@color/main_color_01"
             android:fontFamily="@font/averta_bold"
             style="@style/PinWidget.PinView"
             app:cursorWidth="2dp"
-            app:cursorColor="#141ed4"
+            app:cursorColor="@color/main_color_01"
             app:hideLineWhenFilled="true"
             app:itemCount="6"
             app:itemHeight="30dp"
@@ -93,7 +93,7 @@
             app:itemWidth="30dp"
             app:lineWidth="1dp"
             app:viewType="rectangle"
-            app:lineColor="#141ed4"/>
+            app:lineColor="@color/main_color_01"/>
 
         <TextView
             android:id="@+id/countdown_time_otp"
@@ -120,7 +120,7 @@
             android:layout_gravity="center_horizontal"
             android:textAlignment="center"
             android:text="@string/resend_otp"
-            android:textColor="#141ed4"
+            android:textColor="@color/main_color_01"
             android:textSize="18sp"
             android:paddingTop="5dp"
             android:paddingBottom="15dp"/>

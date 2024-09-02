@@ -29,7 +29,7 @@
             android:layout_height="55dp"
             android:src="@drawable/defaultavt"
             android:id="@+id/profile_avatar"
-            app:strokeColor="#10B6CC"
+            app:strokeColor="@color/main_color_04"
             app:strokeWidth="2dp"
             android:padding="5dp"
             app:shapeAppearanceOverlay="@style/roundedImg"/>
@@ -59,7 +59,7 @@
                     android:textSize="16sp"
                     android:fontFamily="@font/averta_semibold"
                     android:text="Hồ sơ người dùng"
-                    android:textColor="#141ed4"/>
+                    android:textColor="@color/main_color_01"/>
                 <ImageView
                     android:layout_width="18dp"
                     android:layout_height="18dp"
