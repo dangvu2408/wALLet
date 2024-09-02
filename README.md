@@ -84,4 +84,28 @@ implementation("com.android.volley:volley:1.2.1")
 Trong ứng dụng, dữ liệu được lưu trữ và truy xuất từ cơ sở dữ liệu MySQL thông qua các truy vấn SQL thông qua các file PHP, cụ thể các file xem tại [đây](https://github.com/dangvu2408/wALLet_app-BE).
 
 Ứng dụng gửi các yêu cầu (request) HTTP từ thiết bị Android tới server localhost, nơi các tập tin PHP sẽ xử lý yêu cầu và thực hiện các truy vấn dữ liệu trên MySQL. Sau đó, kết quả trả về (response) được sử dụng để hiển thị thông tin hoặc cập nhật dữ liệu trong ứng dụng.
+
+Về mặt dữ liệu, CSDL của ứng dụng bao gầm 2 bảng:
+
+Bảng `userlogin`:
+| Tên | Kiểu | Bảng mã đối chiếu | Null | Mặc định | Thêm |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| username | varchar(255) | utf8_general_ci | Không | Không | **Primary Key** |
+| password | varchar(255) | utf8_general_ci | Không | Không | |
+| fullname | varchar(255) | utf8_general_ci | Có | NULL | |
+| dob | varchar(255) | utf8_general_ci | Có | NULL | |
+| gender | varchar(255) | utf8_general_ci | Có | NULL | |
+
+Bảng `userdatas`:
+| Tên | Kiểu | Bảng mã đối chiếu | Null | Mặc định | Thêm |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| mainType | varchar(255) | utf8_general_ci | Không | Không |  |
+| type | varchar(255) | utf8_general_ci | Không | Không | |
+| money | varchar(255) | utf8_general_ci | Có | NULL | |
+| date | varchar(255) | utf8_general_ci | Có | NULL | |
+| description | varchar(255) | utf8_general_ci | Có | NULL | |
+| userid | varchar(255) | utf8_general_ci | Có | NULL | **Foreign Key** |
+| userfullname | varchar(255) | utf8_general_ci | Có | NULL | |
+| id_transaction | varchar(255) | utf8_general_ci | Có | NULL |  **Primary Key**<br>  **AUTO_INCREMENT** |
+
 UPDATING...
