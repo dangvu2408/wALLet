@@ -17,7 +17,7 @@ public static final String BASE_IP = "192.168.1.139";
 ```
 Tiến hành chạy ứng dụng trên thiết bị Android của bạn, khuyến khích sử dụng Android Studio để build app. 
 
-## 2. Hướng dẫn sử dụng
+## 2. Hướng dẫn sử dụng ứng dụng
 ### 2.1. Đăng kí tạo tài khoản mới
 <img src="https://github.com/dangvu2408/wALLet/blob/master/app/src/main/res/drawable/guide001.png"> \
 **Bước 1:** Ở màn hình đăng nhập, ấn vào "Tạo tài khoản". \
@@ -44,10 +44,11 @@ Mục "Thêm giao dịch" ở màn hình HomeFragment (Trang chủ), có 4 mục
 Màn hình QueryFragment (Truy vấn) có chức năng truy vấn giao dịch trong khoảng thời gian được chọn cụ thể. Màn hình AnalyzeFragment (Phân tích) có chức năng thống kê dữ liệu và biểu thị lên biểu đồ (gồm biểu đồ cột và biểu đồ hình quạt). Cuối cùng là màn hình ProfileFragment (Tôi) gồm các chức năng liên quan đến bảo mật, đăng nhập, cài đặt thông báo, chỉnh sửa thông tin... \
 ***CHÚ Ý:*** Sau khi bạn thêm các giao dịch, sửa hoặc xóa giao dịch, dữ liệu sẽ không cập nhật ngay, để cập nhật bạn cần ấn "Cập nhật dữ liệu" ở màn hình ProfileFragment (Tôi), sau đó bạn đợi tầm vài giây thì dữ liệu sẽ được cập nhật, và đừng quên nếu dòng chữ "Xin chào, null" xuất hiện ở màn hình HomeFragment (Trang chủ), hãy chuyển sang màn hình "AnalyzeFragment - Phân tích" sau đó quay lại, có thể do dữ liệu chưa cập nhật hết... 
 
-## 3. Công nghệ phát triển
+## 3. Tổng quan về dự án
 Ứng dụng được viết bằng ngôn ngữ Java trên nền tảng Android. Ứng dụng yêu cầu thiết bị sử dụng hệ điều hành Android có SDK phiên bản tối thiểu là 27 (Android 8.1 Oreo - Oatmeal Cookie) và tối đa là 34 (Android 14 - Upside Down Cake). Điều này có nghĩa là ứng dụng sẽ hoạt động trên các thiết bị có phiên bản Android từ 8.1 trở lên.
 ### 3.1. Các thư viện sử dụng trong dự án
-**3.1.1. [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)** \
+**3.1.1. [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)** 
+
 MPAndroidChart là một thư viện mạnh mẽ và linh hoạt, giúp dễ dàng tích hợp các biểu đồ vào ứng dụng. Thư viện hỗ trợ nhiều loại biểu đồ như biểu đồ đường (Line Chart), biểu đồ cột (Bar Chart), biểu đồ hình quạt (Pie Chart) và nhiều loại biểu đồ khác... 
 >Cài đặt thư viện MPAndroidChart: 
 ```
@@ -56,22 +57,31 @@ implementation("com.github.PhilJay:MPAndroidChart:v3.1.0") //build.geadle.kts(:a
 ```
 maven(url = "https://jitpack.io") //settings.gradle.kts
 ```
-**3.1.2. [android-gif-drawable](https://github.com/koral--/android-gif-drawable)** \
+**3.1.2. [android-gif-drawable](https://github.com/koral--/android-gif-drawable)** 
+
 android-gif-drawable là một thư viện giúp hiển thị các ảnh GIF động trong ứng dụng một cách dễ dàng và hiệu quả. Thư viện này cung cấp một ImageView tùy chỉnh có khả năng hiển thị GIF mà không ảnh hưởng lớn đến hiệu suất của ứng dụng, ngay cả với các GIF lớn hoặc phức tạp...  
 >Cài đặt thư viện android-gif-drawable: 
 ```
 implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.29")
 ```
-**3.1.3. [PinView](https://github.com/ChaosLeung/PinView)** \
+**3.1.3. [PinView](https://github.com/ChaosLeung/PinView)** 
+
 PinView là một thư viện tùy chỉnh, giúp tạo ra giao diện nhập mã PIN hoặc mã xác thực một cách đơn giản và tinh tế. Được phát triển bởi ChaosLeung, thư viện này cung cấp một EditText dạng lưới, nơi người dùng có thể nhập các ký tự số hoặc chữ trong từng ô riêng biệt...  
 >Cài đặt thư viện PinView: 
 ```
 implementation("io.github.chaosleung:pinview:1.4.4")
 ```
-**3.1.4. [Volley](https://google.github.io/volley/)** \
+**3.1.4. [Volley](https://google.github.io/volley/)** 
+
 Volley là một thư viện mạng mạnh mẽ và dễ sử dụng dành cho Android, được phát triển bởi Google. Nó giúp đơn giản hóa việc thực hiện các yêu cầu HTTP và xử lý các phản hồi từ server. Volley đặc biệt hữu ích trong các tình huống yêu cầu mạng phức tạp như tải hình ảnh, gửi form, hoặc quản lý các API RESTful.  
 >Cài đặt thư viện Volley: 
 ```
 implementation("com.android.volley:volley:1.2.1")
 ```
+### 3.2. Server và cơ sở dữ liệu
+Ứng dụng sử dụng XAMPP, một môi trường máy chủ web tích hợp, để triển khai máy chủ localhost. XAMPP bao gồm các thành phần chính như Apache (máy chủ web), MySQL/MariaDB (hệ quản trị cơ sở dữ liệu), và PHP (ngôn ngữ kịch bản phía server). Điều này cho phép tạo môi trường máy chủ giả lập trên máy tính cá nhân để thực hiện các tác vụ thử nghiệm và phát triển trước khi triển khai trên môi trường thật.
+
+Trong ứng dụng, dữ liệu được lưu trữ và truy xuất từ cơ sở dữ liệu MySQL thông qua các truy vấn SQL thông qua các file PHP, cụ thể các file xem tại [đây](https://github.com/dangvu2408/wALLet_app-BE).
+
+Ứng dụng gửi các yêu cầu (request) HTTP từ thiết bị Android tới server localhost, nơi các tập tin PHP sẽ xử lý yêu cầu và thực hiện các truy vấn dữ liệu trên MySQL. Sau đó, kết quả trả về (response) được sử dụng để hiển thị thông tin hoặc cập nhật dữ liệu trong ứng dụng.
 UPDATING...
