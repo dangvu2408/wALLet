@@ -42,7 +42,7 @@ Mục "Thêm giao dịch" ở màn hình HomeFragment (Trang chủ), có 4 mục
 **2.2.3.** Và ba màn hình chính còn lại... \
 <img src="https://github.com/dangvu2408/wALLet/blob/master/app/src/main/res/drawable/guide005.png"> \
 Màn hình QueryFragment (Truy vấn) có chức năng truy vấn giao dịch trong khoảng thời gian được chọn cụ thể. Màn hình AnalyzeFragment (Phân tích) có chức năng thống kê dữ liệu và biểu thị lên biểu đồ (gồm biểu đồ cột và biểu đồ hình quạt). Cuối cùng là màn hình ProfileFragment (Tôi) gồm các chức năng liên quan đến bảo mật, đăng nhập, cài đặt thông báo, chỉnh sửa thông tin... \
-***CHÚ Ý:*** Sau khi bạn thêm các giao dịch, sửa hoặc xóa giao dịch, dữ liệu sẽ không cập nhật ngay, để cập nhật bạn cần ấn "Cập nhật dữ liệu" ở màn hình ProfileFragment (Tôi), sau đó bạn đợi tầm vài giây thì dữ liệu sẽ được cập nhật, và đừng quên nếu dòng chữ "Xin chào, null" xuất hiện ở màn hình HomeFragment (Trang chủ), hãy chuyển sang màn hình "AnalyzeFragment - Phân tích" sau đó quay lại, có thể do dữ liệu chưa cập nhật hết...  ... \
+***CHÚ Ý:*** Sau khi bạn thêm các giao dịch, sửa hoặc xóa giao dịch, dữ liệu sẽ không cập nhật ngay, để cập nhật bạn cần ấn "Cập nhật dữ liệu" ở màn hình ProfileFragment (Tôi), sau đó bạn đợi tầm vài giây thì dữ liệu sẽ được cập nhật, và đừng quên nếu dòng chữ "Xin chào, null" xuất hiện ở màn hình HomeFragment (Trang chủ), hãy chuyển sang màn hình "AnalyzeFragment - Phân tích" sau đó quay lại, có thể do dữ liệu chưa cập nhật hết... 
 
 ## 3. Công nghệ phát triển
 Ứng dụng được viết bằng ngôn ngữ Java trên nền tảng Android. Ứng dụng yêu cầu thiết bị sử dụng hệ điều hành Android có SDK phiên bản tối thiểu là 27 (Android 8.1 Oreo - Oatmeal Cookie) và tối đa là 34 (Android 14 - Upside Down Cake). Điều này có nghĩa là ứng dụng sẽ hoạt động trên các thiết bị có phiên bản Android từ 8.1 trở lên.
@@ -61,5 +61,17 @@ android-gif-drawable là một thư viện giúp hiển thị các ảnh GIF đ�
 >Cài đặt thư viện android-gif-drawable: 
 ```
 implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.29")
+```
+**3.1.3. [PinView](https://github.com/ChaosLeung/PinView)** \
+PinView là một thư viện tùy chỉnh, giúp tạo ra giao diện nhập mã PIN hoặc mã xác thực một cách đơn giản và tinh tế. Được phát triển bởi ChaosLeung, thư viện này cung cấp một EditText dạng lưới, nơi người dùng có thể nhập các ký tự số hoặc chữ trong từng ô riêng biệt...  
+>Cài đặt thư viện PinView: 
+```
+implementation("io.github.chaosleung:pinview:1.4.4")
+```
+**3.1.4. [Volley](https://google.github.io/volley/)** \
+Volley là một thư viện mạng mạnh mẽ và dễ sử dụng dành cho Android, được phát triển bởi Google. Nó giúp đơn giản hóa việc thực hiện các yêu cầu HTTP và xử lý các phản hồi từ server. Volley đặc biệt hữu ích trong các tình huống yêu cầu mạng phức tạp như tải hình ảnh, gửi form, hoặc quản lý các API RESTful.  
+>Cài đặt thư viện Volley: 
+```
+implementation("com.android.volley:volley:1.2.1")
 ```
 UPDATING...
