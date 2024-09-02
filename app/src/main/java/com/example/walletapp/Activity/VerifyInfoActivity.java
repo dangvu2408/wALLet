@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -96,8 +97,12 @@ public class VerifyInfoActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(VerifyInfoActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-                        Log.d("DEBUG", "SERVER ERROR");
+                        LayoutInflater inflater = getLayoutInflater();
+                        View layout = inflater.inflate(R.layout.custom_toast_14, null);
+                        Toast toast = new Toast(VerifyInfoActivity.this);
+                        toast.setDuration(Toast.LENGTH_LONG);
+                        toast.setView(layout);
+                        toast.show();
                     }
                 }
         ){

@@ -189,8 +189,12 @@ public class AddPercentageActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(AddPercentageActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-                        Log.d("DEBUG", "SERVER ERROR: " + error.getMessage());
+                        LayoutInflater inflater = getLayoutInflater();
+                        View layout = inflater.inflate(R.layout.custom_toast_14, null);
+                        Toast toast = new Toast(AddPercentageActivity.this);
+                        toast.setDuration(Toast.LENGTH_LONG);
+                        toast.setView(layout);
+                        toast.show();
                     }
                 }
         ){

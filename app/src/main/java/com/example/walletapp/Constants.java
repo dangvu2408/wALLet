@@ -1,7 +1,6 @@
 package com.example.walletapp;
 
 public class Constants {
-//    public static final String BASE_IP = "192.168.100.171";
     public static final String BASE_IP = "192.168.1.139";
 
     public static final String BASE_URL_LOGIN = "http://" + BASE_IP + "/wALLet_app/login.php";

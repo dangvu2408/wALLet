@@ -114,7 +114,12 @@ public class UpdatingActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.d("DEBUG ERROR UPDATE", error.toString());
+                        LayoutInflater inflater = getLayoutInflater();
+                        View layout = inflater.inflate(R.layout.custom_toast_14, null);
+                        Toast toast = new Toast(UpdatingActivity.this);
+                        toast.setDuration(Toast.LENGTH_LONG);
+                        toast.setView(layout);
+                        toast.show();
                     }
                 }
         ){
