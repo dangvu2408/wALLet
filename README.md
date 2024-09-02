@@ -116,7 +116,7 @@ Bảng `userdatas`:
 | description | varchar(255) | utf8_general_ci | Không | Không | |
 | userid | varchar(255) | utf8_general_ci | Không | Không | **Foreign Key** |
 | userfullname | varchar(255) | utf8_general_ci | Không | Không | |
-| id_transaction | varchar(255) | utf8_general_ci | Không | Không |  **Primary Key**<br>  **AUTO_INCREMENT** |
+| id_transaction | int(11) |  | Không | Không |  **Primary Key**<br>  **AUTO_INCREMENT** |
 
 Quan hệ giữa hai bảng được thể hiện qua ER Diagram như sau: 
 
