@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -71,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> userDataLogin;
     private ArrayList<TransModel> userTransData;
     private String jsonUserValue = "";
+    private String userusername, userfullname;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
         View header = navView.getHeaderView(0);
         ImageView close = header.findViewById(R.id.close_nav);
         TextView username_en = header.findViewById(R.id.username_en);
+        LinearLayout user_profile = header.findViewById(R.id.user_profile);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
@@ -96,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
 
         String phone_user = getIntent().getStringExtra("key_data");
         Bundle bundle = new Bundle();
@@ -113,6 +117,9 @@ public class MainActivity extends AppCompatActivity {
                 String dob = userDataLogin.get(3);
                 String gender = userDataLogin.get(4);
 
+                userusername = username;
+                userfullname = fullname;
+
                 username_en.setText(fullname.toUpperCase());
 
                 bundle.putString("key_username_data", username);
@@ -122,6 +129,20 @@ public class MainActivity extends AppCompatActivity {
                 bundle.putString("key_gender_data", gender);
             }
         });
+
+        user_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, UserProfileActivity.class);
+                intent.putExtra("key_username_a", userusername);
+                intent.putExtra("key_fullname_a", userfullname);
+                Log.d("USER PROFILE DEBUG", "String test 01: " + userusername + " " + userfullname);
+                startActivity(intent);
+                overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
+            }
+        });
+
+
 
         getTransData(Constants.BASE_URL_GET_TRANSACTION_DATA, phone_user, new DataCallbackTrans() {
             @Override

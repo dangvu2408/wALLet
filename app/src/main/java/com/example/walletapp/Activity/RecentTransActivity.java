@@ -79,64 +79,66 @@ public class RecentTransActivity extends AppCompatActivity {
         });
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, d 'tháng' M, yyyy", new Locale("vi", "VN"));
 
-        ArrayList<TransModel> sortedDayList = new ArrayList<>(queryList);
-        Collections.sort(sortedDayList, new Comparator<TransModel>() {
-            @Override
-            public int compare(TransModel o1, TransModel o2) {
-                LocalDate date1 = LocalDate.parse(o1.getDateTrans(), formatter);
-                LocalDate date2 = LocalDate.parse(o2.getDateTrans(), formatter);
-                return date2.compareTo(date1);
+        if (queryList != null) {
+            ArrayList<TransModel> sortedDayList = new ArrayList<>(queryList);
+            Collections.sort(sortedDayList, new Comparator<TransModel>() {
+                @Override
+                public int compare(TransModel o1, TransModel o2) {
+                    LocalDate date1 = LocalDate.parse(o1.getDateTrans(), formatter);
+                    LocalDate date2 = LocalDate.parse(o2.getDateTrans(), formatter);
+                    return date2.compareTo(date1);
+                }
+            });
+
+            sortedDayAdapter = new EditTransactionAdapter(this, sortedDayList);
+            current_transaction.setAdapter(sortedDayAdapter);
+            sortedDayAdapter.notifyDataSetChanged();
+            HeightUtils.setListViewHeight(current_transaction);
+            if (current_transaction.getLayoutParams().height == 10) {
+                no_data_current_trans.setVisibility(View.VISIBLE);
+            } else {
+                no_data_current_trans.setVisibility(View.GONE);
             }
-        });
 
-        sortedDayAdapter = new EditTransactionAdapter(this, sortedDayList);
-        current_transaction.setAdapter(sortedDayAdapter);
-        sortedDayAdapter.notifyDataSetChanged();
-        HeightUtils.setListViewHeight(current_transaction);
-        if (current_transaction.getLayoutParams().height == 10) {
-            no_data_current_trans.setVisibility(View.VISIBLE);
-        } else {
-            no_data_current_trans.setVisibility(View.GONE);
-        }
+            LocalDate today = LocalDate.now();
+            LocalDate localBegin = today.withDayOfMonth(1);
+            DateTimeFormatter formatDay = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            String beginDay = localBegin.format(formatDay);
+            LocalDate localEnd = today.with(TemporalAdjusters.lastDayOfMonth());
+            String endDay = localEnd.format(formatDay);
+            LocalDate chartBeginDay = LocalDate.parse(beginDay, formatDay);
+            LocalDate chartEndDay = LocalDate.parse(endDay, formatDay);
 
-        LocalDate today = LocalDate.now();
-        LocalDate localBegin = today.withDayOfMonth(1);
-        DateTimeFormatter formatDay = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String beginDay = localBegin.format(formatDay);
-        LocalDate localEnd = today.with(TemporalAdjusters.lastDayOfMonth());
-        String endDay = localEnd.format(formatDay);
-        LocalDate chartBeginDay = LocalDate.parse(beginDay, formatDay);
-        LocalDate chartEndDay = LocalDate.parse(endDay, formatDay);
-
-        int currentMonthValue = today.getMonthValue();
-        current_month.setText("Dòng tiền tháng " + currentMonthValue);
+            int currentMonthValue = today.getMonthValue();
+            current_month.setText("Dòng tiền tháng " + currentMonthValue);
 
 
-        for (TransModel item : queryList) {
-            LocalDate itemDate = item.getDateAsLocalDate();
-            if ((itemDate.isEqual(chartBeginDay) || itemDate.isAfter(chartBeginDay)) &&
-                    (itemDate.isEqual(chartEndDay) || itemDate.isBefore(chartEndDay))) {
-                if (item.getTypeTrans().equals("revenue_money")) {
-                    String finalString = item.getMoneyTrans().replace(",", "");
-                    inputMoney = inputMoney.add(new BigDecimal(finalString));
-                } else if (item.getTypeTrans().equals("expense_money")) {
-                    String finalString = item.getMoneyTrans().replace(",", "");
-                    outputMoney = outputMoney.subtract(new BigDecimal(finalString));
-                } else if (item.getTypeTrans().equals("percentage_money")) {
-                    if (item.getDetailTypeTrans().equals("Trả lãi")) {
-                        String finalString = item.getMoneyTrans().replace(",", "");
-                        outputMoney = outputMoney.subtract(new BigDecimal(finalString));
-                    } else if (item.getDetailTypeTrans().equals("Thu lãi")) {
+            for (TransModel item : queryList) {
+                LocalDate itemDate = item.getDateAsLocalDate();
+                if ((itemDate.isEqual(chartBeginDay) || itemDate.isAfter(chartBeginDay)) &&
+                        (itemDate.isEqual(chartEndDay) || itemDate.isBefore(chartEndDay))) {
+                    if (item.getTypeTrans().equals("revenue_money")) {
                         String finalString = item.getMoneyTrans().replace(",", "");
                         inputMoney = inputMoney.add(new BigDecimal(finalString));
-                    }
-                } else if (item.getTypeTrans().equals("loan_money")) {
-                    if (item.getDetailTypeTrans().equals("Cho vay") || item.getDetailTypeTrans().equals("Trả nợ")) {
+                    } else if (item.getTypeTrans().equals("expense_money")) {
                         String finalString = item.getMoneyTrans().replace(",", "");
                         outputMoney = outputMoney.subtract(new BigDecimal(finalString));
-                    } else if (item.getDetailTypeTrans().equals("Đi vay") || item.getDetailTypeTrans().equals("Thu nợ")) {
-                        String finalString = item.getMoneyTrans().replace(",", "");
-                        inputMoney = inputMoney.add(new BigDecimal(finalString));
+                    } else if (item.getTypeTrans().equals("percentage_money")) {
+                        if (item.getDetailTypeTrans().equals("Trả lãi")) {
+                            String finalString = item.getMoneyTrans().replace(",", "");
+                            outputMoney = outputMoney.subtract(new BigDecimal(finalString));
+                        } else if (item.getDetailTypeTrans().equals("Thu lãi")) {
+                            String finalString = item.getMoneyTrans().replace(",", "");
+                            inputMoney = inputMoney.add(new BigDecimal(finalString));
+                        }
+                    } else if (item.getTypeTrans().equals("loan_money")) {
+                        if (item.getDetailTypeTrans().equals("Cho vay") || item.getDetailTypeTrans().equals("Trả nợ")) {
+                            String finalString = item.getMoneyTrans().replace(",", "");
+                            outputMoney = outputMoney.subtract(new BigDecimal(finalString));
+                        } else if (item.getDetailTypeTrans().equals("Đi vay") || item.getDetailTypeTrans().equals("Thu nợ")) {
+                            String finalString = item.getMoneyTrans().replace(",", "");
+                            inputMoney = inputMoney.add(new BigDecimal(finalString));
+                        }
                     }
                 }
             }
