@@ -13,7 +13,7 @@ git clone https://github.com/dangvu2408/wALLet.git
 ``` 
 Trong file `Constans.java` có đường dẫn `app\src\main\java\com\example\walletapp\Constants.java`, chỉnh sửa IP của localhost:
 ```
-public static final String BASE_IP = "192.168.1.139";
+public static final String BASE_IP = "192.168.100.171";
 ```
 Tiến hành chạy ứng dụng trên thiết bị Android của bạn, khuyến khích sử dụng Android Studio để build app. 
 
