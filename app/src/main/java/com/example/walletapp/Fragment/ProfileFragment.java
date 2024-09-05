@@ -19,6 +19,7 @@ import com.example.walletapp.Activity.LoginActivity;
 import com.example.walletapp.Activity.RecentTransActivity;
 import com.example.walletapp.Activity.UpdatingActivity;
 import com.example.walletapp.Adapter.GridItemsSettingAdapter;
+import com.example.walletapp.Adapter.GridItemsSettingOthersAdapter;
 import com.example.walletapp.Model.GridItem;
 import com.example.walletapp.R;
 import com.example.walletapp.Utils.HeightUtils;
@@ -51,6 +52,7 @@ public class ProfileFragment extends Fragment {
         listSetting.add(new GridItem(R.drawable.shield, "Đăng nhập và bảo mật"));
         listSetting.add(new GridItem(R.drawable.bell, "Cài đặt thông báo"));
         listSetting.add(new GridItem(R.drawable.usercheck, "Chỉnh sửa thông tin"));
+
         listOthers.add(new GridItem(R.drawable.dollarsign, "Tỉ giá ngoại tệ"));
         listOthers.add(new GridItem(R.drawable.airplay, "Thông tin chung"));
 
@@ -59,7 +61,7 @@ public class ProfileFragment extends Fragment {
 
 
         GridItemsSettingAdapter adapter01 = new GridItemsSettingAdapter(this.getContext(), listSetting);
-        GridItemsSettingAdapter adapter02 = new GridItemsSettingAdapter(this.getContext(), listOthers);
+        GridItemsSettingOthersAdapter adapter02 = new GridItemsSettingOthersAdapter(this.getContext(), listOthers);
         grid_setting.setAdapter(adapter01);
         grid_others.setAdapter(adapter02);
         HeightUtils.setGridViewHeight(grid_setting, 1);

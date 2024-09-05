@@ -15,18 +15,29 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.example.walletapp.Adapter.UserInfoItemAdapter;
+import com.example.walletapp.Model.UserInfoModel;
 import com.example.walletapp.R;
+import com.example.walletapp.Utils.HeightUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserProfileActivity extends AppCompatActivity {
     private ImageView back_btn, home;
-    private String username, full_name;
+    private String username, full_name, dateofbirth, gender;
     private TextView user_full_name, userid;
+    private ListView full_acc_info;
+    private LinearLayout on_click_user_display;
+    private ImageView more_user_info_icon;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,9 +52,36 @@ public class UserProfileActivity extends AppCompatActivity {
         back_btn = findViewById(R.id.back_btn);
         user_full_name = findViewById(R.id.user_full_name);
         userid = findViewById(R.id.userid);
+        full_acc_info = findViewById(R.id.full_acc_info);
+        on_click_user_display = findViewById(R.id.on_click_user_display);
+        more_user_info_icon = findViewById(R.id.more_user_info_icon);
 
         username = getIntent().getStringExtra("key_username_a");
         full_name = getIntent().getStringExtra("key_fullname_a");
+        dateofbirth = getIntent().getStringExtra("key_dateofbirth_a");
+        gender = getIntent().getStringExtra("key_gender_a");
+
+        List<UserInfoModel> model = new ArrayList<>();
+
+        model.add(new UserInfoModel("Họ tên", full_name));
+        model.add(new UserInfoModel("Số điện thoại", username));
+        model.add(new UserInfoModel("Ngày sinh", dateofbirth));
+        model.add(new UserInfoModel("Giới tính", gender));
+
+        UserInfoItemAdapter adapter = new UserInfoItemAdapter(this, model);
+        full_acc_info.setAdapter(adapter);
+        HeightUtils.setListViewHeight(full_acc_info);
+
+        on_click_user_display.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                full_acc_info.setVisibility(View.VISIBLE);
+                more_user_info_icon.setRotation(180);
+            }
+        });
+
+
+
         Log.d("USER PROFILE DEBUG", "String test 02: " + username + " " + full_name);
 
         user_full_name.setText(full_name);

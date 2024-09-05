@@ -58,7 +58,6 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
                 <com.google.android.material.imageview.ShapeableImageView
                     android:layout_width="70dp"
                     android:layout_height="70dp"
@@ -95,12 +94,49 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/userid"
-                        android:layout_marginBottom="20dp"
+                        android:layout_marginBottom="10dp"
                         android:text="User ID: 0123456789"
                         android:fontFamily="@font/averta_semibold"
                         android:textSize="18sp"
                         android:textColor="@color/black"
                         android:textAlignment="center"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="@drawable/itemsbackground"
+                        android:padding="10dp"
+                        android:id="@+id/on_click_user_display"
+                        android:layout_margin="10dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:id="@+id/total_balance"
+                                android:text="Hiển thị thông tin cá nhân"
+                                android:fontFamily="@font/averta_semibold"
+                                android:textSize="18sp"
+                                android:layout_gravity="center_vertical"
+                                android:textColor="@color/black"/>
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/downicon"
+                                android:id="@+id/more_user_info_icon"
+                                android:layout_gravity="center"/>
+                        </LinearLayout>
+                        <ListView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:scrollbars="none"
+                            android:id="@+id/full_acc_info"
+                            android:visibility="gone"/>
+                    </LinearLayout>
                 </LinearLayout>
             </RelativeLayout>
         </LinearLayout>

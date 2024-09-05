@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> userDataLogin;
     private ArrayList<TransModel> userTransData;
     private String jsonUserValue = "";
-    private String userusername, userfullname;
+    private String userusername, userfullname, dateofbirth, usergender;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,6 +119,8 @@ public class MainActivity extends AppCompatActivity {
 
                 userusername = username;
                 userfullname = fullname;
+                dateofbirth = dob;
+                usergender = gender;
 
                 username_en.setText(fullname.toUpperCase());
 
@@ -136,6 +138,8 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, UserProfileActivity.class);
                 intent.putExtra("key_username_a", userusername);
                 intent.putExtra("key_fullname_a", userfullname);
+                intent.putExtra("key_dateofbirth_a", dateofbirth);
+                intent.putExtra("key_gender_a", usergender);
                 Log.d("USER PROFILE DEBUG", "String test 01: " + userusername + " " + userfullname);
                 startActivity(intent);
                 overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
