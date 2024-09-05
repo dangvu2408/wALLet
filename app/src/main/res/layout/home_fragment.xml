@@ -86,6 +86,7 @@
                                     android:layout_marginBottom="5dp"
                                     app:shapeAppearanceOverlay="@style/roundedImg"
                                     android:layout_centerVertical="true"/>
+
                                 <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"

@@ -66,7 +66,7 @@
                     app:strokeColor="@color/main_color_04"
                     app:strokeWidth="2dp"
                     android:padding="5dp"
-                    android:translationZ="8dp"
+                    android:translationZ="1dp"
                     app:shapeAppearanceOverlay="@style/roundedImg"
                     android:layout_centerHorizontal="true"/>
                 <LinearLayout
@@ -76,7 +76,6 @@
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:translationZ="5dp"
                     android:orientation="vertical"
                     android:background="@drawable/button_background">
                     <TextView
@@ -120,12 +119,12 @@
                                 android:id="@+id/total_balance"
                                 android:text="Hiển thị thông tin cá nhân"
                                 android:fontFamily="@font/averta_semibold"
-                                android:textSize="18sp"
+                                android:textSize="20sp"
                                 android:layout_gravity="center_vertical"
                                 android:textColor="@color/black"/>
                             <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
                                 android:src="@drawable/downicon"
                                 android:id="@+id/more_user_info_icon"
                                 android:layout_gravity="center"/>
@@ -137,8 +136,19 @@
                             android:id="@+id/full_acc_info"
                             android:visibility="gone"/>
                     </LinearLayout>
+
                 </LinearLayout>
+
             </RelativeLayout>
+            <GridView
+                android:id="@+id/gridview_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:gravity="center"
+                android:numColumns="1"
+                android:scrollbars="none"
+                android:listSelector="@android:color/transparent"/>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

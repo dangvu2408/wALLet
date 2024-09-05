@@ -9,8 +9,8 @@
     android:paddingBottom="10dp"
     android:gravity="center_vertical">
     <ImageView
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
         android:layout_margin="5dp"
         android:src="@drawable/shield"
         android:id="@+id/icon_setting_item"/>

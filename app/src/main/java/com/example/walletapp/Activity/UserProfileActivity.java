@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -23,7 +24,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.example.walletapp.Adapter.GridItemsProfileAdapter;
 import com.example.walletapp.Adapter.UserInfoItemAdapter;
+import com.example.walletapp.Model.GridItem;
 import com.example.walletapp.Model.UserInfoModel;
 import com.example.walletapp.R;
 import com.example.walletapp.Utils.HeightUtils;
@@ -38,6 +41,8 @@ public class UserProfileActivity extends AppCompatActivity {
     private ListView full_acc_info;
     private LinearLayout on_click_user_display;
     private ImageView more_user_info_icon;
+    private boolean isShown;
+    private GridView gridview_profile;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,6 +60,8 @@ public class UserProfileActivity extends AppCompatActivity {
         full_acc_info = findViewById(R.id.full_acc_info);
         on_click_user_display = findViewById(R.id.on_click_user_display);
         more_user_info_icon = findViewById(R.id.more_user_info_icon);
+        gridview_profile = findViewById(R.id.gridview_profile);
+
 
         username = getIntent().getStringExtra("key_username_a");
         full_name = getIntent().getStringExtra("key_fullname_a");
@@ -72,13 +79,30 @@ public class UserProfileActivity extends AppCompatActivity {
         full_acc_info.setAdapter(adapter);
         HeightUtils.setListViewHeight(full_acc_info);
 
+        List<GridItem> listSetting = new ArrayList<>();
+        listSetting.add(new GridItem(R.drawable.eidt_3, "Chỉnh sửa thông tin cá nhân"));
+        listSetting.add(new GridItem(R.drawable.repeat, "Thay đổi mật khẩu"));
+        GridItemsProfileAdapter adapter1 = new GridItemsProfileAdapter(this, listSetting);
+        gridview_profile.setAdapter(adapter1);
+        HeightUtils.setGridViewHeight(gridview_profile, 1);
+
+
         on_click_user_display.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                full_acc_info.setVisibility(View.VISIBLE);
-                more_user_info_icon.setRotation(180);
+                if (!isShown) {
+                    full_acc_info.setVisibility(View.VISIBLE);
+                    more_user_info_icon.setRotation(180);
+                    isShown = true;
+                } else {
+                    more_user_info_icon.setRotation(0);
+                    full_acc_info.setVisibility(View.GONE);
+                    isShown = false;
+                }
+
             }
         });
+
 
 
 

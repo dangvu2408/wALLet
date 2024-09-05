@@ -40,22 +40,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/background002" />
+                    android:src="@drawable/bgr_scale" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_marginTop="40dp"
                     android:gravity="center_horizontal">
+
                     <TextView
+                        android:id="@+id/user_full_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/user_full_name"
-                        android:text="Nguyễn Văn A"
                         android:fontFamily="@font/averta_bold"
-                        android:textSize="24sp"
+                        android:text="Nguyễn Văn A"
+                        android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textAlignment="center"/>
+                        android:textSize="24sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </RelativeLayout>
