@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:background="@color/color_theme_2"
+        android:translationZ="5dp"
+        android:id="@+id/layout_hidden"
+        android:gravity="center_vertical">
+        <ImageView
+            android:layout_width="50dp"
+            android:paddingBottom="18dp"
+            android:paddingTop="18dp"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/back"
+            android:id="@+id/back_btn"
+            android:layout_centerVertical="true"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="Tỉ giá ngoại tệ"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:fontFamily="@font/averta_bold"
+            android:textSize="22sp"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="70dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tỉ giá hối đoái"
+                android:fontFamily="@font/averta_bold"
+                android:textSize="22sp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/black"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/api_vietcombank"
+                android:fontFamily="@font/averta_regular"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:justificationMode="inter_word"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/exchange_list"
+                    android:scrollbars="none"
+                    android:divider="@color/color_02"
+                    android:dividerHeight="1dp"
+                    android:nestedScrollingEnabled="true"/>
+                <ProgressBar
+                    android:layout_width="150dp"
+                    android:paddingTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/progress_exchange"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_centerInParent="true"
+                    android:indeterminate="true"
+                    android:indeterminateTint="@color/main_color_01"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

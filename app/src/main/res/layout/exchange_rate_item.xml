@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingRight="5dp"
+    android:paddingLeft="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_02"
+                android:fontFamily="@font/averta_regular"
+                android:text="Loại tiền tệ"
+                android:textSize="15sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="bottom"
+                android:textColor="@color/main_color_01"
+                android:fontFamily="@font/averta_bold"
+                android:id="@+id/currencyCode"
+                android:text="USD"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:textSize="18sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_02"
+                android:fontFamily="@font/averta_regular"
+                android:text="Giá mua"
+                android:textSize="15sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="bottom"
+                android:textColor="@color/main_color_01"
+                android:fontFamily="@font/averta_bold"
+                android:id="@+id/buyMoney"
+                android:text="24,550.00"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:textSize="18sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:textColor="@color/color_02"
+                android:fontFamily="@font/averta_regular"
+                android:text="Giá chuyển khoản"
+                android:gravity="center_vertical"
+                android:textSize="15sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/main_color_01"
+                android:fontFamily="@font/averta_bold"
+                android:id="@+id/transferMoney"
+                android:text="24,580.00"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:textSize="18sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_02"
+                android:fontFamily="@font/averta_regular"
+                android:text="Giá bán"
+                android:gravity="center_vertical"
+                android:textSize="15sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/main_color_01"
+                android:layout_weight="1"
+                android:gravity="bottom"
+                android:fontFamily="@font/averta_bold"
+                android:id="@+id/sellMoney"
+                android:text="24,920.00"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:textSize="18sp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -97,6 +97,12 @@
             android:screenOrientation="portrait">
         </activity>
 
+        <activity
+            android:name=".Activity.ExchangeRateActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+        </activity>
+
         <activity android:name=".Activity.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait">
