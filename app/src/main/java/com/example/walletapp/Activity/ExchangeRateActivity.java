@@ -5,12 +5,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Xml;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -78,8 +80,6 @@ public class ExchangeRateActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.close_in, R.anim.close_out);
             }
         });
-
-
     }
 
     private void exchangeData(String url) {
@@ -92,6 +92,12 @@ public class ExchangeRateActivity extends AppCompatActivity {
                             parseXMLResponse(response);
                         } catch (XmlPullParserException | IOException e) {
                             Log.d("EXCHANGE RATE", "Error 1: " + e.getMessage());
+                            LayoutInflater inflater = getLayoutInflater();
+                            View layout = inflater.inflate(R.layout.custom_toast_15, null);
+                            Toast toast = new Toast(ExchangeRateActivity.this);
+                            toast.setDuration(Toast.LENGTH_LONG);
+                            toast.setView(layout);
+                            toast.show();
                         }
                         progress_exchange.setVisibility(View.GONE);
                     }
@@ -100,6 +106,12 @@ public class ExchangeRateActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.d("EXCHANGE RATE", "Error 2: " + error.getMessage());
+                        LayoutInflater inflater = getLayoutInflater();
+                        View layout = inflater.inflate(R.layout.custom_toast_14, null);
+                        Toast toast = new Toast(ExchangeRateActivity.this);
+                        toast.setDuration(Toast.LENGTH_LONG);
+                        toast.setView(layout);
+                        toast.show();
                     }
                 }
             );
@@ -145,5 +157,11 @@ public class ExchangeRateActivity extends AppCompatActivity {
         }
         adapter.notifyDataSetChanged();
         HeightUtils.setListViewHeight(exchange_list);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.close_in, R.anim.close_out);
     }
 }

@@ -51,7 +51,7 @@ public class ProfileFragment extends Fragment {
         List<GridItem> listOthers = new ArrayList<>();
         listSetting.add(new GridItem(R.drawable.shield, "Đăng nhập và bảo mật"));
         listSetting.add(new GridItem(R.drawable.bell, "Cài đặt thông báo"));
-        listSetting.add(new GridItem(R.drawable.usercheck, "Chỉnh sửa thông tin"));
+        listSetting.add(new GridItem(R.drawable.usercheck, "Chỉnh sửa thông tin cá nhân"));
 
         listOthers.add(new GridItem(R.drawable.dollarsign, "Tỉ giá ngoại tệ"));
         listOthers.add(new GridItem(R.drawable.airplay, "Thông tin chung"));
