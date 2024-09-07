@@ -113,9 +113,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Không có giao dịch nào"
+                            android:text="@string/empty_balance_1"
                             android:fontFamily="@font/averta_semibold"
-                            android:textSize="18sp"
+                            android:textSize="16sp"
                             android:textColor="@color/black"
                             android:textAlignment="center"/>
                     </LinearLayout>
@@ -125,6 +125,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/trans_high_type"
+                        android:divider="@android:color/transparent"
+                        android:dividerHeight="5dp"
                         android:scrollbars="none"
                         android:nestedScrollingEnabled="true"/>
                 </LinearLayout>
@@ -134,7 +136,46 @@
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
                 android:background="@drawable/outline_blue"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Giao dịch có giá trị lớn"
+                android:fontFamily="@font/averta_bold"
+                android:textColor="@color/black"
+                android:textSize="21sp"
+                android:paddingTop="10dp"
+                android:paddingBottom="5dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/no_data_high_notype"
+                android:gravity="center_horizontal"
+                android:padding="10dp">
+                <ImageView
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:src="@drawable/emptybox"
+                    android:layout_margin="10dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Không có giao dịch nào"
+                    android:fontFamily="@font/averta_semibold"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"/>
+            </LinearLayout>
 
+
+            <ListView
+                android:id="@+id/trans_high_notype"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="true"
+                android:scrollbars="none"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="5dp"/>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

@@ -24,122 +24,136 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/login_background"
-        android:elevation="5dp"
         android:orientation="vertical"
-        android:paddingTop="10dp">
-
+        android:layout_centerInParent="true">
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:fontFamily="@font/averta_bold"
-            android:paddingBottom="10dp"
-            android:text="Tạo tài khoản mới"
-            android:textColor="@color/black"
-            android:textSize="27sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:fontFamily="@font/averta_semibold"
-            android:paddingBottom="5dp"
-            android:text="Nhập mã OTP"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:id="@+id/otp_phone_number"
-            android:fontFamily="@font/averta_semibold"
-            android:layout_gravity="center_horizontal"
-            android:textAlignment="center"
-            android:text="@string/description_otp"
-            android:textColor="@color/main_color_01"
-            android:textSize="18sp"
-            android:paddingBottom="15dp"
-            android:paddingTop="10dp"/>
-
-        <com.chaos.view.PinView
-            android:id="@+id/firstPinView"
-            android:layout_gravity="center_horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:cursorVisible="true"
-            android:inputType="number"
-            android:textSize="22sp"
-            android:textColor="@color/main_color_01"
-            android:fontFamily="@font/averta_bold"
-            style="@style/PinWidget.PinView"
-            app:cursorWidth="2dp"
-            app:cursorColor="@color/main_color_01"
-            app:hideLineWhenFilled="true"
-            app:itemCount="6"
-            app:itemHeight="30dp"
-            app:itemRadius="3dp"
-            app:itemSpacing="10dp"
-            app:itemWidth="30dp"
-            app:lineWidth="1dp"
-            app:viewType="rectangle"
-            app:lineColor="@color/main_color_01"/>
-
-        <TextView
-            android:id="@+id/countdown_time_otp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:fontFamily="@font/averta_semibold"
-            android:paddingTop="15dp"
-            android:paddingBottom="5dp"
-            android:text="@string/countdown_time_otp"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:id="@+id/resend_otp"
-            android:fontFamily="@font/averta_semibold"
-            android:layout_gravity="center_horizontal"
-            android:textAlignment="center"
-            android:text="@string/resend_otp"
-            android:textColor="@color/main_color_01"
-            android:textSize="18sp"
-            android:paddingTop="5dp"
-            android:paddingBottom="15dp"/>
-
-        <LinearLayout
-            android:id="@+id/next_to_pass_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/login_btn_background">
+            android:text="@string/opt_not_working"
+            android:fontFamily="@font/averta_regular_italic"
+            android:textAlignment="center"
+            android:textColor="@color/color_02"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/login_background"
+            android:elevation="5dp"
+            android:orientation="vertical"
+            android:paddingTop="10dp">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/averta_bold"
+                android:paddingBottom="10dp"
+                android:text="Tạo tài khoản mới"
+                android:textColor="@color/black"
+                android:textSize="27sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/averta_semibold"
+                android:paddingBottom="5dp"
+                android:text="Nhập mã OTP"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/otp_phone_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/averta_semibold"
+                android:paddingTop="10dp"
+                android:paddingBottom="15dp"
+                android:text="@string/description_otp"
+                android:textAlignment="center"
+                android:textColor="@color/main_color_01"
+                android:textSize="18sp" />
+
+            <com.chaos.view.PinView
+                android:id="@+id/firstPinView"
+                style="@style/PinWidget.PinView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:cursorVisible="true"
+                android:fontFamily="@font/averta_bold"
+                android:inputType="number"
+                android:textColor="@color/main_color_01"
+                android:textSize="22sp"
+                app:cursorColor="@color/main_color_01"
+                app:cursorWidth="2dp"
+                app:hideLineWhenFilled="true"
+                app:itemCount="6"
+                app:itemHeight="30dp"
+                app:itemRadius="3dp"
+                app:itemSpacing="10dp"
+                app:itemWidth="30dp"
+                app:lineColor="@color/main_color_01"
+                app:lineWidth="1dp"
+                app:viewType="rectangle" />
+
+            <TextView
+                android:id="@+id/countdown_time_otp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/averta_semibold"
+                android:paddingTop="15dp"
+                android:paddingBottom="5dp"
+                android:text="@string/countdown_time_otp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/resend_otp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/averta_semibold"
+                android:paddingTop="5dp"
+                android:paddingBottom="15dp"
+                android:text="@string/resend_otp"
+                android:textAlignment="center"
+                android:textColor="@color/main_color_01"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:id="@+id/next_to_pass_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/averta_bold"
-                android:padding="15dp"
-                android:text="Tiếp tục"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:background="@drawable/login_btn_background">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/averta_bold"
+                    android:padding="15dp"
+                    android:text="Tiếp tục"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
