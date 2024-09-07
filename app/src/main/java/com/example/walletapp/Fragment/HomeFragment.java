@@ -1,5 +1,7 @@
 package com.example.walletapp.Fragment;
 
+import static java.lang.Math.abs;
+
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -30,6 +32,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.walletapp.Activity.HighestTransActivity;
 import com.example.walletapp.Activity.LoginActivity;
 import com.example.walletapp.Activity.RecentTransActivity;
 import com.example.walletapp.Activity.SplashActivity;
@@ -66,10 +69,12 @@ import java.util.Locale;
 public class HomeFragment extends Fragment {
     private boolean isOverlayVisible = false;
     private Context context;
-    QueryTransactionAdapter sortedDayAdapter, sortedMostAdapter;
+    private QueryTransactionAdapter sortedDayAdapter, sortedMostAdapter;
     private ArrayList<TransModel> sortedDayList, sortedMostList;
     private ArrayList<TransModel> userTransData;
     private TextView eye_balance, view_all_1, view_all_2, total_balance, user_full_name, more_detail;
+    private TextView des_title_trans, percent_moving;
+    private ImageView arrow_direct;
     private LinearLayout no_data_current, no_data;
     private ListView currently, most_balance;
     private ImageView menu_top1, eye_view;
@@ -99,6 +104,10 @@ public class HomeFragment extends Fragment {
         total_balance = view.findViewById(R.id.total_balance);
         more_detail = view.findViewById(R.id.more_detail);
         user_full_name = view.findViewById(R.id.user_full_name);
+        des_title_trans = view.findViewById(R.id.des_title_trans);
+        percent_moving = view.findViewById(R.id.percent_moving);
+        arrow_direct = view.findViewById(R.id.arrow_direct);
+
         this.context = getContext();
         this.userTransData = new ArrayList<>();
         this.userTransData = getArguments().getParcelableArrayList("trans_data_key"); //important
@@ -158,11 +167,25 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        view_all_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), HighestTransActivity.class);
+                intent.putExtra("key_trans_data", userTransData);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
+            }
+        });
+
         Button btn_total_revenue = view.findViewById(R.id.total_revenue);
         Button btn_total_expense = view.findViewById(R.id.total_expense);
         btn_total_expense.setBackgroundColor(0xffE5EDF4);
         btn_total_revenue.setBackgroundColor(0xffE5EDF4);
         BarChart balance_bar = view.findViewById(R.id.balance_bar_chart);
+
+        des_title_trans.setText("Hiển thị thống kê dòng tiền vào/ra");
+        percent_moving.setVisibility(View.GONE);
+        arrow_direct.setVisibility(View.GONE);
 
         ArrayList<BarEntry> revenue = new ArrayList<>();
         revenue.add(new BarEntry(0f, 0f));
@@ -237,6 +260,25 @@ public class HomeFragment extends Fragment {
                 btn_total_revenue.setBackgroundResource(R.drawable.outline_green);
                 btn_total_expense.setBackgroundColor(0xffE5EDF4);
 
+                des_title_trans.setText("Tổng tiền vào tháng này: ");
+                float percent;
+                String result;
+                if (inputMoneyLast.floatValue() != 0) {
+                    percent = inputMoney.floatValue() / inputMoneyLast.floatValue() * 100;
+                } else {
+                    percent = 100;
+                }
+                arrow_direct.setVisibility(View.VISIBLE);
+                if (percent - 100 >= 0) {
+                    arrow_direct.setImageResource(R.drawable.arrow_up_circle_blue);
+                } else {
+                    arrow_direct.setImageResource(R.drawable.arrow_down_circle_blue);
+                }
+                result = String.format("%.1f", abs(percent - 100));
+                percent_moving.setVisibility(View.VISIBLE);
+                percent_moving.setText(result + "%");
+                percent_moving.setTextColor(0xFF279CC5);
+
                 ArrayList<BarEntry> revenue = new ArrayList<>();
                 revenue.add(new BarEntry(0f, inputMoneyLast.floatValue()));
                 revenue.add(new BarEntry(1f, inputMoney.floatValue()));
@@ -282,9 +324,28 @@ public class HomeFragment extends Fragment {
                 btn_total_expense.setBackgroundResource(R.drawable.outline_red);
                 btn_total_revenue.setBackgroundColor(0xffE5EDF4);
 
+                des_title_trans.setText("Tổng tiền ra tháng này: ");
+                float percent;
+                String result;
+                if (outputMoneyLast.floatValue() != 0) {
+                    percent = outputMoney.floatValue() / outputMoneyLast.floatValue() * 100;
+                } else {
+                    percent = 100;
+                }
+                arrow_direct.setVisibility(View.VISIBLE);
+                if (percent - 100 >= 0) {
+                    arrow_direct.setImageResource(R.drawable.arrow_up_circle_red);
+                } else {
+                    arrow_direct.setImageResource(R.drawable.arrow_down_circle_red);
+                }
+                result = String.format("%.1f", abs(percent - 100));
+                percent_moving.setVisibility(View.VISIBLE);
+                percent_moving.setText(result + "%");
+                percent_moving.setTextColor(0xFFE45B65);
+
                 ArrayList<BarEntry> expense = new ArrayList<>();
-                expense.add(new BarEntry(0f, Math.abs(outputMoneyLast.floatValue())));
-                expense.add(new BarEntry(1f, Math.abs(outputMoney.floatValue())));
+                expense.add(new BarEntry(0f, abs(outputMoneyLast.floatValue())));
+                expense.add(new BarEntry(1f, abs(outputMoney.floatValue())));
                 ArrayList<String> months = new ArrayList<>();
                 months.add("Tháng trước");
                 months.add("Tháng này");

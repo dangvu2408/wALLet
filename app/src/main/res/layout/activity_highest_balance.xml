@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Activity.AddExpenseActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:background="@color/color_theme_2"
+        android:translationZ="5dp"
+        android:id="@+id/layout_hidden"
+        android:gravity="center_vertical">
+        <ImageView
+            android:layout_width="50dp"
+            android:paddingBottom="18dp"
+            android:paddingTop="18dp"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/back"
+            android:id="@+id/back_btn"
+            android:layout_centerVertical="true"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="Giao dịch có giá trị lớn"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:fontFamily="@font/averta_bold"
+            android:textSize="22sp"/>
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="70dp"
+            android:paddingBottom="20dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Dòng tiền tháng này"
+                    android:id="@+id/current_month"
+                    android:fontFamily="@font/averta_bold"
+                    android:textColor="@color/black"
+                    android:textSize="21sp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="10dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingRight="10dp"
+                        android:paddingLeft="10dp">
+                        <Button
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/income_high"
+                            android:text="Tiền vào"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:background="@color/white"
+                            android:fontFamily="@font/averta_bold"/>
+                        <Button
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/comeout_high"
+                            android:text="Tiền ra"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:background="@color/white"
+                            android:fontFamily="@font/averta_bold"/>
+                    </LinearLayout>
+
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/high_balance_pie_chart"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginTop="10dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:id="@+id/no_data_high_trans"
+                        android:gravity="center_horizontal"
+                        android:padding="10dp">
+                        <ImageView
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:src="@drawable/emptybox"
+                            android:layout_margin="10dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Không có giao dịch nào"
+                            android:fontFamily="@font/averta_semibold"
+                            android:textSize="18sp"
+                            android:textColor="@color/black"
+                            android:textAlignment="center"/>
+                    </LinearLayout>
+
+
+                    <ListView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/trans_high_type"
+                        android:scrollbars="none"
+                        android:nestedScrollingEnabled="true"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@drawable/outline_blue"/>
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

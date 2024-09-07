@@ -305,6 +305,34 @@
                         android:id="@+id/balance_bar_chart"
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tổng tiền vào tháng này:"
+                            android:fontFamily="@font/averta_regular"
+                            android:id="@+id/des_title_trans"
+                            android:textSize="16sp"
+                            android:paddingRight="5dp"
+                            android:textColor="@color/black"/>
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:src="@drawable/arrow_up_circle_blue"
+                            android:id="@+id/arrow_direct"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="93%"
+                            android:fontFamily="@font/averta_bold"
+                            android:id="@+id/percent_moving"
+                            android:textSize="18sp"
+                            android:paddingLeft="5dp"/>
+                    </LinearLayout>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
