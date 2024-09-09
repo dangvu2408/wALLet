@@ -23,10 +23,15 @@ import java.util.List;
 public class GridItemsProfileAdapter extends ArrayAdapter<GridItem> {
     private Context context;
     private List<GridItem> listItems;
-    public GridItemsProfileAdapter(Context context, List<GridItem> listItems) {
+    private String fullname, dateofbirth, gender, username;
+    public GridItemsProfileAdapter(Context context, List<GridItem> listItems, String fullname, String dateofbirth, String gender, String username) {
         super(context, 0, listItems);
         this.context = context;
         this.listItems = listItems;
+        this.fullname = fullname;
+        this.dateofbirth = dateofbirth;
+        this.gender = gender;
+        this.username = username;
     }
 
     @NonNull
@@ -48,7 +53,12 @@ public class GridItemsProfileAdapter extends ArrayAdapter<GridItem> {
                 if (context != null) {
                     switch (position) {
                         case 0:
-                            context.startActivity(new Intent(context, EditUserDataActivity.class));
+                            Intent intent = new Intent(context, EditUserDataActivity.class);
+                            intent.putExtra("key_username_a", username);
+                            intent.putExtra("key_fullname_a", fullname);
+                            intent.putExtra("key_dateofbirth_a", dateofbirth);
+                            intent.putExtra("key_gender_a", gender);
+                            context.startActivity(intent);
                             ((Activity) context).overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
                             break;
                     }

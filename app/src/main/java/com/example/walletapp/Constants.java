@@ -11,6 +11,7 @@ public class Constants {
     public static final String BASE_URL_GET_TRANSACTION_DATA = "http://" + BASE_IP + "/wALLet_app/userGetTransactionData.php";
     public static final String BASE_URL_INSERT_TRANS_DATA = "http://" + BASE_IP + "/wALLet_app/insertTransactionData.php";
     public static final String BASE_URL_UPDATE_TRANS_DATA = "http://" + BASE_IP + "/wALLet_app/updateTransData.php";
+    public static final String BASE_URL_UPDATE_USER_DATA = "http://" + BASE_IP + "/wALLet_app/updateUserData.php";
     public static final String BASE_URL_DELETE_TRANS_DATA = "http://" + BASE_IP + "/wALLet_app/deleteTransData.php";
 
 

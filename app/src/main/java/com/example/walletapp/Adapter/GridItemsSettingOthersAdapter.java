@@ -22,10 +22,14 @@ import java.util.List;
 public class GridItemsSettingOthersAdapter extends ArrayAdapter<GridItem> {
     private Context context;
     private List<GridItem> listItems;
-    public GridItemsSettingOthersAdapter(Context context, List<GridItem> listItems) {
+    private String fullname, dateofbirth, gender;
+    public GridItemsSettingOthersAdapter(Context context, List<GridItem> listItems, String fullname, String dateofbirth, String gender) {
         super(context, 0, listItems);
         this.context = context;
         this.listItems = listItems;
+        this.fullname = fullname;
+        this.dateofbirth = dateofbirth;
+        this.gender = gender;
     }
 
     @NonNull

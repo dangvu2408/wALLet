@@ -82,7 +82,7 @@ public class UserProfileActivity extends AppCompatActivity {
         List<GridItem> listSetting = new ArrayList<>();
         listSetting.add(new GridItem(R.drawable.eidt_3, "Chỉnh sửa thông tin cá nhân"));
         listSetting.add(new GridItem(R.drawable.repeat, "Thay đổi mật khẩu"));
-        GridItemsProfileAdapter adapter1 = new GridItemsProfileAdapter(this, listSetting);
+        GridItemsProfileAdapter adapter1 = new GridItemsProfileAdapter(this, listSetting, full_name, dateofbirth, gender, username);
         gridview_profile.setAdapter(adapter1);
         HeightUtils.setGridViewHeight(gridview_profile, 1);
 

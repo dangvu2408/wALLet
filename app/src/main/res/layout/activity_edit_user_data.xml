@@ -76,7 +76,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:id="@+id/pick_day_now">
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
@@ -137,8 +138,8 @@
                 android:background="@drawable/bottomnavbackground"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"/>
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"/>
 
         </LinearLayout>
     </ScrollView>

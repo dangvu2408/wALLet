@@ -31,6 +31,7 @@ import java.util.List;
 public class ProfileFragment extends Fragment {
     private Button signout, update_data;
     private Context context;
+    private String fullname, dob, gender;
     public ProfileFragment() {}
     @Nullable
     @Override
@@ -44,7 +45,10 @@ public class ProfileFragment extends Fragment {
         update_data = view.findViewById(R.id.update_data);
         this.context = getContext();
 
-        user_fullname.setText(getArguments().getString("key_fullname_data"));
+        fullname = getArguments().getString("key_fullname_data");
+        dob = getArguments().getString("key_dob_data");
+        gender = getArguments().getString("key_gender_data");
+        user_fullname.setText(fullname);
 
 
         List<GridItem> listSetting = new ArrayList<>();
@@ -60,8 +64,8 @@ public class ProfileFragment extends Fragment {
         String str_password = getArguments().getString("key_password_data");
 
 
-        GridItemsSettingAdapter adapter01 = new GridItemsSettingAdapter(this.getContext(), listSetting);
-        GridItemsSettingOthersAdapter adapter02 = new GridItemsSettingOthersAdapter(this.getContext(), listOthers);
+        GridItemsSettingAdapter adapter01 = new GridItemsSettingAdapter(this.getContext(), listSetting, fullname, dob, gender, str_username);
+        GridItemsSettingOthersAdapter adapter02 = new GridItemsSettingOthersAdapter(this.getContext(), listOthers, fullname, dob, gender);
         grid_setting.setAdapter(adapter01);
         grid_others.setAdapter(adapter02);
         HeightUtils.setGridViewHeight(grid_setting, 1);
