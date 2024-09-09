@@ -1,6 +1,8 @@
 package com.example.walletapp.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.walletapp.Activity.EditUserDataActivity;
+import com.example.walletapp.Activity.ExchangeRateActivity;
 import com.example.walletapp.Model.GridItem;
 import com.example.walletapp.R;
 
@@ -38,16 +42,19 @@ public class GridItemsProfileAdapter extends ArrayAdapter<GridItem> {
         TextView label_setting = listItem.findViewById(R.id.label_setting_item);
         icon_setting.setImageResource(current.getResouceIcon());
         label_setting.setText(current.getReText());
-//        listItem.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (context != null) {
-//                    switch (position) {
-//
-//                    }
-//                }
-//            }
-//        });
+        listItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (context != null) {
+                    switch (position) {
+                        case 0:
+                            context.startActivity(new Intent(context, EditUserDataActivity.class));
+                            ((Activity) context).overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
+                            break;
+                    }
+                }
+            }
+        });
         return listItem;
     }
 }
