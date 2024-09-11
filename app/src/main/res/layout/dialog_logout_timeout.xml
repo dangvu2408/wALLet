@@ -33,7 +33,7 @@
         android:text="@string/login_session"
         android:fontFamily="@font/averta_regular"
         android:textAlignment="center"
-        android:textSize="16sp"/>
+        android:textSize="18sp"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
