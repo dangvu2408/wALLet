@@ -22,7 +22,7 @@ public class WalletApplication extends Application {
     private Handler handler = new Handler();
     private Runnable logoutRunnable;
     private AlertDialog logoutDialog;
-    private static final long TIMEOUT = 1 * 60 * 1000;
+    private static final long TIMEOUT = 10 * 60 * 1000;
 
     @Override
     public void onCreate() {

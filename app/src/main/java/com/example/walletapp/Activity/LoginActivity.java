@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 
         setContentView(R.layout.activity_login);
         login_btn = findViewById(R.id.login_btn);
@@ -108,6 +108,12 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         if (response.trim().equals("Success")) {
+                            LayoutInflater inflater = getLayoutInflater();
+                            View layout = inflater.inflate(R.layout.custom_toast_17, null);
+                            Toast toast = new Toast(LoginActivity.this);
+                            toast.setDuration(Toast.LENGTH_LONG);
+                            toast.setView(layout);
+                            toast.show();
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             String phonenumSTR = username_input.getText().toString().trim();
                             intent.putExtra("key_data", phonenumSTR);
@@ -115,7 +121,12 @@ public class LoginActivity extends AppCompatActivity {
                             overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
                             finish();
                         } else {
-                            Toast.makeText(LoginActivity.this, "Đăng nhập thất bại, vui lòng thử lại!", Toast.LENGTH_SHORT).show();
+                            LayoutInflater inflater = getLayoutInflater();
+                            View layout = inflater.inflate(R.layout.custom_toast_16, null);
+                            Toast toast = new Toast(LoginActivity.this);
+                            toast.setDuration(Toast.LENGTH_LONG);
+                            toast.setView(layout);
+                            toast.show();
                         }
                     }
                 },
