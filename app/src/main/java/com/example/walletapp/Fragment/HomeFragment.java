@@ -44,6 +44,7 @@ import com.example.walletapp.Model.TransactionItem;
 import com.example.walletapp.R;
 import com.example.walletapp.Render.CustomBarChartRender;
 import com.example.walletapp.Utils.HeightUtils;
+import com.example.walletapp.Utils.StringUtils;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Description;
@@ -73,7 +74,7 @@ public class HomeFragment extends Fragment {
     private ArrayList<TransModel> sortedDayList, sortedMostList;
     private ArrayList<TransModel> userTransData;
     private TextView eye_balance, view_all_1, view_all_2, total_balance, user_full_name, more_detail;
-    private TextView des_title_trans, percent_moving;
+    private TextView des_title_trans, percent_moving, money_in_letter;
     private ImageView arrow_direct;
     private LinearLayout no_data_current, no_data;
     private ListView currently, most_balance;
@@ -107,6 +108,7 @@ public class HomeFragment extends Fragment {
         des_title_trans = view.findViewById(R.id.des_title_trans);
         percent_moving = view.findViewById(R.id.percent_moving);
         arrow_direct = view.findViewById(R.id.arrow_direct);
+        money_in_letter = view.findViewById(R.id.money_in_letter);
 
         this.context = getContext();
         this.userTransData = new ArrayList<>();
@@ -129,6 +131,9 @@ public class HomeFragment extends Fragment {
             net_income_str = "0,00";
         }
         total_balance.setText("Tổng số dư: " + net_income_str + " VND");
+        String letter = StringUtils.convertStringToNumberText(net_income_str);
+        String cap = letter.substring(0, 1).toUpperCase() + letter.substring(1);
+        money_in_letter.setText(cap + " đồng.");
 
 
         String finalNet_income_str = net_income_str;

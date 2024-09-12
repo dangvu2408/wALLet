@@ -212,18 +212,32 @@
                             android:layout_gravity="center_vertical"
                             android:textColor="@color/black"/>
                         <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:src="@drawable/downicon"
                             android:id="@+id/more_icon"
                             android:layout_gravity="center"/>
                     </LinearLayout>
-                    <ListView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:scrollbars="none"
-                        android:id="@+id/full_wallet_acc"
-                        android:visibility="gone"/>
+                        android:orientation="vertical"
+                        android:id="@+id/widget_money">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Ba tỉ đồng"
+                            android:fontFamily="@font/averta_regular_italic"
+                            android:textSize="16sp"
+                            android:id="@+id/money_in_letter"
+                            android:justificationMode="inter_word"/>
+                        <ListView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:scrollbars="none"
+                            android:id="@+id/full_balance_last"/>
+                    </LinearLayout>
+
                 </LinearLayout>
                 <TextView
                     android:layout_width="wrap_content"

@@ -2,98 +2,104 @@ package com.example.walletapp.Utils;
 
 
 public class StringUtils {
-    private static final String[] units = { "", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín" };
-    private static final String[] tens = { "", "mười", "hai mươi", "ba mươi", "bốn mươi", "năm mươi", "sáu mươi", "bảy mươi", "tám mươi", "chín mươi" };
-    private static final String[] hundreds = { "", "một trăm", "hai trăm", "ba trăm", "bốn trăm", "năm trăm", "sáu trăm", "bảy trăm", "tám trăm", "chín trăm" };
-
-    public static String numberToWords(String input) {
-        if (input == null || input.isEmpty()) return "Không đồng";
-
-        String[] parts = input.split(",");
-        String wholePartString = parts[0].replace(".", "");
-        long wholePart = Long.parseLong(wholePartString);
-        int decimalPart = (parts.length > 1) ? Integer.parseInt(parts[1]) : 0;
-
-        StringBuilder result = new StringBuilder();
-        result.append(convertWholePartToWords(wholePart));
-
-        if (decimalPart > 0) {
-            result.append(" phẩy ").append(convertDecimalToWords(decimalPart));
-        }
-
-        return result.toString().trim() + " đồng";
-    }
-
-    private static String convertWholePartToWords(long number) {
-        if (number == 0) return "Không";
-
-        StringBuilder result = new StringBuilder();
-
-        long billions = number / 1_000_000_000;
-        number = number % 1_000_000_000;
-        long millions = number / 1_000_000;
-        number = number % 1_000_000;
-        long thousands = number / 1_000;
-        long hundreds = number % 1_000;
-
-        if (billions > 0) {
-            result.append(convertThreeDigits(billions)).append(" tỉ ");
-        }
-
-        if (millions > 0) {
-            result.append(convertThreeDigits(millions)).append(" triệu ");
-        }
-
-        if (thousands > 0) {
-            result.append(convertThreeDigits(thousands)).append(" nghìn ");
-        }
-
-        if (hundreds > 0) {
-            result.append(convertThreeDigits(hundreds)).append(" ");
-        }
-
-        return result.toString().trim();
-    }
-
-    private static String convertDecimalToWords(int number) {
-        return convertTwoDigits(number);
-    }
-
-    private static String convertThreeDigits(long number) {
-        StringBuilder result = new StringBuilder();
-
-        int hundred = (int) (number / 100);
-        int ten = (int) ((number % 100) / 10);
-        int unit = (int) (number % 10);
-
-        if (hundred > 0) {
-            result.append(hundreds[hundred]).append(" ");
-        }
-
-        if (ten > 0 || unit > 0) {
-            result.append(convertTwoDigits(ten * 10 + unit));
-        }
-
-        return result.toString().trim();
-    }
-
-    private static String convertTwoDigits(int number) {
-        StringBuilder result = new StringBuilder();
-
-        if (number >= 10) {
-            int ten = number / 10;
-            int unit = number % 10;
-
-            result.append(tens[ten]).append(" ");
-            if (unit > 0) {
-                result.append(units[unit]);
+    public static String convertNumberToTextVND(long total) {
+        try {
+            String rs = "";
+            String[] ch = { "không", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín" };
+            String[] rch = { "lẻ", "mốt", "", "", "", "lăm" };
+            String[] u = { "", "mươi", "trăm", "ngàn", "", "", "triệu", "", "", "tỷ", "", "", "ngàn", "", "", "triệu" };
+            String nstr = String.valueOf(total);
+            long[] n = new long[nstr.length()];
+            int len = n.length;
+            for (int i = 0; i < len; i++) {
+                n[len - 1 - i] = Long.valueOf(nstr.substring(i, i + 1));
             }
-        } else {
-            result.append(units[number]);
-        }
+            for (int i = len - 1; i >= 0; i--) {
+                if (i % 3 == 2) {
+                    if (n[i] == 0 && n[i - 1] == 0 && n[i - 2] == 0) continue;
+                } else if (i % 3 == 1) {
+                    if (n[i] == 0) {
+                        if (n[i - 1] == 0) { continue; }
+                        else {
+                            rs += " " + rch[(int) n[i]];
+                            continue;
+                        }
+                    }
+                    if (n[i] == 1) {
+                        rs += " mười";
+                        continue;
+                    }
+                } else if (i != len - 1) {
+                    if (n[i] == 0) {
+                        if (i + 2 <= len - 1 && n[i + 2] == 0 && n[i + 1] == 0) continue;
+                        rs += " " + (i % 3 == 0 ? u[i] : u[i % 3]);
+                        continue;
+                    }
+                    if (n[i] == 1) {
+                        rs += " " + ((n[i + 1] == 1 || n[i + 1] == 0) ? ch[(int) n[i]] : rch[(int) n[i]]);
+                        rs += " " + (i % 3 == 0 ? u[i] : u[i % 3]);
+                        continue;
+                    }
+                    if (n[i] == 5) {
+                        if (n[i + 1] != 0) {
+                            rs += " " + rch[(int) n[i]];
+                            rs += " " + (i % 3 == 0 ? u[i] : u[i % 3]);
+                            continue;
+                        }
+                    }
+                }
+                rs += (" ") + ch[(int) n[i]];
+                rs += " " + (i % 3 == 0 ? u[i] : u[i % 3]);
+            }
 
-        return result.toString().trim();
+            if (rs.length() > 2) {
+                String rs1 = rs.substring(0, 2);
+                rs = rs.substring(2);
+                rs = rs1 + rs;
+            }
+            return rs.trim().replace("lẻ,", "lẻ").replace("mươi,", "mươi").replace("trăm,", "trăm").replace("mười,", "mười");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return "";
+        }
     }
 
+    public static String convertStringToNumberText(String str) {
+        boolean isNegative = false;
 
+        if (str.startsWith("-")) {
+            isNegative = true;
+            str = str.substring(1);
+        }
+
+        str = str.replace(".", "").replace(",", ".");
+
+        String[] parts = str.split("\\.");
+        long integerPart = Long.parseLong(parts[0]);
+        String decimalPart = parts.length > 1 ? parts[1] : "";
+
+        String result = convertNumberToTextVND(integerPart);
+
+        if (!decimalPart.isEmpty()) {
+            result += " phẩy " + convertDecimalToText(decimalPart);
+        }
+
+        if (isNegative) {
+            result = "âm " + result;
+        }
+
+        return result;
+    }
+
+    public static String convertDecimalToText(String decimal) {
+        String[] ch = { "không", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín" };
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < decimal.length(); i++) {
+            result.append(ch[Integer.parseInt(String.valueOf(decimal.charAt(i)))]);
+            if (i != decimal.length() - 1) {
+                result.append(" ");
+            }
+        }
+        return result.toString();
+    }
 }
