@@ -37,10 +37,13 @@ import com.example.walletapp.Activity.LoginActivity;
 import com.example.walletapp.Activity.RecentTransActivity;
 import com.example.walletapp.Activity.SplashActivity;
 import com.example.walletapp.Adapter.GridItemAddingAdapter;
+import com.example.walletapp.Adapter.MonthlyItemAdapter;
 import com.example.walletapp.Adapter.QueryTransactionAdapter;
 import com.example.walletapp.Model.GridItem;
+import com.example.walletapp.Model.MonthlyBalanceModel;
 import com.example.walletapp.Model.TransModel;
 import com.example.walletapp.Model.TransactionItem;
+import com.example.walletapp.Model.UserInfoModel;
 import com.example.walletapp.R;
 import com.example.walletapp.Render.CustomBarChartRender;
 import com.example.walletapp.Utils.HeightUtils;
@@ -76,14 +79,17 @@ public class HomeFragment extends Fragment {
     private TextView eye_balance, view_all_1, view_all_2, total_balance, user_full_name, more_detail;
     private TextView des_title_trans, percent_moving, money_in_letter;
     private ImageView arrow_direct, more_icon;
-    private LinearLayout no_data_current, no_data, widget_money;
+    private LinearLayout no_data_current, no_data, widget_money, set_onclick_show_balance;
     private ListView currently, most_balance, full_balance_last;
     private ImageView menu_top1, eye_view;
-    private boolean isEyeClose = true;
+    private boolean isEyeClose = true, isShow;
     private BigDecimal inputMoney = BigDecimal.ZERO, outputMoney = BigDecimal.ZERO;
     private BigDecimal inputMoneyLast = BigDecimal.ZERO, outputMoneyLast = BigDecimal.ZERO;
+    private BigDecimal inputMoney2Last = BigDecimal.ZERO, outputMoney2Last = BigDecimal.ZERO;
+    private BigDecimal thisMonth = BigDecimal.ZERO, lastMonth = BigDecimal.ZERO, last2Month = BigDecimal.ZERO;
     private BigDecimal sumOfBalance = BigDecimal.ZERO;
     private ViewPager pager;
+    private MonthlyItemAdapter adapterMonthly;
 
     public HomeFragment() {}
 
@@ -112,7 +118,22 @@ public class HomeFragment extends Fragment {
         widget_money = view.findViewById(R.id.widget_money);
         full_balance_last = view.findViewById(R.id.full_balance_last);
         more_icon = view.findViewById(R.id.more_icon);
+        set_onclick_show_balance = view.findViewById(R.id.set_onclick_show_balance);
 
+        set_onclick_show_balance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isShow) {
+                    widget_money.setVisibility(View.VISIBLE);
+                    more_icon.setRotation(180);
+                    isShow = true;
+                } else {
+                    more_icon.setRotation(0);
+                    widget_money.setVisibility(View.GONE);
+                    isShow = false;
+                }
+            }
+        });
 
 
         this.context = getContext();
@@ -393,6 +414,34 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        thisMonth = thisMonth.add(inputMoney).add(outputMoney);
+        lastMonth = lastMonth.add(inputMoneyLast).add(outputMoneyLast);
+        last2Month = last2Month.add(inputMoney2Last).add(outputMoney2Last);
+        String thisMonthMoney = numFormat.format(thisMonth);
+        String lastMonthMoney = numFormat.format(lastMonth);
+        String last2MonthMoney = numFormat.format(last2Month);
+        if (thisMonthMoney.equals(",00")) {
+            thisMonthMoney = "0,00";
+        }
+        if (lastMonthMoney.equals(",00")) {
+            lastMonthMoney = "0,00";
+        }
+        if (last2MonthMoney.equals(",00")) {
+            last2MonthMoney = "0,00";
+        }
+
+        List<MonthlyBalanceModel> monthlymodel = new ArrayList<>();
+        LocalDate today = LocalDate.now();
+        int last2month = today.getMonthValue() - 2;
+        monthlymodel.add(new MonthlyBalanceModel("Tháng này", thisMonthMoney + " VND"));
+        monthlymodel.add(new MonthlyBalanceModel("Tháng trước", lastMonthMoney + " VND"));
+        monthlymodel.add(new MonthlyBalanceModel("Tháng " + last2month, last2MonthMoney + " VND"));
+
+        adapterMonthly = new MonthlyItemAdapter(context, monthlymodel);
+        adapterMonthly.notifyDataSetChanged();
+        full_balance_last.setAdapter(adapterMonthly);
+        HeightUtils.setListViewHeight(full_balance_last);
+
         sortedDayAdapter = new QueryTransactionAdapter(context, sortedDayList);
         sortedDayAdapter.notifyDataSetChanged();
         currently.setAdapter(sortedDayAdapter);
@@ -525,6 +574,44 @@ public class HomeFragment extends Fragment {
                         } else if (item.getDetailTypeTrans().equals("Đi vay") || item.getDetailTypeTrans().equals("Thu nợ")) {
                             String finalString = item.getMoneyTrans().replace(",", "");
                             inputMoneyLast = inputMoneyLast.add(new BigDecimal(finalString));
+                        }
+                    }
+                }
+            }
+
+            YearMonth last2Month = YearMonth.from(today).minusMonths(2);
+            LocalDate firstDayOfLast2Month = last2Month.atDay(1);
+            LocalDate lastDayOfLast2Month = last2Month.atEndOfMonth();
+            String beginDay2Last = firstDayOfLast2Month.format(formatter);
+            String endDay2Last = lastDayOfLast2Month.format(formatter);
+            LocalDate chartBeginDay2Last = LocalDate.parse(beginDay2Last, formatter);
+            LocalDate chartEndDay2Last = LocalDate.parse(endDay2Last, formatter);
+
+            for (TransModel item : userTransData) {
+                LocalDate itemDate = item.getDateAsLocalDate();
+                if ((itemDate.isEqual(chartBeginDay2Last) || itemDate.isAfter(chartBeginDay2Last)) &&
+                        (itemDate.isEqual(chartEndDay2Last) || itemDate.isBefore(chartEndDay2Last))) {
+                    if (item.getTypeTrans().equals("revenue_money")) {
+                        String finalString = item.getMoneyTrans().replace(",", "");
+                        inputMoney2Last = inputMoney2Last.add(new BigDecimal(finalString));
+                    } else if (item.getTypeTrans().equals("expense_money")) {
+                        String finalString = item.getMoneyTrans().replace(",", "");
+                        outputMoney2Last = outputMoney2Last.subtract(new BigDecimal(finalString));
+                    } else if (item.getTypeTrans().equals("percentage_money")) {
+                        if (item.getDetailTypeTrans().equals("Trả lãi")) {
+                            String finalString = item.getMoneyTrans().replace(",", "");
+                            outputMoney2Last = outputMoney2Last.subtract(new BigDecimal(finalString));
+                        } else if (item.getDetailTypeTrans().equals("Thu lãi")) {
+                            String finalString = item.getMoneyTrans().replace(",", "");
+                            inputMoney2Last = inputMoney2Last.add(new BigDecimal(finalString));
+                        }
+                    } else if (item.getTypeTrans().equals("loan_money")) {
+                        if (item.getDetailTypeTrans().equals("Cho vay") || item.getDetailTypeTrans().equals("Trả nợ")) {
+                            String finalString = item.getMoneyTrans().replace(",", "");
+                            outputMoney2Last = outputMoney2Last.subtract(new BigDecimal(finalString));
+                        } else if (item.getDetailTypeTrans().equals("Đi vay") || item.getDetailTypeTrans().equals("Thu nợ")) {
+                            String finalString = item.getMoneyTrans().replace(",", "");
+                            inputMoney2Last = inputMoney2Last.add(new BigDecimal(finalString));
                         }
                     }
                 }
