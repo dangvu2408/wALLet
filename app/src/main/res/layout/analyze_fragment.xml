@@ -74,12 +74,8 @@
                         android:fontFamily="@font/averta_bold"
                         android:textSize="20sp"
                         android:textColor="@color/black"/>
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/downicon"
-                        android:id="@+id/more_icon"
-                        android:layout_gravity="center"/>
+
+
                 </LinearLayout>
                 <ListView
                     android:layout_width="match_parent"

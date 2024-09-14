@@ -46,6 +46,9 @@ public class MonthlyItemAdapter extends BaseAdapter {
         MonthlyBalanceModel current = item.get(position);
         TextView month_index = listItem.findViewById(R.id.month_index);
         TextView month_money = listItem.findViewById(R.id.month_money);
+        if (current.getMoneymonth().substring(0, 1).equals("-")) {
+            month_money.setTextColor(0xFFE35053);
+        }
         month_index.setText(current.getMonthly());
         month_money.setText(current.getMoneymonth());
         return listItem;

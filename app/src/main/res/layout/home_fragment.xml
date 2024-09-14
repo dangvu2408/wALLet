@@ -207,7 +207,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:id="@+id/total_balance"
-                            android:text="Tổng số dư: 3.000.000.000 VND"
+                            android:text="Tổng số dư: *** *** VND"
                             android:fontFamily="@font/averta_semibold"
                             android:textSize="18sp"
                             android:layout_gravity="center_vertical"

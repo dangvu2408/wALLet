@@ -90,6 +90,7 @@ public class HomeFragment extends Fragment {
     private BigDecimal sumOfBalance = BigDecimal.ZERO;
     private ViewPager pager;
     private MonthlyItemAdapter adapterMonthly;
+    private String net_income_str;
 
     public HomeFragment() {}
 
@@ -120,20 +121,7 @@ public class HomeFragment extends Fragment {
         more_icon = view.findViewById(R.id.more_icon);
         set_onclick_show_balance = view.findViewById(R.id.set_onclick_show_balance);
 
-        set_onclick_show_balance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!isShow) {
-                    widget_money.setVisibility(View.VISIBLE);
-                    more_icon.setRotation(180);
-                    isShow = true;
-                } else {
-                    more_icon.setRotation(0);
-                    widget_money.setVisibility(View.GONE);
-                    isShow = false;
-                }
-            }
-        });
+
 
 
         this.context = getContext();
@@ -152,11 +140,10 @@ public class HomeFragment extends Fragment {
 
 
         DecimalFormat numFormat = new DecimalFormat("###,###,###.00");
-        String net_income_str = numFormat.format(sumOfBalance);
+        net_income_str = numFormat.format(sumOfBalance);
         if (net_income_str.equals(",00")) {
             net_income_str = "0,00";
         }
-        total_balance.setText("Tổng số dư: " + net_income_str + " VND");
         String letter = StringUtils.convertStringToNumberText(net_income_str);
         String cap = letter.substring(0, 1).toUpperCase() + letter.substring(1);
         money_in_letter.setText(cap + " đồng.");
@@ -169,10 +156,12 @@ public class HomeFragment extends Fragment {
                 if (isEyeClose) {
                     eye_view.setImageResource(R.drawable.eyeoff);
                     eye_balance.setText(finalNet_income_str + " VND");
+                    total_balance.setText("Tổng số dư: " + net_income_str + " VND");
                     isEyeClose = false;
                 } else {
                     eye_view.setImageResource(R.drawable.eye);
                     eye_balance.setText("*** *** VND");
+                    total_balance.setText("Tổng số dư: *** *** VND");
                     isEyeClose = true;
                 }
             }
@@ -411,6 +400,23 @@ public class HomeFragment extends Fragment {
                 barChartRender.initBuffers();
                 balance_bar.setRenderer(barChartRender);
                 balance_bar.invalidate();
+            }
+        });
+
+        set_onclick_show_balance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isShow) {
+                    widget_money.setVisibility(View.VISIBLE);
+                    more_icon.setRotation(180);
+                    total_balance.setText("Tổng số dư: " + net_income_str + " VND");
+                    isShow = true;
+                } else {
+                    more_icon.setRotation(0);
+                    widget_money.setVisibility(View.GONE);
+                    total_balance.setText("Tổng số dư: *** *** VND");
+                    isShow = false;
+                }
             }
         });
 
