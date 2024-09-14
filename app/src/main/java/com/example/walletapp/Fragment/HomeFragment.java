@@ -75,11 +75,11 @@ public class HomeFragment extends Fragment {
     private ArrayList<TransModel> userTransData;
     private TextView eye_balance, view_all_1, view_all_2, total_balance, user_full_name, more_detail;
     private TextView des_title_trans, percent_moving, money_in_letter;
-    private ImageView arrow_direct;
-    private LinearLayout no_data_current, no_data;
-    private ListView currently, most_balance;
+    private ImageView arrow_direct, more_icon;
+    private LinearLayout no_data_current, no_data, widget_money;
+    private ListView currently, most_balance, full_balance_last;
     private ImageView menu_top1, eye_view;
-    boolean isEyeClose = true;
+    private boolean isEyeClose = true;
     private BigDecimal inputMoney = BigDecimal.ZERO, outputMoney = BigDecimal.ZERO;
     private BigDecimal inputMoneyLast = BigDecimal.ZERO, outputMoneyLast = BigDecimal.ZERO;
     private BigDecimal sumOfBalance = BigDecimal.ZERO;
@@ -109,6 +109,11 @@ public class HomeFragment extends Fragment {
         percent_moving = view.findViewById(R.id.percent_moving);
         arrow_direct = view.findViewById(R.id.arrow_direct);
         money_in_letter = view.findViewById(R.id.money_in_letter);
+        widget_money = view.findViewById(R.id.widget_money);
+        full_balance_last = view.findViewById(R.id.full_balance_last);
+        more_icon = view.findViewById(R.id.more_icon);
+
+
 
         this.context = getContext();
         this.userTransData = new ArrayList<>();
