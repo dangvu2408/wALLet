@@ -22,7 +22,7 @@ public class WalletApplication extends Application {
     private Handler handler = new Handler();
     private Runnable logoutRunnable;
     private AlertDialog logoutDialog;
-    private static final long TIMEOUT = 10 * 60 * 1000;
+    private static final long TIMEOUT = 1 * 60 * 1000;
 
     @Override
     public void onCreate() {
@@ -71,6 +71,8 @@ public class WalletApplication extends Application {
             @Override
             public void run() {
                 showLogoutDialog(currentActivity);
+
+
             }
         };
         handler.postDelayed(logoutRunnable, TIMEOUT);
@@ -102,12 +104,14 @@ public class WalletApplication extends Application {
             close_dialog.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    logoutDialog.dismiss();
                     forceLogout(currentActivity);
                 }
             });
             back_to_login_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    logoutDialog.dismiss();
                     forceLogout(currentActivity);
                 }
             });

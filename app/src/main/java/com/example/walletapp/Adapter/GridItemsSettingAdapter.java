@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.walletapp.Activity.EditUserDataActivity;
+import com.example.walletapp.Activity.LoginSettingActivity;
 import com.example.walletapp.Model.GridItem;
 import com.example.walletapp.R;
 
@@ -51,13 +52,22 @@ public class GridItemsSettingAdapter extends ArrayAdapter<GridItem> {
             public void onClick(View v) {
                 if (context != null) {
                     switch (position) {
+                        case 0:
+                            Intent intent1 = new Intent(context, LoginSettingActivity.class);
+                            intent1.putExtra("key_username_a", username);
+                            intent1.putExtra("key_fullname_a", fullname);
+                            intent1.putExtra("key_dateofbirth_a", dateofbirth);
+                            intent1.putExtra("key_gender_a", gender);
+                            context.startActivity(intent1);
+                            ((Activity) context).overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
+                            break;
                         case 2:
-                            Intent intent = new Intent(context, EditUserDataActivity.class);
-                            intent.putExtra("key_username_a", username);
-                            intent.putExtra("key_fullname_a", fullname);
-                            intent.putExtra("key_dateofbirth_a", dateofbirth);
-                            intent.putExtra("key_gender_a", gender);
-                            context.startActivity(intent);
+                            Intent intent2 = new Intent(context, EditUserDataActivity.class);
+                            intent2.putExtra("key_username_a", username);
+                            intent2.putExtra("key_fullname_a", fullname);
+                            intent2.putExtra("key_dateofbirth_a", dateofbirth);
+                            intent2.putExtra("key_gender_a", gender);
+                            context.startActivity(intent2);
                             ((Activity) context).overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
                             break;
                     }

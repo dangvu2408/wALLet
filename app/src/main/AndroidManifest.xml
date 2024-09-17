@@ -111,6 +111,12 @@
         </activity>
 
         <activity
+            android:name=".Activity.LoginSettingActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
             android:name=".Activity.EditUserDataActivity"
             android:exported="true"
             android:screenOrientation="portrait">
