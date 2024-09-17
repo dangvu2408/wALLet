@@ -54,22 +54,26 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/user_data_name"/>
-                <EditText
-                    android:layout_width="match_parent"
+                    android:src="@drawable/fingerprint_02"/>
+                <TextView
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp"
-                    android:paddingBottom="5dp"
-                    android:paddingTop="5dp"
-                    android:hint="Nguyễn Văn A"
-                    android:background="@drawable/outline_blue"
-                    android:textColorHint="@color/color_02"
+                    android:layout_weight="1"
+                    android:text="Đăng nhập bằng vân tay"
                     android:fontFamily="@font/averta_semibold"
                     android:textSize="20sp"
-                    android:maxLength="250"
-                    android:id="@+id/name_edit"
-                    android:textColor="@color/black" />
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:textColor="@color/black"/>
+                <androidx.appcompat.widget.SwitchCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/is_fingerprint_check"
+                    android:checked="false"
+                    android:thumb="@drawable/thumb_selector"
+                    app:track="@drawable/track_selector"/>
+
+
             </LinearLayout>
 
             <LinearLayout
