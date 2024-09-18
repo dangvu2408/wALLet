@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.walletapp.Activity.ExchangeRateActivity;
+import com.example.walletapp.Activity.GeneralInfoActivity;
 import com.example.walletapp.Model.GridItem;
 import com.example.walletapp.R;
 
@@ -52,6 +53,10 @@ public class GridItemsSettingOthersAdapter extends ArrayAdapter<GridItem> {
                     switch (position) {
                         case 0:
                             context.startActivity(new Intent(context, ExchangeRateActivity.class));
+                            ((Activity) context).overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
+                            break;
+                        case 1:
+                            context.startActivity(new Intent(context, GeneralInfoActivity.class));
                             ((Activity) context).overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
                             break;
                     }

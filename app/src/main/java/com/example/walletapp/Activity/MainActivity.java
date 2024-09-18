@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<TransModel> userTransData;
     private String jsonUserValue = "";
     private String userusername, userfullname, dateofbirth, usergender;
-    private LinearLayout logout_fast_touch, change_theme;
+    private LinearLayout logout_fast_touch, change_theme, version_control, guide_app;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +91,10 @@ public class MainActivity extends AppCompatActivity {
 
         logout_fast_touch = findViewById(R.id.logout_fast_touch);
         change_theme = findViewById(R.id.change_theme);
+        version_control = findViewById(R.id.version_control);
+        guide_app = findViewById(R.id.guide_app);
+
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
@@ -119,6 +123,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), ChangeThemeActivity.class));
+                overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
+            }
+        });
+
+        version_control.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), GeneralInfoActivity.class));
+                overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
+            }
+        });
+
+        guide_app.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), AppGuideActivity.class));
                 overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
             }
         });

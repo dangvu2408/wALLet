@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 
 import com.example.walletapp.Activity.EditUserDataActivity;
 import com.example.walletapp.Activity.LoginSettingActivity;
+import com.example.walletapp.Activity.NotifySettingActivity;
 import com.example.walletapp.Model.GridItem;
 import com.example.walletapp.R;
 
@@ -61,13 +62,18 @@ public class GridItemsSettingAdapter extends ArrayAdapter<GridItem> {
                             context.startActivity(intent1);
                             ((Activity) context).overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
                             break;
-                        case 2:
-                            Intent intent2 = new Intent(context, EditUserDataActivity.class);
-                            intent2.putExtra("key_username_a", username);
-                            intent2.putExtra("key_fullname_a", fullname);
-                            intent2.putExtra("key_dateofbirth_a", dateofbirth);
-                            intent2.putExtra("key_gender_a", gender);
+                        case 1:
+                            Intent intent2 = new Intent(context, NotifySettingActivity.class);
                             context.startActivity(intent2);
+                            ((Activity) context).overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
+                            break;
+                        case 2:
+                            Intent intent3 = new Intent(context, EditUserDataActivity.class);
+                            intent3.putExtra("key_username_a", username);
+                            intent3.putExtra("key_fullname_a", fullname);
+                            intent3.putExtra("key_dateofbirth_a", dateofbirth);
+                            intent3.putExtra("key_gender_a", gender);
+                            context.startActivity(intent3);
                             ((Activity) context).overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
                             break;
                     }

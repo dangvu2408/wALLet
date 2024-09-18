@@ -128,6 +128,24 @@
             android:screenOrientation="portrait">
         </activity>
 
+        <activity
+            android:name=".Activity.GeneralInfoActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name=".Activity.AppGuideActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name=".Activity.NotifySettingActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+        </activity>
+
         <activity android:name=".Activity.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait">
