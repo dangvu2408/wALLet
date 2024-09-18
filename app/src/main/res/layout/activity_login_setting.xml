@@ -72,8 +72,6 @@
                     android:checked="false"
                     android:thumb="@drawable/thumb_selector"
                     app:track="@drawable/track_selector"/>
-
-
             </LinearLayout>
 
             <LinearLayout
@@ -81,69 +79,54 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:id="@+id/pick_day_now">
+                android:id="@+id/change_password">
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/user_data_dob"/>
+                    android:src="@drawable/lock"/>
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/outline_blue"
-                    android:id="@+id/today_or_not"
+                    android:layout_weight="1"
+                    android:text="Thay đổi mật khẩu"
+                    android:fontFamily="@font/averta_semibold"
+                    android:textSize="20sp"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp"
-                    android:paddingBottom="5dp"
-                    android:paddingTop="5dp"
-                    android:text="01/01/2000"
-                    android:fontFamily="@font/averta_semibold"
-                    android:textColor="@color/color_02"
-                    android:textSize="20sp"/>
+                    android:textColor="@color/black"/>
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/next" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:id="@+id/device_manager">
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/user_data_gender"/>
-                <EditText
-                    android:layout_width="match_parent"
+                    android:src="@drawable/smartphone"/>
+                <TextView
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp"
-                    android:paddingBottom="5dp"
-                    android:paddingTop="5dp"
-                    android:hint="Nam"
-                    android:background="@drawable/outline_blue"
-                    android:textColorHint="@color/color_02"
+                    android:layout_weight="1"
+                    android:text="Quản lý thiết bị đăng nhập"
                     android:fontFamily="@font/averta_semibold"
                     android:textSize="20sp"
-                    android:maxLength="250"
-                    android:id="@+id/gender_edit"
-                    android:textColor="@color/black" />
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:textColor="@color/black"/>
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/next" />
             </LinearLayout>
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="Xác nhận"
-                android:id="@+id/user_edit_btn"
-                android:fontFamily="@font/averta_bold"
-                android:textSize="18sp"
-                android:textColor="@color/white"
-                android:textAllCaps="false"
-                android:background="@drawable/bottomnavbackground"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:paddingLeft="30dp"
-                android:paddingRight="30dp"/>
 
         </LinearLayout>
     </ScrollView>

@@ -68,7 +68,7 @@ public class AnalyzeFragment extends Fragment {
     private BigDecimal outputMoneyRange1 = BigDecimal.ZERO, outputMoneyRange2 = BigDecimal.ZERO, outputMoneyRange3 = BigDecimal.ZERO;
     private BigDecimal pieChartRevenue = BigDecimal.ZERO, pieChartPercentage = BigDecimal.ZERO, pieChartLoanBorrow = BigDecimal.ZERO, pieChartLoanDebt = BigDecimal.ZERO;
     private BigDecimal pieChartExpense = BigDecimal.ZERO, pieChartPercentageA = BigDecimal.ZERO, pieChartLoanLend = BigDecimal.ZERO, pieChartLoanRepay = BigDecimal.ZERO;
-    ImageView menu_top;
+    ImageView menu_top, notification_bell;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -83,6 +83,8 @@ public class AnalyzeFragment extends Fragment {
         expense_income_pie_chart = view.findViewById(R.id.expense_income_pie_chart);
         total_balance = view.findViewById(R.id.total_balance);
         menu_top = view.findViewById(R.id.menu_top);
+        notification_bell = view.findViewById(R.id.notification_bell);
+
         this.context = getContext();
         queryList = new ArrayList<>();
         queryList = getArguments().getParcelableArrayList("trans_data_key"); //important
@@ -91,6 +93,13 @@ public class AnalyzeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 drawer.openDrawer(GravityCompat.END);
+            }
+        });
+
+        notification_bell.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
         initialData();

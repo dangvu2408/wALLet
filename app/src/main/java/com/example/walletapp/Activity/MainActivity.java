@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<TransModel> userTransData;
     private String jsonUserValue = "";
     private String userusername, userfullname, dateofbirth, usergender;
+    private LinearLayout logout_fast_touch, change_theme;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,6 +89,9 @@ public class MainActivity extends AppCompatActivity {
         TextView username_en = header.findViewById(R.id.username_en);
         LinearLayout user_profile = header.findViewById(R.id.user_profile);
 
+        logout_fast_touch = findViewById(R.id.logout_fast_touch);
+        change_theme = findViewById(R.id.change_theme);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -102,6 +106,22 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+        logout_fast_touch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
+                finish();
+            }
+        });
+
+        change_theme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ChangeThemeActivity.class));
+                overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
+            }
+        });
 
         String phone_user = getIntent().getStringExtra("key_data");
         Bundle bundle = new Bundle();
