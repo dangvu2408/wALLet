@@ -1,5 +1,6 @@
 package com.example.walletapp.Activity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +15,7 @@ import androidx.core.content.ContextCompat;
 import com.example.walletapp.R;
 
 public class NotificationActivity extends AppCompatActivity {
-    private ImageView back_btn;
+    private ImageView back_btn, setting_btn;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +34,15 @@ public class NotificationActivity extends AppCompatActivity {
             public void onClick(View v) {
                 finish();
                 overridePendingTransition(R.anim.close_in, R.anim.close_out);
+            }
+        });
+
+        setting_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), NotifySettingActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
             }
         });
     }

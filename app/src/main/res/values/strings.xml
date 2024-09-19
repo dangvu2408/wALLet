@@ -53,4 +53,18 @@
         <item>Thu nợ</item>
         <item>Trả nợ</item>
     </string-array>
+
+    <string-array name="searching_list">
+        <item>Truy vấn giao dịch</item>
+        <item>Thêm giao dịch - khoản chi</item>
+        <item>Thêm giao dịch - khoản thu</item>
+        <item>Thêm giao dịch - khoản lãi suất</item>
+        <item>Thêm giao dịch - khoản vay</item>
+        <item>Giao dịch gần đây</item>
+        <item>Giao dịch có giá trị lớn</item>
+        <item>Thông tin cá nhân</item>
+        <item>Tỉ giá hối đoái</item>
+        <item>Đổi giao diện</item>
+        <item>Đăng nhập bằng vân tay</item>
+    </string-array>
 </resources>

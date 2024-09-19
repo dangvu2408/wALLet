@@ -36,6 +36,8 @@ public class NotifySettingActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.close_in, R.anim.close_out);
             }
         });
+
+
     }
 
     @Override

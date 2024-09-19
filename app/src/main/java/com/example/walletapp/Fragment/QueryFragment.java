@@ -9,12 +9,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -40,6 +43,7 @@ import com.example.walletapp.Model.TransModel;
 import com.example.walletapp.Model.TransactionItem;
 import com.example.walletapp.R;
 import com.example.walletapp.Utils.HeightUtils;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.lang.reflect.Field;
 import java.text.DateFormat;
@@ -47,6 +51,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
@@ -68,6 +73,10 @@ public class QueryFragment extends Fragment {
     private QueryTransactionAdapter adapter;
     private ArrayList<TransModel> queryList;
     ImageView menu_top, search_top, notification_bell;
+
+    private String[] items;
+    private ArrayList<String> listItems;
+    private ArrayAdapter<String> adapter1;
     public QueryFragment() {}
     @Nullable
     @Override
@@ -102,6 +111,40 @@ public class QueryFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), NotificationActivity.class);
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
+            }
+        });
+
+        search_top.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BottomSheetDialog dialog = new BottomSheetDialog(context);
+                View view = LayoutInflater.from(context).inflate(R.layout.bottom_sheet_layout, null);
+                dialog.setContentView(view);
+                dialog.show();
+
+                EditText searching_input = view.findViewById(R.id.searching_input);
+                ListView list_searching = view.findViewById(R.id.list_searching);
+
+                initList();
+                list_searching.setAdapter(adapter1);
+
+                searching_input.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        adapter1.getFilter().filter(s);
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
+
             }
         });
 
@@ -208,6 +251,12 @@ public class QueryFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    public void initList() {
+        items = getResources().getStringArray(R.array.searching_list);
+        listItems = new ArrayList<>(Arrays.asList(items));
+        adapter1 = new ArrayAdapter<String>(context, R.layout.searching_listitem, listItems);
     }
 
 }

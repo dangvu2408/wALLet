@@ -9,11 +9,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -33,9 +37,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.walletapp.Activity.AddExpenseActivity;
+import com.example.walletapp.Activity.AddLoanActivity;
+import com.example.walletapp.Activity.AddPercentageActivity;
+import com.example.walletapp.Activity.AddRevenueActivity;
 import com.example.walletapp.Activity.HighestTransActivity;
 import com.example.walletapp.Activity.LoginActivity;
 import com.example.walletapp.Activity.NotificationActivity;
+import com.example.walletapp.Activity.QueryActivity;
 import com.example.walletapp.Activity.RecentTransActivity;
 import com.example.walletapp.Activity.SplashActivity;
 import com.example.walletapp.Adapter.GridItemAddingAdapter;
@@ -68,6 +77,7 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -94,6 +104,10 @@ public class HomeFragment extends Fragment {
     private ViewPager pager;
     private MonthlyItemAdapter adapterMonthly;
     private String net_income_str;
+
+    private String[] items;
+    private ArrayList<String> listItems;
+    private ArrayAdapter<String> adapter;
 
     public HomeFragment() {}
 
@@ -202,6 +216,60 @@ public class HomeFragment extends Fragment {
 
                 EditText searching_input = view.findViewById(R.id.searching_input);
                 ListView list_searching = view.findViewById(R.id.list_searching);
+
+                initList();
+                list_searching.setAdapter(adapter);
+
+                list_searching.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        switch (position) {
+                            case 0:
+                                Intent intent0 = new Intent(context, QueryActivity.class);
+                                intent0.putExtra("key_trans_value_from_bottomsheet", userTransData);
+                                startActivity(intent0);
+                                getActivity().overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
+                                break;
+                            case 1:
+                                Intent intent1 = new Intent(context, AddExpenseActivity.class);
+                                startActivity(intent1);
+                                getActivity().overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
+                                break;
+                            case 2:
+                                Intent intent2 = new Intent(context, AddRevenueActivity.class);
+                                startActivity(intent2);
+                                getActivity().overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
+                                break;
+                            case 3:
+                                Intent intent3 = new Intent(context, AddPercentageActivity.class);
+                                startActivity(intent3);
+                                getActivity().overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
+                                break;
+                            case 4:
+                                Intent intent4 = new Intent(context, AddLoanActivity.class);
+                                startActivity(intent4);
+                                getActivity().overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
+                                break;
+                        }
+                    }
+                });
+
+                searching_input.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        adapter.getFilter().filter(s);
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
 
             }
         });
@@ -684,5 +752,11 @@ public class HomeFragment extends Fragment {
             this.sortedMostList = new ArrayList<>();
         }
 
+    }
+
+    public void initList() {
+        items = getResources().getStringArray(R.array.searching_list);
+        listItems = new ArrayList<>(Arrays.asList(items));
+        adapter = new ArrayAdapter<String>(context, R.layout.searching_listitem, listItems);
     }
 }

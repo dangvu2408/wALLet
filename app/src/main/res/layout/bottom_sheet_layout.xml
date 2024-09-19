@@ -2,11 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/bordered_background">
-    <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+    android:orientation="vertical">
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="40dp"/>
+        android:layout_height="20dp"
+        android:src="@drawable/drag_icon"
+        android:layout_marginTop="10dp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,15 +31,18 @@
         android:fontFamily="@font/averta_regular"
         android:textSize="20sp"
         android:maxLength="250"
+        android:singleLine="true"
         android:id="@+id/searching_input"
         android:textColor="@color/black"
         android:drawableRight="@drawable/right_searching_icon"/>
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="500dp"
         android:scrollbars="none"
         android:id="@+id/list_searching"
         android:nestedScrollingEnabled="true"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="2dp"/>
+        android:divider="@color/white"
+        android:dividerHeight="2dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="20dp"/>
 </LinearLayout>

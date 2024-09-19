@@ -6,11 +6,16 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -41,6 +46,7 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -52,6 +58,7 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -71,6 +78,10 @@ public class AnalyzeFragment extends Fragment {
     private BigDecimal pieChartRevenue = BigDecimal.ZERO, pieChartPercentage = BigDecimal.ZERO, pieChartLoanBorrow = BigDecimal.ZERO, pieChartLoanDebt = BigDecimal.ZERO;
     private BigDecimal pieChartExpense = BigDecimal.ZERO, pieChartPercentageA = BigDecimal.ZERO, pieChartLoanLend = BigDecimal.ZERO, pieChartLoanRepay = BigDecimal.ZERO;
     ImageView menu_top, notification_bell, search_top;
+
+    private String[] items;
+    private ArrayList<String> listItems;
+    private ArrayAdapter<String> adapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -110,6 +121,41 @@ public class AnalyzeFragment extends Fragment {
                 getActivity().overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
             }
         });
+
+        search_top.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BottomSheetDialog dialog = new BottomSheetDialog(context);
+                View view = LayoutInflater.from(context).inflate(R.layout.bottom_sheet_layout, null);
+                dialog.setContentView(view);
+                dialog.show();
+
+                EditText searching_input = view.findViewById(R.id.searching_input);
+                ListView list_searching = view.findViewById(R.id.list_searching);
+
+                initList();
+                list_searching.setAdapter(adapter);
+
+                searching_input.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        adapter.getFilter().filter(s);
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
+
+            }
+        });
+
         initialData();
 
         DecimalFormat numFormat = new DecimalFormat("###,###,###.00");
@@ -471,5 +517,11 @@ public class AnalyzeFragment extends Fragment {
                 }
             }
         }
+    }
+
+    public void initList() {
+        items = getResources().getStringArray(R.array.searching_list);
+        listItems = new ArrayList<>(Arrays.asList(items));
+        adapter = new ArrayAdapter<String>(context, R.layout.searching_listitem, listItems);
     }
 }

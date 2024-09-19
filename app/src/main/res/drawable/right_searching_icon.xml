@@ -3,7 +3,7 @@
 
     <item
         android:drawable="@drawable/search_blue"
-        android:width="24dp"
-        android:height="24dp" />
+        android:width="20dp"
+        android:height="20dp" />
 
 </layer-list >
