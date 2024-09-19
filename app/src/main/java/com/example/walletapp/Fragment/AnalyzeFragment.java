@@ -1,6 +1,7 @@
 package com.example.walletapp.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -19,6 +20,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import com.example.walletapp.Activity.NotificationActivity;
 import com.example.walletapp.Model.TransModel;
 import com.example.walletapp.Model.TransactionItem;
 import com.example.walletapp.R;
@@ -68,7 +70,7 @@ public class AnalyzeFragment extends Fragment {
     private BigDecimal outputMoneyRange1 = BigDecimal.ZERO, outputMoneyRange2 = BigDecimal.ZERO, outputMoneyRange3 = BigDecimal.ZERO;
     private BigDecimal pieChartRevenue = BigDecimal.ZERO, pieChartPercentage = BigDecimal.ZERO, pieChartLoanBorrow = BigDecimal.ZERO, pieChartLoanDebt = BigDecimal.ZERO;
     private BigDecimal pieChartExpense = BigDecimal.ZERO, pieChartPercentageA = BigDecimal.ZERO, pieChartLoanLend = BigDecimal.ZERO, pieChartLoanRepay = BigDecimal.ZERO;
-    ImageView menu_top, notification_bell;
+    ImageView menu_top, notification_bell, search_top;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -82,8 +84,10 @@ public class AnalyzeFragment extends Fragment {
         revenue_income_pie_chart = view.findViewById(R.id.revenue_income_pie_chart);
         expense_income_pie_chart = view.findViewById(R.id.expense_income_pie_chart);
         total_balance = view.findViewById(R.id.total_balance);
+
         menu_top = view.findViewById(R.id.menu_top);
         notification_bell = view.findViewById(R.id.notification_bell);
+        search_top = view.findViewById(R.id.search_top);
 
         this.context = getContext();
         queryList = new ArrayList<>();
@@ -96,10 +100,14 @@ public class AnalyzeFragment extends Fragment {
             }
         });
 
+
+
         notification_bell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getActivity(), NotificationActivity.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
             }
         });
         initialData();

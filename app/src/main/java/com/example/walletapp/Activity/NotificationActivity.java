@@ -13,7 +13,7 @@ import androidx.core.content.ContextCompat;
 
 import com.example.walletapp.R;
 
-public class LoginSettingActivity extends AppCompatActivity {
+public class NotificationActivity extends AppCompatActivity {
     private ImageView back_btn;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -25,11 +25,9 @@ public class LoginSettingActivity extends AppCompatActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.color_theme_2));
         }
-        setContentView(R.layout.activity_login_setting);
+        setContentView(R.layout.activity_notification);
+
         back_btn = findViewById(R.id.back_btn);
-
-
-
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

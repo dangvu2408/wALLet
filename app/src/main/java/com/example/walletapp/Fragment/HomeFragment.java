@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -34,6 +35,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.walletapp.Activity.HighestTransActivity;
 import com.example.walletapp.Activity.LoginActivity;
+import com.example.walletapp.Activity.NotificationActivity;
 import com.example.walletapp.Activity.RecentTransActivity;
 import com.example.walletapp.Activity.SplashActivity;
 import com.example.walletapp.Adapter.GridItemAddingAdapter;
@@ -56,6 +58,7 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.navigation.NavigationView;
 
 import java.math.BigDecimal;
@@ -81,7 +84,7 @@ public class HomeFragment extends Fragment {
     private ImageView arrow_direct, more_icon;
     private LinearLayout no_data_current, no_data, widget_money, set_onclick_show_balance;
     private ListView currently, most_balance, full_balance_last;
-    private ImageView menu_top1, eye_view;
+    private ImageView menu_top1, eye_view, notification_bell1, search_top1;
     private boolean isEyeClose = true, isShow;
     private BigDecimal inputMoney = BigDecimal.ZERO, outputMoney = BigDecimal.ZERO;
     private BigDecimal inputMoneyLast = BigDecimal.ZERO, outputMoneyLast = BigDecimal.ZERO;
@@ -104,7 +107,6 @@ public class HomeFragment extends Fragment {
         no_data_current = view.findViewById(R.id.no_data_current);
         no_data = view.findViewById(R.id.no_data);
         most_balance = view.findViewById(R.id.most_balance);
-        menu_top1 = view.findViewById(R.id.menu_top1);
         eye_view = view.findViewById(R.id.eye_view);
         eye_balance = view.findViewById(R.id.eye_balance);
         view_all_2 = view.findViewById(R.id.view_all_2);
@@ -120,6 +122,10 @@ public class HomeFragment extends Fragment {
         full_balance_last = view.findViewById(R.id.full_balance_last);
         more_icon = view.findViewById(R.id.more_icon);
         set_onclick_show_balance = view.findViewById(R.id.set_onclick_show_balance);
+
+        notification_bell1 = view.findViewById(R.id.notification_bell1);
+        menu_top1 = view.findViewById(R.id.menu_top1);
+        search_top1 = view.findViewById(R.id.search_top1);
 
 
 
@@ -174,6 +180,29 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 drawer.openDrawer(GravityCompat.END);
+            }
+        });
+
+        notification_bell1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), NotificationActivity.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
+            }
+        });
+
+        search_top1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BottomSheetDialog dialog = new BottomSheetDialog(context);
+                View view = LayoutInflater.from(context).inflate(R.layout.bottom_sheet_layout, null);
+                dialog.setContentView(view);
+                dialog.show();
+
+                EditText searching_input = view.findViewById(R.id.searching_input);
+                ListView list_searching = view.findViewById(R.id.list_searching);
+
             }
         });
 

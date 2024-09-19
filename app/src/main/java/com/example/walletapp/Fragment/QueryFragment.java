@@ -3,6 +3,7 @@ package com.example.walletapp.Fragment;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -33,6 +34,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import com.example.walletapp.Activity.AddRevenueActivity;
+import com.example.walletapp.Activity.NotificationActivity;
 import com.example.walletapp.Adapter.QueryTransactionAdapter;
 import com.example.walletapp.Model.TransModel;
 import com.example.walletapp.Model.TransactionItem;
@@ -65,7 +67,7 @@ public class QueryFragment extends Fragment {
     private CardView begin_date_picker, end_date_picker;
     private QueryTransactionAdapter adapter;
     private ArrayList<TransModel> queryList;
-    ImageView menu_top;
+    ImageView menu_top, search_top, notification_bell;
     public QueryFragment() {}
     @Nullable
     @Override
@@ -78,7 +80,11 @@ public class QueryFragment extends Fragment {
         begin_day = view.findViewById(R.id.begin_day);
         begin_date_picker = view.findViewById(R.id.begin_date_picker);
         end_date_picker = view.findViewById(R.id.end_date_picker);
+
         menu_top = view.findViewById(R.id.menu_top);
+        search_top = view.findViewById(R.id.search_top);
+        notification_bell = view.findViewById(R.id.notification_bell);
+
         DrawerLayout drawer = getActivity().findViewById(R.id.drawer_layout);
         queryList = new ArrayList<>();
         queryList = getArguments().getParcelableArrayList("trans_data_key"); //important
@@ -87,6 +93,15 @@ public class QueryFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 drawer.openDrawer(GravityCompat.END);
+            }
+        });
+
+        notification_bell.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), NotificationActivity.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
             }
         });
 

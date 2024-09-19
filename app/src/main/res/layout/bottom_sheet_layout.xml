@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bordered_background">
+    <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tìm kiếm"
+        android:textSize="18sp"
+        android:fontFamily="@font/averta_semibold"
+        android:textColor="@color/main_color_01"
+        android:textAlignment="center"
+        android:padding="10dp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Tìm kiếm"
+        android:background="@drawable/outline_blue"
+        android:textColorHint="@color/color_02"
+        android:fontFamily="@font/averta_regular"
+        android:textSize="20sp"
+        android:maxLength="250"
+        android:id="@+id/searching_input"
+        android:textColor="@color/black"
+        android:drawableRight="@drawable/right_searching_icon"/>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:id="@+id/list_searching"
+        android:nestedScrollingEnabled="true"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="2dp"/>
+</LinearLayout>
