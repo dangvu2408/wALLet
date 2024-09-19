@@ -1,5 +1,5 @@
-![Static Badge](https://img.shields.io/badge/version-0.0.1-blue)
-![Static Badge](https://img.shields.io/badge/release-02%2F09%2F2024-blue)
+![Static Badge](https://img.shields.io/badge/version-1.0.0-blue)
+![Static Badge](https://img.shields.io/badge/release-19%2F09%2F2024-blue)
 ![Static Badge](https://img.shields.io/badge/build-partial%20success-orange)
 
 # ỨNG DỤNG QUẢN LÍ TÀI CHÍNH wALLet
