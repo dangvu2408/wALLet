@@ -158,6 +158,17 @@
             android:screenOrientation="portrait">
         </activity>
 
+        <activity
+            android:name=".Activity.FingerPrintActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name=".Activity.UpdatePasswordActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+        </activity>
 
         <activity android:name=".Activity.SplashActivity"
             android:exported="true"

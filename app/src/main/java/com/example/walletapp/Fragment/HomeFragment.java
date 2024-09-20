@@ -41,12 +41,16 @@ import com.example.walletapp.Activity.AddExpenseActivity;
 import com.example.walletapp.Activity.AddLoanActivity;
 import com.example.walletapp.Activity.AddPercentageActivity;
 import com.example.walletapp.Activity.AddRevenueActivity;
+import com.example.walletapp.Activity.ChangeThemeActivity;
+import com.example.walletapp.Activity.ExchangeRateActivity;
+import com.example.walletapp.Activity.FingerPrintActivity;
 import com.example.walletapp.Activity.HighestTransActivity;
 import com.example.walletapp.Activity.LoginActivity;
 import com.example.walletapp.Activity.NotificationActivity;
 import com.example.walletapp.Activity.QueryActivity;
 import com.example.walletapp.Activity.RecentTransActivity;
 import com.example.walletapp.Activity.SplashActivity;
+import com.example.walletapp.Activity.UserProfileActivity;
 import com.example.walletapp.Adapter.GridItemAddingAdapter;
 import com.example.walletapp.Adapter.MonthlyItemAdapter;
 import com.example.walletapp.Adapter.QueryTransactionAdapter;
@@ -107,7 +111,8 @@ public class HomeFragment extends Fragment {
 
     private String[] items;
     private ArrayList<String> listItems;
-    private ArrayAdapter<String> adapter;
+    private ArrayAdapter<String> adapter1;
+    private String put_data_username, put_data_fullname, put_data_dob, put_data_gender;
 
     public HomeFragment() {}
 
@@ -206,73 +211,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        search_top1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                BottomSheetDialog dialog = new BottomSheetDialog(context);
-                View view = LayoutInflater.from(context).inflate(R.layout.bottom_sheet_layout, null);
-                dialog.setContentView(view);
-                dialog.show();
 
-                EditText searching_input = view.findViewById(R.id.searching_input);
-                ListView list_searching = view.findViewById(R.id.list_searching);
-
-                initList();
-                list_searching.setAdapter(adapter);
-
-                list_searching.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        switch (position) {
-                            case 0:
-                                Intent intent0 = new Intent(context, QueryActivity.class);
-                                intent0.putExtra("key_trans_value_from_bottomsheet", userTransData);
-                                startActivity(intent0);
-                                getActivity().overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
-                                break;
-                            case 1:
-                                Intent intent1 = new Intent(context, AddExpenseActivity.class);
-                                startActivity(intent1);
-                                getActivity().overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
-                                break;
-                            case 2:
-                                Intent intent2 = new Intent(context, AddRevenueActivity.class);
-                                startActivity(intent2);
-                                getActivity().overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
-                                break;
-                            case 3:
-                                Intent intent3 = new Intent(context, AddPercentageActivity.class);
-                                startActivity(intent3);
-                                getActivity().overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
-                                break;
-                            case 4:
-                                Intent intent4 = new Intent(context, AddLoanActivity.class);
-                                startActivity(intent4);
-                                getActivity().overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
-                                break;
-                        }
-                    }
-                });
-
-                searching_input.addTextChangedListener(new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                    }
-
-                    @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        adapter.getFilter().filter(s);
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable s) {
-
-                    }
-                });
-
-            }
-        });
 
         view_all_2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -363,11 +302,13 @@ public class HomeFragment extends Fragment {
         listAdding.add(new GridItem(R.drawable.income01, "Khoản thu"));
         listAdding.add(new GridItem(R.drawable.percentage01, "Lãi suất"));
         listAdding.add(new GridItem(R.drawable.target01, "Khoản vay"));
-        String phone = getArguments().getString("key_username_data");
-        String fullname = getArguments().getString("key_fullname_data");
+        put_data_username = getArguments().getString("key_username_data");
+        put_data_fullname = getArguments().getString("key_fullname_data");
+        put_data_dob = getArguments().getString("key_dob_data");
+        put_data_gender = getArguments().getString("key_gender_data");
 
-        user_full_name.setText("Xin chào, " + fullname);
-        GridItemAddingAdapter adapter = new GridItemAddingAdapter(this.context, listAdding, phone, fullname);
+        user_full_name.setText("Xin chào, " + put_data_fullname);
+        GridItemAddingAdapter adapter = new GridItemAddingAdapter(this.context, listAdding, put_data_username, put_data_fullname);
         addingGrid.setAdapter(adapter);
         HeightUtils.setGridViewHeight(addingGrid, 4);
 
@@ -499,6 +440,102 @@ public class HomeFragment extends Fragment {
                 balance_bar.invalidate();
             }
         });
+
+        search_top1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BottomSheetDialog dialog = new BottomSheetDialog(context);
+                View view = LayoutInflater.from(context).inflate(R.layout.bottom_sheet_layout, null);
+                dialog.setContentView(view);
+                dialog.show();
+
+                EditText searching_input = view.findViewById(R.id.searching_input);
+                ListView list_searching = view.findViewById(R.id.list_searching);
+
+                initList();
+                list_searching.setAdapter(adapter1);
+
+                list_searching.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String selectedItem = (String) parent.getItemAtPosition(position);
+                        Intent intent = null;
+
+                        switch (selectedItem) {
+                            case "Truy vấn giao dịch":
+                                intent = new Intent(context, QueryActivity.class);
+                                intent.putExtra("key_trans_value_from_bottomsheet", userTransData);
+                                break;
+                            case "Thêm giao dịch - khoản chi":
+                                intent = new Intent(context, AddExpenseActivity.class);
+                                break;
+                            case "Thêm giao dịch - khoản thu":
+                                intent = new Intent(context, AddRevenueActivity.class);
+                                break;
+                            case "Thêm giao dịch - khoản lãi suất":
+                                intent = new Intent(context, AddPercentageActivity.class);
+                                break;
+                            case "Thêm giao dịch - khoản vay":
+                                intent = new Intent(context, AddLoanActivity.class);
+                                break;
+                            case "Giao dịch gần đây":
+                                intent = new Intent(context, RecentTransActivity.class);
+                                intent.putExtra("key_trans_data", userTransData);
+                                break;
+                            case "Giao dịch có giá trị lớn":
+                                intent = new Intent(context, HighestTransActivity.class);
+                                intent.putExtra("key_trans_data", userTransData);
+                                break;
+                            case "Thông tin cá nhân":
+                                intent = new Intent(context, UserProfileActivity.class);
+                                intent.putExtra("key_username_a", put_data_username);
+                                intent.putExtra("key_fullname_a", put_data_fullname);
+                                intent.putExtra("key_dateofbirth_a", put_data_dob);
+                                intent.putExtra("key_gender_a", put_data_gender);
+                                break;
+                            case "Tỉ giá hối đoái":
+                                intent = new Intent(context, ExchangeRateActivity.class);
+                                break;
+                            case "Đổi giao diện":
+                                intent = new Intent(context, ChangeThemeActivity.class);
+                                break;
+                            case "Đăng nhập bằng vân tay":
+                                intent = new Intent(context, FingerPrintActivity.class);
+                                break;
+                        }
+
+                        if (intent != null) {
+                            startActivity(intent);
+                            getActivity().overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
+                        }
+
+                    }
+                });
+
+                searching_input.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        adapter1.getFilter().filter(s);
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
+
+            }
+        });
+
+
+
+
+
 
         set_onclick_show_balance.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -757,6 +794,6 @@ public class HomeFragment extends Fragment {
     public void initList() {
         items = getResources().getStringArray(R.array.searching_list);
         listItems = new ArrayList<>(Arrays.asList(items));
-        adapter = new ArrayAdapter<String>(context, R.layout.searching_listitem, listItems);
+        adapter1 = new ArrayAdapter<String>(context, R.layout.searching_listitem, listItems);
     }
 }

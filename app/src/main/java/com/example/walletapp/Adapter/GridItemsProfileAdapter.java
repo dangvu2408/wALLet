@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 
 import com.example.walletapp.Activity.EditUserDataActivity;
 import com.example.walletapp.Activity.ExchangeRateActivity;
+import com.example.walletapp.Activity.UpdatePasswordActivity;
 import com.example.walletapp.Model.GridItem;
 import com.example.walletapp.R;
 
@@ -59,6 +60,12 @@ public class GridItemsProfileAdapter extends ArrayAdapter<GridItem> {
                             intent.putExtra("key_dateofbirth_a", dateofbirth);
                             intent.putExtra("key_gender_a", gender);
                             context.startActivity(intent);
+                            ((Activity) context).overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
+                            break;
+                        case 1:
+                            Intent intent0 = new Intent(context, UpdatePasswordActivity.class);
+                            intent0.putExtra("key_username_b", username);
+                            context.startActivity(intent0);
                             ((Activity) context).overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
                             break;
                     }

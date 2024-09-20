@@ -1,7 +1,7 @@
 package com.example.walletapp;
 
 public class Constants {
-    public static final String BASE_IP = "192.168.1.123";  //change IP address here
+    public static final String BASE_IP = " 192.168.100.171";  //change IP address here
 
     public static final String BASE_URL_API_EXCHANGE = "https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx?b=10";
     public static final String BASE_URL_LOGIN = "http://" + BASE_IP + "/wALLet_app/login.php";
@@ -13,6 +13,7 @@ public class Constants {
     public static final String BASE_URL_UPDATE_TRANS_DATA = "http://" + BASE_IP + "/wALLet_app/updateTransData.php";
     public static final String BASE_URL_UPDATE_USER_DATA = "http://" + BASE_IP + "/wALLet_app/updateUserData.php";
     public static final String BASE_URL_DELETE_TRANS_DATA = "http://" + BASE_IP + "/wALLet_app/deleteTransData.php";
+    public static final String BASE_URL_UPDATE_PASSWORD = "http://" + BASE_IP + "/wALLet_app/updatePassword.php";
 
 
 }

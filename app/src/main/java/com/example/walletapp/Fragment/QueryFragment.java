@@ -17,6 +17,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -36,8 +37,18 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import com.example.walletapp.Activity.AddExpenseActivity;
+import com.example.walletapp.Activity.AddLoanActivity;
+import com.example.walletapp.Activity.AddPercentageActivity;
 import com.example.walletapp.Activity.AddRevenueActivity;
+import com.example.walletapp.Activity.ChangeThemeActivity;
+import com.example.walletapp.Activity.ExchangeRateActivity;
+import com.example.walletapp.Activity.FingerPrintActivity;
+import com.example.walletapp.Activity.HighestTransActivity;
 import com.example.walletapp.Activity.NotificationActivity;
+import com.example.walletapp.Activity.QueryActivity;
+import com.example.walletapp.Activity.RecentTransActivity;
+import com.example.walletapp.Activity.UserProfileActivity;
 import com.example.walletapp.Adapter.QueryTransactionAdapter;
 import com.example.walletapp.Model.TransModel;
 import com.example.walletapp.Model.TransactionItem;
@@ -77,6 +88,7 @@ public class QueryFragment extends Fragment {
     private String[] items;
     private ArrayList<String> listItems;
     private ArrayAdapter<String> adapter1;
+    private String put_data_username, put_data_fullname, put_data_dob, put_data_gender;
     public QueryFragment() {}
     @Nullable
     @Override
@@ -97,6 +109,11 @@ public class QueryFragment extends Fragment {
         DrawerLayout drawer = getActivity().findViewById(R.id.drawer_layout);
         queryList = new ArrayList<>();
         queryList = getArguments().getParcelableArrayList("trans_data_key"); //important
+
+        put_data_username = getArguments().getString("key_username_data");
+        put_data_fullname = getArguments().getString("key_fullname_data");
+        put_data_dob = getArguments().getString("key_dob_data");
+        put_data_gender = getArguments().getString("key_gender_data");
 
         menu_top.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,6 +144,63 @@ public class QueryFragment extends Fragment {
 
                 initList();
                 list_searching.setAdapter(adapter1);
+
+                list_searching.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String selectedItem = (String) parent.getItemAtPosition(position);
+                        Intent intent = null;
+
+                        switch (selectedItem) {
+                            case "Truy vấn giao dịch":
+                                intent = new Intent(context, QueryActivity.class);
+                                intent.putExtra("key_trans_value_from_bottomsheet", queryList);
+                                break;
+                            case "Thêm giao dịch - khoản chi":
+                                intent = new Intent(context, AddExpenseActivity.class);
+                                break;
+                            case "Thêm giao dịch - khoản thu":
+                                intent = new Intent(context, AddRevenueActivity.class);
+                                break;
+                            case "Thêm giao dịch - khoản lãi suất":
+                                intent = new Intent(context, AddPercentageActivity.class);
+                                break;
+                            case "Thêm giao dịch - khoản vay":
+                                intent = new Intent(context, AddLoanActivity.class);
+                                break;
+                            case "Giao dịch gần đây":
+                                intent = new Intent(context, RecentTransActivity.class);
+                                intent.putExtra("key_trans_data", queryList);
+                                break;
+                            case "Giao dịch có giá trị lớn":
+                                intent = new Intent(context, HighestTransActivity.class);
+                                intent.putExtra("key_trans_data", queryList);
+                                break;
+                            case "Thông tin cá nhân":
+                                intent = new Intent(context, UserProfileActivity.class);
+                                intent.putExtra("key_username_a", put_data_username);
+                                intent.putExtra("key_fullname_a", put_data_fullname);
+                                intent.putExtra("key_dateofbirth_a", put_data_dob);
+                                intent.putExtra("key_gender_a", put_data_gender);
+                                break;
+                            case "Tỉ giá hối đoái":
+                                intent = new Intent(context, ExchangeRateActivity.class);
+                                break;
+                            case "Đổi giao diện":
+                                intent = new Intent(context, ChangeThemeActivity.class);
+                                break;
+                            case "Đăng nhập bằng vân tay":
+                                intent = new Intent(context, FingerPrintActivity.class);
+                                break;
+                        }
+
+                        if (intent != null) {
+                            startActivity(intent);
+                            getActivity().overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
+                        }
+
+                    }
+                });
 
                 searching_input.addTextChangedListener(new TextWatcher() {
                     @Override

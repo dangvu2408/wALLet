@@ -1,6 +1,5 @@
 package com.example.walletapp.Activity;
 
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -14,8 +13,8 @@ import androidx.core.content.ContextCompat;
 
 import com.example.walletapp.R;
 
-public class NotificationActivity extends AppCompatActivity {
-    private ImageView back_btn, setting_btn;
+public class FingerPrintActivity extends AppCompatActivity {
+    private ImageView back_btn;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,10 +25,9 @@ public class NotificationActivity extends AppCompatActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.color_theme_2));
         }
-        setContentView(R.layout.activity_notification);
-
+        setContentView(R.layout.activity_fingerprint);
         back_btn = findViewById(R.id.back_btn);
-        setting_btn = findViewById(R.id.setting_btn);
+
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,16 +36,7 @@ public class NotificationActivity extends AppCompatActivity {
             }
         });
 
-        setting_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), NotifySettingActivity.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.zoom_out, R.anim.zoom_in);
-            }
-        });
     }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
