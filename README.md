@@ -1,6 +1,6 @@
 ![Static Badge](https://img.shields.io/badge/version-1.0.0-blue)
 ![Static Badge](https://img.shields.io/badge/release-19%2F09%2F2024-blue)
-![Static Badge](https://img.shields.io/badge/build-partial%20success-orange)
+![Static Badge](https://img.shields.io/badge/build-success-orange)
 
 # ỨNG DỤNG QUẢN LÍ TÀI CHÍNH wALLet
 Hướng dẫn sử dụng bản thử nghiệm (ver 0.0.1 - release 01/09/2024). Ứng dụng giúp người dùng theo dõi các khoản thu - chi, quản lý dòng tiền ra - vào. Ứng dụng xây dựng bằng ngôn ngữ Java trên nền tảng Android.
@@ -13,7 +13,7 @@ git clone https://github.com/dangvu2408/wALLet.git
 ``` 
 Trong file `Constans.java` có đường dẫn `app\src\main\java\com\example\walletapp\Constants.java`, chỉnh sửa IP của localhost:
 ```
-public static final String BASE_IP = "192.168.100.171";
+public static final String BASE_IP = "10.95.57.244";
 ```
 Tiến hành chạy ứng dụng trên thiết bị Android của bạn, khuyến khích sử dụng Android Studio để build app. 
 
@@ -122,4 +122,3 @@ Quan hệ giữa hai bảng được thể hiện qua ER Diagram như sau:
 
 <img src="https://github.com/dangvu2408/wALLet/blob/master/app/src/main/res/drawable/er_diagram.jpg"> 
 
-UPDATING...
