@@ -62,7 +62,6 @@ public class HighestTransActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
-
         setContentView(R.layout.activity_highest_balance);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
@@ -79,11 +78,9 @@ public class HighestTransActivity extends AppCompatActivity {
         no_data_high_notype = findViewById(R.id.no_data_high_notype);
         trans_high_notype = findViewById(R.id.trans_high_notype);
         current_month = findViewById(R.id.current_month);
-
         LocalDate today = LocalDate.now();
         int currentMonthValue = today.getMonthValue();
         current_month.setText("Dòng tiền tháng " + currentMonthValue);
-
         this.queryList = new ArrayList<>();
         this.queryList = getIntent().getParcelableArrayListExtra("key_trans_data");
         listDataInit();
@@ -111,14 +108,12 @@ public class HighestTransActivity extends AppCompatActivity {
                 no_data_high_notype.setVisibility(View.GONE);
             }
         }
-
         List<Integer> colors = new ArrayList<>();
         colors.add(Color.parseColor("#ffffff"));
         colors.add(Color.parseColor("#ffffff"));
         colors.add(Color.parseColor("#ffffff"));
         colors.add(Color.parseColor("#ffffff"));
         pieGenerate("N/A", "N/A", "N/A", "N/A", 0, 0, 0, 0, colors);
-
         income_high.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,7 +137,6 @@ public class HighestTransActivity extends AppCompatActivity {
                 }
             }
         });
-
         comeout_high.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -166,8 +160,6 @@ public class HighestTransActivity extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 
     private void pieChartInitData() {
@@ -243,7 +235,6 @@ public class HighestTransActivity extends AppCompatActivity {
                     highOutcomeList.add(item);
                 }
             }
-
             Collections.sort(highIncomeList, new Comparator<TransModel>() {
                 @Override
                 public int compare(TransModel o1, TransModel o2) {

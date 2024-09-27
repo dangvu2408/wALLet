@@ -51,21 +51,18 @@ import java.util.Locale;
 import java.util.Map;
 
 public class AddPercentageActivity extends AppCompatActivity {
-    private SQLiteDatabase database;
     private EditText des, money_input;
     private AutoCompleteTextView autoComplete;
     private ImageView back;
-    private Button btn_save, btn_delete_data;
+    private Button btn_save;
     private TextView dateView;
     private LinearLayout dateWidget;
     private String datepicker, number, fullname;
-    private String SRC_DATABASE_NAME = "app_database.db";
     private Calendar datePicker = Calendar.getInstance();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
-
         setContentView(R.layout.activity_add_percentage);
         back = findViewById(R.id.back_btn);
         btn_save = findViewById(R.id.save_btn_percentage);
@@ -74,18 +71,15 @@ public class AddPercentageActivity extends AppCompatActivity {
         money_input = findViewById(R.id.input_percentage_money);
         dateView = findViewById(R.id.today_or_not);
         dateWidget = findViewById(R.id.date_picker_widget_percentage);
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.color_theme_2));
         }
-
         Locale locale = new Locale("en", "US");
         int numDecs = 2;
         TextWatcher watcher = new NumberTextWatcher(this.money_input, locale, numDecs);
         this.money_input.addTextChangedListener(watcher);
-
         String[] list = getResources().getStringArray(R.array.list_percentage);
         DropdownItemAdapter adapter = new DropdownItemAdapter(this, Arrays.asList(list));
         autoComplete.setDropDownBackgroundResource(R.color.color_01);

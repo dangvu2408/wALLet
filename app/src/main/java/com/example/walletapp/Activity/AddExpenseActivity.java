@@ -52,7 +52,6 @@ import java.util.Locale;
 import java.util.Map;
 
 public class AddExpenseActivity extends AppCompatActivity {
-    private SQLiteDatabase database;
     private EditText des, money_input;
     private AutoCompleteTextView autoComplete;
     private ImageView back;
@@ -67,7 +66,6 @@ public class AddExpenseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
-
         setContentView(R.layout.activity_add_expense);
         back = findViewById(R.id.back_btn);
         autoComplete = findViewById(R.id.auto_complete);
@@ -81,19 +79,14 @@ public class AddExpenseActivity extends AppCompatActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.color_theme_2));
         }
-
         Locale locale = new Locale("en", "US");
         int numDecs = 2;
         TextWatcher watcher = new NumberTextWatcher(this.money_input, locale, numDecs);
         this.money_input.addTextChangedListener(watcher);
-
         String[] list = getResources().getStringArray(R.array.list_expense);
         DropdownItemAdapter adapter = new DropdownItemAdapter(this, Arrays.asList(list));
         autoComplete.setDropDownBackgroundResource(R.color.color_01);
         autoComplete.setAdapter(adapter);
-
-
-
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,7 +94,6 @@ public class AddExpenseActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.close_in, R.anim.close_out);
             }
         });
-
         dateWidget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,12 +114,10 @@ public class AddExpenseActivity extends AppCompatActivity {
                 endDialog.show();
             }
         });
-
         Intent intent = getIntent();
         number = intent.getStringExtra("key_username_data");
         fullname = intent.getStringExtra("key_fullname_data");
         Log.d("NULL VALUE", number + " - " + fullname);
-
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

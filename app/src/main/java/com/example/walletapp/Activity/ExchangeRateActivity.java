@@ -57,23 +57,14 @@ public class ExchangeRateActivity extends AppCompatActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.color_theme_2));
         }
-
         exchange_list = findViewById(R.id.exchange_list);
         back_btn = findViewById(R.id.back_btn);
         progress_exchange = findViewById(R.id.progress_exchange);
-
-
         mainList = new ArrayList<>();
-
         progress_exchange.setVisibility(View.VISIBLE);
         exchangeData(Constants.BASE_URL_API_EXCHANGE);
-
         adapter = new ExchangeRateAdapter(this, mainList);
-
         exchange_list.setAdapter(adapter);
-
-
-
 
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override

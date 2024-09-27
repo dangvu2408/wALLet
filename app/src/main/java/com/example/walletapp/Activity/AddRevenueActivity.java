@@ -52,22 +52,19 @@ import java.util.Locale;
 import java.util.Map;
 
 public class AddRevenueActivity extends AppCompatActivity {
-    private SQLiteDatabase database;
     private EditText des, money_input;
     private AutoCompleteTextView autoComplete;
     private ImageView back;
-    private Button btn_save, btn_delete_data;
+    private Button btn_save;
     private TextView dateView;
     private LinearLayout dateWidget;
     private String datepicker, number, fullname;
-    private String SRC_DATABASE_NAME = "app_database.db";
     private Calendar datePicker = Calendar.getInstance();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
-
         setContentView(R.layout.activity_add_revenue);
         back = findViewById(R.id.back_btn);
         btn_save = findViewById(R.id.save_btn_revenue);
@@ -76,13 +73,11 @@ public class AddRevenueActivity extends AppCompatActivity {
         money_input = findViewById(R.id.input_revenue_money);
         dateView = findViewById(R.id.today_or_not);
         dateWidget = findViewById(R.id.date_picker_widget_revenue);
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.color_theme_2));
         }
-
         String[] list = getResources().getStringArray(R.array.list_revenue);
         DropdownItemAdapter adapter = new DropdownItemAdapter(this, Arrays.asList(list));
         autoComplete.setDropDownBackgroundResource(R.color.color_01);
@@ -91,7 +86,6 @@ public class AddRevenueActivity extends AppCompatActivity {
         int numDecs = 2;
         TextWatcher watcher = new NumberTextWatcher(this.money_input, locale, numDecs);
         this.money_input.addTextChangedListener(watcher);
-
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,7 +93,6 @@ public class AddRevenueActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.close_in, R.anim.close_out);
             }
         });
-
         dateWidget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,7 +109,6 @@ public class AddRevenueActivity extends AppCompatActivity {
                         dateView.setText(selected);
                     }
                 }, datePicker.get(Calendar.YEAR), datePicker.get(Calendar.MONTH), datePicker.get(Calendar.DAY_OF_MONTH));
-
                 endDialog.show();
             }
         });
@@ -126,16 +118,12 @@ public class AddRevenueActivity extends AppCompatActivity {
         fullname = intent.getStringExtra("key_fullname_data");
         Log.d("NULL VALUE", number + " - " + fullname);
 
-
-
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String description = des.getText().toString();
                 String type = autoComplete.getText().toString();
                 String money = money_input.getText().toString();
-
-
                 if (money_input.getText().toString().equals("")) {
                     LayoutInflater inflater = getLayoutInflater();
                     View layout = inflater.inflate(R.layout.custom_toast_01, null);
@@ -155,13 +143,11 @@ public class AddRevenueActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     private void addTransRevenue(String url, String str1, String str2, String str3, String str4, String str5, String str6, String str7) {
         Log.d("NULL VALUE", str1 + " - " + str2 + " - " +
                 str3 + " - " + str4 + " - " + str5 + " - " + str6 + " - " + str7);
-
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest strRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {

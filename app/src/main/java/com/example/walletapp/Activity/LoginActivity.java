@@ -53,7 +53,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
-
         setContentView(R.layout.activity_login);
         login_btn = findViewById(R.id.login_btn);
         create_account = findViewById(R.id.create_account);
@@ -61,8 +60,6 @@ public class LoginActivity extends AppCompatActivity {
         password_input = findViewById(R.id.password_input);
         fill_username_now = findViewById(R.id.fill_username_now);
         fill_pass_now = findViewById(R.id.fill_pass_now);
-
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);

@@ -56,14 +56,12 @@ public class EditUserDataActivity extends AppCompatActivity {
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.color_theme_2));
         }
         setContentView(R.layout.activity_edit_user_data);
-
         back_btn = findViewById(R.id.back_btn);
         name_edit = findViewById(R.id.name_edit);
         today_or_not = findViewById(R.id.today_or_not);
         gender_edit = findViewById(R.id.gender_edit);
         pick_day_now = findViewById(R.id.pick_day_now);
         user_edit_btn = findViewById(R.id.user_edit_btn);
-
         name_str = getIntent().getStringExtra("key_fullname_a");
         date_str = getIntent().getStringExtra("key_dateofbirth_a");
         gender_str = getIntent().getStringExtra("key_gender_a");
