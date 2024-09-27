@@ -3,7 +3,7 @@
 ![Static Badge](https://img.shields.io/badge/build-success-orange)
 
 # ỨNG DỤNG QUẢN LÍ TÀI CHÍNH wALLet
-Hướng dẫn sử dụng bản thử nghiệm (ver 0.0.1 - release 01/09/2024). Ứng dụng giúp người dùng theo dõi các khoản thu - chi, quản lý dòng tiền ra - vào. Ứng dụng xây dựng bằng ngôn ngữ Java trên nền tảng Android.
+Hướng dẫn sử dụng bản thử nghiệm (ver 1.0.0 - release 27/09/2024). Ứng dụng giúp người dùng theo dõi các khoản thu - chi, quản lý dòng tiền ra - vào. Ứng dụng xây dựng bằng ngôn ngữ Java trên nền tảng Android.
 <img src="https://github.com/dangvu2408/wALLet/blob/master/app/src/main/res/drawable/fullbanner.png"> 
 
 ## 1. Cài đặt
