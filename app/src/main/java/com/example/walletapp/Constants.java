@@ -1,7 +1,7 @@
 package com.example.walletapp;
 
 public class Constants {
-    public static final String BASE_IP = " 192.168.100.171";  //change IP address here
+    public static final String BASE_IP = "10.95.57.244";  //change IP address here
 
     public static final String BASE_URL_API_EXCHANGE = "https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx?b=10";
     public static final String BASE_URL_LOGIN = "http://" + BASE_IP + "/wALLet_app/login.php";
